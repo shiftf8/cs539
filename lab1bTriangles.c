@@ -2,34 +2,61 @@
 Lamog, Robert
 Lab 1B
 09/16/2014
-Testing sides to make triangles.
+Testing sides to make equilateral, isosceles, or scalene triangles.
 */
 
 #include <math.h>
 #include <stdio.h>
 
+int sidesCheck(double arr[], int size);
+
 int main() {
-    long sidesArr[3] = {0};
-    char toContinue = NULL;
-    long input = 0;
     int i = 0;
+    double input = 0.0;
+    double triangleSidesArr[3] = {0.0, 0.0, 0.0};
 
-    while (input != 'N'){
-        printf("Please enter the length of a side of a triangle: ");
-        scanf("%ld", &input);
-        if (input > 0) {
-            sidesArr[i] = input;
-            i++;
+    for (i = 0; i < 3;) {
+        printf("Please enter a length.\n");
+
+        int returnSuccessful = scanf("%lf", &input);
+/*        printf("%.2d\n", returnSuccessful);    /**/
+
+        if (returnSuccessful == 1) {
+            if (input > 0) {
+                triangleSidesArr[i] = input;
+                i++;
+            }
+/*            printf("%lf - %lf\n", input, sidesArr[i]);    /**/
+            else if (triangleSidesArr[i] <= 0.0) {
+                printf("Invalid input. Please enter an unsigned length.\n");
+            } else {
+                printf("Something weird happened.");
+                break;
+            }
         }
-        else printf("Your input is invalid. Please enter an unsigned integer as the length of your side.");
-
-        if (i == 3) {
-            /* output test results, reset 'i' and ask to terminate program */
-            i = 0;
-            printf("Would you like to test another triangle? Type \'N\' to exit test.\n");
-            scanf("%c", &toContinue);
+        if (returnSuccessful < 1) {
+            scanf("%*s");
+            printf("Invalid input. Please enter a length.\n");
         }
     }
 
+/*    printf("Sides array set to ");
+    for (i = 0; i < 3; i++) {
+        printf("[%lf]", triangleSidesArr[i]);
+        if (i !=2) printf(", ");
+        else printf(".\n");
+    }    /**/
+
+    if (sidesCheck(triangleSidesArr, 3)) printf("Success! The lengths entered can make a triangle.");
+ 
     return 0;
+}
+
+int sidesCheck(double arr[], int size) {
+    int isPossible = 0;
+    int i = 0;
+
+    for (i = 0; i < size; i++) {
+    }
+    return isPossible;
 }
