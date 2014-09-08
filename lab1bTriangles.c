@@ -36,7 +36,6 @@ void triangleTest() {
         printf("\n");
 
         if (triangleSidesCheck(triangleSidesArr) == 3) {
-/*            scanf("%*s");    /**/
             printf("Success! The lengths ");
             printTriangleSides(triangleSidesArr);
             printf(" can make a");
@@ -48,7 +47,7 @@ void triangleTest() {
         } else {
             printf("It is NOT possible to make a triangle with sides of length ");
             printTriangleSides(triangleSidesArr);
-            printf("\nWould you like to try again (Y/N)?\n");
+            printf(".\nWould you like to try again (Y/N)?\n");
             scanf("%s", &response); 
         }
     }
@@ -74,7 +73,7 @@ void inputSides(double arr[]) {
             else if (arr[i] <= 0.0) {
                 printf("Invalid input. Please enter an unsigned length.\n");
             } else {
-                printf("Something weird happened.");
+                printf("Unexpected behavior. Consult a fellow programmer.\n");
                 break;
             }
         }
@@ -109,7 +108,6 @@ double triangleArea(double arr[]) {
 @return 0 == "Scalene Triangle"
 @return 1 == "Isosceles Triangle"
 @return 3 == "Equilateral Triangle"
-Anything else is unexpected behavior.
 */
 int triangleType(double arr[]) {
     int type = 0;
