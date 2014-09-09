@@ -9,13 +9,13 @@ Testing sides to make equilateral, isosceles, or scalene triangles.
 #include <stdio.h>
 
 void triangleTest();
-void inputSides(double arr[], int arrLength);
-int triangleSidesCheck(double arr[]);
-double triangleArea(double arr[]);
-int triangleType(double arr[]);
-void printTriangleSides(double arr[]);
-void printTriangleArea(double area);
-void printTriangleType(int type);
+void inputSides( double arr[], int arrLength );
+int triangleSidesCheck( double arr[] );
+double triangleArea( double arr[] );
+int triangleType( double arr[] );
+void printTriangleSides( double arr[] );
+void printTriangleArea( double area );
+void printTriangleType( int type );
 
 int main() {
     triangleTest();
@@ -51,9 +51,9 @@ void triangleTest() {
             scanf("%s", &response); 
         }
     }
-}
+} /* main */
 
-void inputSides(double arr[], int arrLength) {
+void inputSides( double arr[], int arrLength ) {
     int i = 0;
     double input = 0.0;
     char junk[80] = {'0'};
@@ -62,9 +62,13 @@ void inputSides(double arr[], int arrLength) {
     for (i = 0; i < arrLength;) {
         char c = NULL;
 
-        while ((c = getchar()) != '\n' && c != EOF) /* trying to discard stio stream */
         printf("Please enter a length.\n");
-
+        if (i > 0) {
+            while ((c = getchar()) != '\n' && c != EOF) {
+                /* trying to discard stdio stream */
+            }
+        }
+        
         int returnSuccessful = scanf("%lf", &input);
         printf("%lf\n", input);    /**/
 
@@ -84,7 +88,7 @@ void inputSides(double arr[], int arrLength) {
             }
         }
         if (returnSuccessful < 1) {
-/*            scanf("%*s");    /**/
+            scanf("%*s");    /**/
             printf("Invalid input. ");
         }
     }
