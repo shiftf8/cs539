@@ -76,11 +76,8 @@ void inputSides( double sidesArr[], int arrLength ) {
                 sidesArr[i] = input;
                 i++;
             }
-            else if (input <= 0.0) {
-                printf("Oops! A length must be positive.\n");
-            } else {
-                printf("Unexpected behavior. Consult a fellow programmer.\n");
-                break;
+            if (input <= 0) {
+                printf("Oops! A length must be positive. ");
             }
         }
         if (returnSuccessful < 1) {
