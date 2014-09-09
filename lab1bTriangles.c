@@ -65,7 +65,7 @@ void inputSides( double arr[], int arrLength ) {
         printf("Please enter a length.\n");
         if (i > 0) {
             while ((c = getchar()) != '\n' && c != EOF) {
-                /* trying to discard stdio stream */
+                /* trying to discard stdin stream */
             }
         }
         
