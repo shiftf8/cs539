@@ -70,14 +70,13 @@ void inputSides( double arr[], int arrLength ) {
         }
         
         int returnSuccessful = scanf("%lf", &input);
-        printf("%lf\n", input);    /**/
+/*        printf("%lf\n", input);    /**/
 
         if (returnSuccessful == 1) {
 /*            scanf("%*s");    /**/
             if (input > 0) {
                 arr[i] = input;
                 i++;
-/*                printf("%s\n", junk);    /**/
             }
             else if (input <= 0.0) {
 /*                scanf("%*s");    /**/
