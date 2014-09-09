@@ -9,7 +9,7 @@ Testing sides to make equilateral, isosceles, or scalene triangles.
 #include <stdio.h>
 
 void triangleTest();
-void inputSides(double arr[]);
+void inputSides(double arr[], int arrLength);
 int triangleSidesCheck(double arr[]);
 double triangleArea(double arr[]);
 int triangleType(double arr[]);
@@ -31,7 +31,7 @@ void triangleTest() {
         int i = 0;
         double triangleSidesArr[3] = {0.0, 0.0, 0.0};
 
-        inputSides(triangleSidesArr);
+        inputSides(triangleSidesArr, 3);
 /*        printTriangleSides(triangleSidesArr);
         printf("\n");   /**/
 
@@ -53,32 +53,38 @@ void triangleTest() {
     }
 }
 
-void inputSides(double arr[]) {
+void inputSides(double arr[], int arrLength) {
     int i = 0;
     double input = 0.0;
+    char junk[80] = {'0'};
 
-    /* i is incrementing upon successful input */
-    for (i = 0; i < 3;) {
+    /* i is incrementing upon successful length input */
+    for (i = 0; i < arrLength;) {
+        char c = NULL;
+
+        while ((c = getchar()) != '\n' && c != EOF) /* trying to discard stio stream */
         printf("Please enter a length.\n");
 
         int returnSuccessful = scanf("%lf", &input);
-/*        printf("%.2d\n", returnSuccessful);    /**/
+        printf("%lf\n", input);    /**/
 
         if (returnSuccessful == 1) {
+/*            scanf("%*s");    /**/
             if (input > 0) {
                 arr[i] = input;
                 i++;
+/*                printf("%s\n", junk);    /**/
             }
-/*            printf("%lf - %lf\n", input, sidesArr[i]);    /**/
-            else if (arr[i] <= 0.0) {
-                printf("Invalid input. Please enter an unsigned length.\n");
+            else if (input <= 0.0) {
+/*                scanf("%*s");    /**/
+                printf("Oops! A length must be positive.\n");
             } else {
                 printf("Unexpected behavior. Consult a fellow programmer.\n");
                 break;
             }
         }
         if (returnSuccessful < 1) {
-            scanf("%*s");
+/*            scanf("%*s");    /**/
             printf("Invalid input. ");
         }
     }
