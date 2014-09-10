@@ -9,15 +9,13 @@ Testing sides to make equilateral, isosceles, or scalene triangles.
 #include <stdio.h>
 
 void triangleTest();
-void inputSides(double sidesArr[], int arrLength);
-int triangleSidesCheck(double arr[]);
-double triangleArea(double arr[]);
-int triangleType(double arr[]);
-void printTriangleSides(double arr[]);
-void printTriangleArea(double area);
-void printTriangleType(int type);
-
-int die( const char *msg );
+void inputSides( double sidesArr[], int arrLength );
+int triangleSidesCheck( double arr[] );
+double triangleArea( double arr[] );
+int triangleType( double arr[] );
+void printTriangleSides( double arr[] );
+void printTriangleArea( double area );
+void printTriangleType( int type );
 
 int main() {
 	triangleTest();
@@ -150,7 +148,3 @@ void printTriangleType( int type ) {
 	if (type == 3) printf("n Equilateral");
 }
 
-int die(const char *msg) {
-	printf("Fatal error: %s\n", msg);
-	return 1;
-}
