@@ -59,6 +59,7 @@ void inputSides( double sidesArr[], int arrLength ) {
 
     /* i is incrementing upon successful length input */
     for (i = 0; i < arrLength;) {
+        int returnSuccessful = 0;
         char c = NULL;
 
         printf("Please enter a length.\n");
@@ -68,7 +69,7 @@ void inputSides( double sidesArr[], int arrLength ) {
             }
         }
         
-        int returnSuccessful = scanf("%lf", &input);
+        returnSuccessful = scanf("%lf", &input);
 /*        printf("%lf\n", input);    /**/
 
         if (returnSuccessful == 1) {
@@ -88,7 +89,7 @@ void inputSides( double sidesArr[], int arrLength ) {
 }
 
 /* A triangle is possible @return 3 */
-int triangleSidesCheck(double arr[]) {
+int triangleSidesCheck( double arr[] ) {
     int isPossible = 0;
 
     if (arr[0] + arr[1] > arr[2]) isPossible++;
@@ -98,7 +99,7 @@ int triangleSidesCheck(double arr[]) {
     return isPossible;
 }
 
-double triangleArea(double arr[]) {
+double triangleArea( double arr[] ) {
     double s = 0.0;
     double area = 0.0;
 
@@ -112,7 +113,7 @@ double triangleArea(double arr[]) {
 @return 1 == "Isosceles Triangle"
 @return 3 == "Equilateral Triangle"
 */
-int triangleType(double arr[]) {
+int triangleType( double arr[] ) {
     int type = 0;
 
     if (arr[0] == arr[1]) type++;
@@ -121,7 +122,7 @@ int triangleType(double arr[]) {
     return type;
 }
 
-void printTriangleSides(double arr[]) {
+void printTriangleSides( double arr[] ) {
     int i = 0;
 
     printf("(");
@@ -132,11 +133,11 @@ void printTriangleSides(double arr[]) {
     printf(")");
 }
 
-void printTriangleArea(double area) {
+void printTriangleArea( double area ) {
     printf("%.2lf", area);
 }
 
-void printTriangleType(int type) {
+void printTriangleType( int type ) {
     if (type == 0) printf(" Scalene");
     if (type == 1) printf(" Isosceles");
     if (type == 3) printf("n Equilateral");
