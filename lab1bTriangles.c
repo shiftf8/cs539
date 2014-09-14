@@ -35,7 +35,7 @@ void triangleTest() {
 
         inputSides(triangleSidesArr, 3);
 /*        printTriangleSides(triangleSidesArr);
-        printf("\n");   /**/
+        printf("\n");    /**/
 
         if (triangleSidesCheck(triangleSidesArr) == 3) {
             printf("Success! The lengths ");
@@ -90,7 +90,6 @@ void inputSides( double sidesArr[], int arrLength ) {
             while ((c = getchar()) != '\n' && c != EOF) {
                 /* trying to discard stdin stream */
             }
-/*            scanf("%*s");    /**/
             printf("Invalid input. ");
         }
     }
