@@ -17,19 +17,19 @@ int main() {
 } /* main */
 
 void charChecker() {
-    int i = 0;
+    int endOfWordFlag = 0;
     char c;
 
     while (c != EOF) {
         c = getchar();
         if (isAlphaChecker(c) == 1) {
             putchar(c);
-            i = 1;
+            endOfWordFlag = 1;
         }
         if (isAlphaChecker(c) == 0) {
-            if (i == 1) {
+            if (endOfWordFlag == 1) {
                 printf("\n");
-                i = 0;
+                endOfWordFlag = 0;
             }
         }
     }
