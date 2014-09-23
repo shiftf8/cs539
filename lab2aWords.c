@@ -7,16 +7,16 @@ Stripping punctuation and blanks, putting a single word per line from formatted 
 
 #include <stdio.h>
 
-void charChecker();
+void wordPerLine();
 int isAlphaChecker(int inputChar);
 
 int main() {
-    charChecker(); 
+    wordPerLine(); 
 
     return 0; 
 } /* main */
 
-void charChecker() {
+void wordPerLine() {
     int endOfWordFlag = 0;
     char c;
 
