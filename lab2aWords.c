@@ -35,23 +35,6 @@ void wordPerLine() {
     }
 }
 int isAlphaChecker(int inputChar) {
-    int isAlpha = 0;
-    char ch;
-
-    /* checking if capital letter */
-    for (ch = 'A'; ch <= 'Z'; ch++) {
-        if (inputChar == ch) {
-            isAlpha = 1;
-            break;
-        }
-    }
-    /* checking if lower case letter */
-    for (ch = 'a'; ch <= 'z'; ch++) {
-        if (inputChar == ch) {
-            isAlpha = 1;
-            break;
-        }
-    }
-
-    return isAlpha;
+    if (((inputChar >= 'A') && (inputChar <= 'Z')) || ((inputChar >= 'a') && (inputChar <='z'))) return 1;
+    return 0;
 }
