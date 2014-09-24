@@ -2,13 +2,13 @@
 Lamog, Robert
 Lab 2A
 09/30/2014
-Stripping punctuation and blanks, putting a single word per line from formatted source input.
+Stripping punctuation and blanks, putting a single word per line from formatted input utilizing getchar() and putchar().
 */
 
 #include <stdio.h>
 
 void wordPerLine();
-int isAlphaChecker(int inputChar);
+int isAlphaChecker(char); // Built my own alpha checker.
 
 int main() {
     wordPerLine(); 
@@ -34,7 +34,7 @@ void wordPerLine() {
         }
     }
 }
-int isAlphaChecker(int inputChar) {
+int isAlphaChecker(char inputChar) {
     if (((inputChar >= 'A') && (inputChar <= 'Z')) || ((inputChar >= 'a') && (inputChar <='z'))) return 1;
     return 0;
 }
