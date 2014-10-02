@@ -79,9 +79,10 @@ void simpleCalc() {
         if (operation == '*') multiply(x, y);
         if (operation == '/') divide(x, y);
         if (operation == '%') modulo(x, y);
+        if (operation == 0) printf("Invalid expression.\n");
     } else printf("Invalid expression.\n");
     
-    printf("Would you like to enter another expression (Y/N)?");
+    printf("Would you like to enter another expression (Y/N)?\n");
 }
 unsigned int makeOperand( char c, unsigned int operand ) {
     return (operand * 10) + (c - '0');
@@ -119,8 +120,8 @@ void divide(unsigned int a, unsigned int b) {
     
     if (b == 0) printf("Undefined.\n");
     else {
-        total = a / b;
-        printf("%d / %d = %.2lf\n", a, b, total);
+        total = (a + 0.0) / b;
+        printf("%d / %d = %g\n", a, b, total);
     }
 }
 void modulo(unsigned int a, unsigned int b) {
