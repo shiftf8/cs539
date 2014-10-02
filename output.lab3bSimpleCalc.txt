@@ -32,3 +32,6 @@ Would you like to enter another expression (Y/N)?
 Please enter an expression: 0001 + 200
 1 + 200 = 201
 Would you like to enter another expression (Y/N)?
+Please enter an expression: 10-11
+This calculator isn't capable of handling this expression.
+Would you like to enter another expression (Y/N)?
