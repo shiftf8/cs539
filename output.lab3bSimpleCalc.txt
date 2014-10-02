@@ -23,3 +23,9 @@ Would you like to enter another expression (Y/N)?
 Please enter an expression: 13 0 -
 Invalid expression.
 Would you like to enter another expression (Y/N)?
+Please enter an expression: a
+Invalid expression.
+Would you like to enter another expression (Y/N)?
+Please enter an expression: +13 24
+Invalid expression.
+Would you like to enter another expression (Y/N)?
