@@ -28,7 +28,7 @@ int main() {
         if (response != 'n' || response != 'N') {
             char c;
             
-            while ((c = getchar()) != '\n' && c != '\n') {
+            while ((c = getchar()) != '\n' && c != EOF) {
                 /* Trying to discard the buffer stream. */
             }
         }
