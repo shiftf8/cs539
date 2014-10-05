@@ -26,8 +26,8 @@ int main() {
     char response = 0;
 
     printf("Let's test some simple expressions.\nPlease input an expression: ");
-    while (response = getchar() != EOF) {
-        // response = getchar();
+    while (response != EOF) {
+        response = getchar();
         if (isNumChecker(response)) {
             expressionState = buildExpression(response);
         }
@@ -98,7 +98,7 @@ int buildExpression( char c ) {
             return 1;
         }
     }
-    return -1;
+//    return -1;
 }
 unsigned int makeOperand( char c, unsigned int operand ) {
     return (operand * 10) + (c - '0');

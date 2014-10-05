@@ -1,2 +1,173 @@
 Let's test some simple expressions.
-Please input an expression: 
+Please input an expression: 3Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+5Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Please input an expression: Would you like to input another expression (Y/N)?
+1Would you like to input another expression (Y/N)?
+0Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+9Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Please input an expression: Would you like to input another expression (Y/N)?
+2Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+1Would you like to input another expression (Y/N)?
+3Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Please input an expression: Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+3Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+5Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Please input an expression: Would you like to input another expression (Y/N)?
+1Would you like to input another expression (Y/N)?
+0Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+3Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Please input an expression: Would you like to input another expression (Y/N)?
+1Would you like to input another expression (Y/N)?
+0Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+1Would you like to input another expression (Y/N)?
+1Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Please input an expression: Would you like to input another expression (Y/N)?
+3Would you like to input another expression (Y/N)?
+1Would you like to input another expression (Y/N)?
+4Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+0Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Please input an expression: Would you like to input another expression (Y/N)?
+3Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Please input an expression: Would you like to input another expression (Y/N)?
+4Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+5Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Please input an expression: Would you like to input another expression (Y/N)?
+4Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+5Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+6Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Please input an expression: Would you like to input another expression (Y/N)?
+1Would you like to input another expression (Y/N)?
+3Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+0Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Please input an expression: Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Please input an expression: Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+1Would you like to input another expression (Y/N)?
+3Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+2Would you like to input another expression (Y/N)?
+4Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Please input an expression: Would you like to input another expression (Y/N)?
+0Would you like to input another expression (Y/N)?
+0Would you like to input another expression (Y/N)?
+0Would you like to input another expression (Y/N)?
+1Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+2Would you like to input another expression (Y/N)?
+0Would you like to input another expression (Y/N)?
+0Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Please input an expression: Would you like to input another expression (Y/N)?
+0Would you like to input another expression (Y/N)?
+9Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+0Would you like to input another expression (Y/N)?
+2Would you like to input another expression (Y/N)?
+3Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Please input an expression: Would you like to input another expression (Y/N)?
+1Would you like to input another expression (Y/N)?
+2Would you like to input another expression (Y/N)?
+3Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+4Would you like to input another expression (Y/N)?
+5Would you like to input another expression (Y/N)?
+6Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+7Would you like to input another expression (Y/N)?
+8Would you like to input another expression (Y/N)?
+9Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Would you like to input another expression (Y/N)?
+Thanks for playing. Goodbye.
