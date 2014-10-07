@@ -10,7 +10,6 @@ Simple 2 unsigned int operand expression calculator using getchar() and putchar(
 int isAlphaChecker( char );
 int isNumChecker( char );
 int isOperator( char );
-void buildExpression( char, unsigned int, unsigned int, int, int, int, char );
 unsigned int makeOperand( char, unsigned int );
 void add( unsigned int, unsigned int );
 void subtract( unsigned int, unsigned int );
@@ -23,21 +22,63 @@ int main() {
     unsigned int first_operand = 0;
     unsigned int second_operand = 0;
     int end_of_operand_flag = 0;
-    int operand_success_flag = 0;
-    int operation_success_flag = 0;
+    int operand_success = 0;
+    int operation_success = 0;
     char operation = 0;
 
-    printf("Let's test some simple expressions.\nPlease input an expression: ");
+    printf("Let's test some simple expressions. Type \'N\' at any time to exit.\nPlease input an expression: ");
     while ((char_response = getchar()) != EOF) {
 
         if (isAlphaChecker(char_response)) {
             if (char_response == 'N') {
                 printf("Thanks for playing. Goodbye.\n");
                 break;
+            } else printf("Invalid input.\nPlease input an expression: ");
+        } else if (isNumChecker(char_response) || isOperator(char_response) || char_response == ' ') {
+            putchar(char_response);
+            
+            if (isNumChecker(char_response)) {
+                if (operand_success == 0) {
+                    first_operand = makeOperand(char_response, first_operand);
+                    // printf("first_operand = %d\n", first_operand);
+                }
+                if (operand_success == 1) {
+                    second_operand = makeOperand(char_response, second_operand);
+                    // printf("second_operand = %d\n", second_operand);
+                }
+                end_of_operand_flag = 1;
             }
-            if (char_response == 'Y') printf("Please input an expression: ");
+            if (!isNumChecker(char_response) && end_of_operand_flag == 1) {
+                operand_success++;
+                end_of_operand_flag = 0;
+            }
+            if (isOperator(char_response)) {
+                if (operand_success == 1 && operation_success == 0) {
+                    operation = char_response;
+                    // printf ("operator = %c\n", operation);
+                }
+                operation_success++;
+            }
+        } else if (char_response == '\n') {
+            printf("\n");
+            
+            if (operand_success == 2 && operation_success == 1) {
+                if (operation == 0) printf("Invalid expression.\nPlease input an expression: ");
+                if (operation == '+') add(first_operand, second_operand);
+                if (operation == '-') subtract(first_operand, second_operand);
+                if (operation == '*') multiply(first_operand, second_operand);
+                if (operation == '/') divide(first_operand, second_operand);
+                if (operation == '%') modulo(first_operand, second_operand);
+            }
+            
+            /* Reset all variables */
+            first_operand = 0;
+            second_operand = 0;
+            end_of_operand_flag = 0;
+            operand_success = 0;
+            operation_success = 0;
+            operation = 0;
         }
-        buildExpression(char_response, first_operand, second_operand, end_of_operand_flag, operand_success_flag, operation_success_flag, operation);
     }
     
     return 0;
@@ -55,40 +96,6 @@ int isOperator( char is_operator ) {
     if ((is_operator == '+') || (is_operator == '-') || (is_operator == '*') || (is_operator == '/') || (is_operator == '%')) return 1;
     return 0;
 }
-void buildExpression( char ch, unsigned int x, unsigned int y, int endOfOperand, int operandSuccess, int operationSuccess, char operationX);
-    putchar(ch);
-    
-    if (isNumChecker(ch)) {
-        if (operandSuccess == 0) {
-            x = makeOperand(ch, x);
-            // printf("x = %d\n", x);
-        }
-        if (operandSuccess == 1) {
-            y = makeOperand(ch, y);
-            // printf("y = %d\n", y);
-        }
-        endOfOperand = 1;
-    }
-    if (isOperator(ch)) {
-        if (operandSuccess == 1 && operationSuccess == 0) {
-            operationX = ch;
-        }
-        operationSuccess++;
-    }
-    if (!isNumChecker(ch) && endOfOperand == 1) {
-        operandSuccess++;
-        endOfOperand = 0;
-    }
-
-    if (operandSuccess == 2 && operationSuccess == 1) {
-        if (operationX == 0) printf("Invalid expression.\nWould you like to input another expression (Y/N)?\n");
-        if (operationX == '+') add(x, y);
-        if (operationX == '-') subtract(x, y);
-        if (operationX == '*') multiply(x, y);
-        if (operationX == '/') divide(x, y);
-        if (operationX == '%') modulo(x, y);
-    }
-}
 unsigned int makeOperand( char digit, unsigned int operand ) {
     return (operand * 10) + (digit - '0');
 }
@@ -96,34 +103,34 @@ void add( unsigned int a, unsigned int b ) {
     unsigned int total = 0;
     
     total = a + b;
-    printf("%d + %d = %d\nWould you like to input another expression (Y/N)?\n", a, b, total);
+    printf("%d + %d = %d\nPlease input an expression: ", a, b, total);
 }
 void subtract( unsigned int a, unsigned int b ) {
     unsigned int total = 0;
     
     if (a >= b) {
         total =  a - b;
-        printf("%d - %d = %d\nWould you like to input another expression (Y/N)?\n", a, b, total);
-    } else printf("This calculator isn't capable of handling this expression.\nWould you like to input another expression (Y/N)?\n");
+        printf("%d - %d = %d\nPlease input an expression: ", a, b, total);
+    } else printf("This calculator isn't capable of handling this expression.\nPlease input an expression: ");
 }
 void multiply( unsigned int a, unsigned int b ) {
     unsigned int total = 0;
     
     total =  a * b;
-    printf("%d * %d = %d\nWould you like to input another expression (Y/N)?\n", a, b, total);
+    printf("%d * %d = %d\nPlease input an expression: ", a, b, total);
 }
 void divide( unsigned int a, unsigned int b ) {
     double total = 0.0;
     
-    if (b == 0) printf("Undefined.\nWould you like to input another expression (Y/N)?\n");
+    if (b == 0) printf("Undefined.\nPlease input an expression: ");
     else {
         total = (a + 0.0) / b;
-        printf("%d / %d = %g\n", a, b, total);
+        printf("%d / %d = %g\nPlease input an expression: ", a, b, total);
     }
 }
 void modulo( unsigned int a, unsigned int b ) {
     unsigned int total = 0;
     
     total = a % b;
-    printf("%d %% %d = %d\nWould you like to input another expression (Y/N)?\n", a, b, total);
+    printf("%d %% %d = %d\nPlease input an expression: ", a, b, total);
 }

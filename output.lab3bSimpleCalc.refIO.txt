@@ -1,33 +1,23 @@
-Let's test some simple expressions.
+Let's test some simple expressions. Type 'N' at any time to exit.
 Please input an expression:  3+     5 
-Please input an expression: Y
-10    -     9
-Please input an expression: Y
+3 + 5 = 8
+Please input an expression: 10    -     9
 2*13
-Please input an expression: Y
        3/5          
-Please input an expression: Y
-10  %3
-Please input an expression: Y
+3 / 5 = 0.6
+Please input an expression: 10  %3
 10-11
-Please input an expression: Y
 314/  0  
-Please input an expression: Y
-3
-Please input an expression: Y
+Undefined.
+Please input an expression: 3
 4+-5
-Please input an expression: Y
 4+5*6
-Please input an expression: Y
 13 0 -
-Please input an expression: Y
-a
-Please input an expression: Y
+Invalid expression.
+Please input an expression: Invalid input.
+Please input an expression: 
 +13 24
-Please input an expression: Y
 0001 + 200
-Please input an expression: Y
 09 *023
-Please input an expression: Y
 123 456     * 789 
 Thanks for playing. Goodbye.
