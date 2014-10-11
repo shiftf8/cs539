@@ -1,0 +1,49 @@
+Let's test some expressions.
+Please enter an expression:  3+     5 
+3 + 5 = 8
+Would you like to enter another expression (Y/N)?
+Please enter an expression: 10    -     9
+10 - 9 = 1
+Would you like to enter another expression (Y/N)?
+Please enter an expression: 2*13
+2 * 13 = 26
+Would you like to enter another expression (Y/N)?
+Please enter an expression:        3/5          
+3 / 5 = 0.6
+Would you like to enter another expression (Y/N)?
+Please enter an expression: 10  %3
+10 % 3 = 1
+Would you like to enter another expression (Y/N)?
+Please enter an expression: 10-11
+This calculator isn't capable of handling this expression.
+Would you like to enter another expression (Y/N)?
+Please enter an expression: 314/  0  
+Undefined.
+Would you like to enter another expression (Y/N)?
+Please enter an expression: 3
+Invalid expression.
+Would you like to enter another expression (Y/N)?
+Please enter an expression: 4+-5
+Invalid expression.
+Would you like to enter another expression (Y/N)?
+Please enter an expression: 4+5*6
+Invalid expression.
+Would you like to enter another expression (Y/N)?
+Please enter an expression: 13 0 -
+Invalid expression.
+Would you like to enter another expression (Y/N)?
+Please enter an expression: a
+Invalid expression.
+Would you like to enter another expression (Y/N)?
+Please enter an expression: +13 24
+Invalid expression.
+Would you like to enter another expression (Y/N)?
+Please enter an expression: 0001 + 200
+1 + 200 = 201
+Would you like to enter another expression (Y/N)?
+Please enter an expression: 09 *023
+9 * 23 = 207
+Would you like to enter another expression (Y/N)?
+Please enter an expression: 123 456     * 789 
+Invalid expression.
+Would you like to enter another expression (Y/N)?
