@@ -2,22 +2,34 @@ Let's test some simple expressions. Type 'N' at any time to exit.
 Please input an expression:  3+     5 
 3 + 5 = 8
 Please input an expression: 10    -     9
-2*13
-       3/5          
+10 - 9 = 1
+Please input an expression: 2*13
+2 * 13 = 26
+Please input an expression:        3/5          
 3 / 5 = 0.6
 Please input an expression: 10  %3
-10-11
-314/  0  
+10 % 3 = 1
+Please input an expression: 10-11
+This calculator isn't capable of handling negative numbers.
+Please input an expression: 314/  0  
 Undefined.
 Please input an expression: 3
-4+-5
-4+5*6
-13 0 -
 Invalid expression.
-Please input an expression: Invalid input.
-Please input an expression: 
-+13 24
-0001 + 200
-09 *023
-123 456     * 789 
+Please input a valid expression: 4+-5
+Invalid expression.
+Please input a valid expression: 4+5*6
+Invalid expression.
+Please input a valid expression: 13 0 -
+Invalid expression.
+Please input a valid expression: a
+Invalid expression.
+Please input a valid expression: +13 24
+Invalid expression.
+Please input a valid expression: 0001 + 200
+1 + 200 = 201
+Please input an expression: 09 *023
+9 * 23 = 207
+Please input an expression: 123 456     * 789 
+Invalid expression.
+Please input a valid expression: N
 Thanks for playing. Goodbye.

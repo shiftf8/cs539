@@ -7,7 +7,6 @@ Simple 2 unsigned int operand expression calculator using getchar() and putchar(
 
 #include <stdio.h>
 
-int isAlphaChecker( char );
 int isNumChecker( char );
 int isOperator( char );
 unsigned int makeOperand( char, unsigned int );
@@ -28,49 +27,45 @@ int main() {
 
     printf("Let's test some simple expressions. Type \'N\' at any time to exit.\nPlease input an expression: ");
     while ((char_response = getchar()) != EOF) {
+        putchar(char_response);
 
-        if (isAlphaChecker(char_response)) {
-            if (char_response == 'N') {
-                printf("Thanks for playing. Goodbye.\n");
-                break;
-            } else printf("Invalid input.\nPlease input an expression: ");
-        } else if (isNumChecker(char_response) || isOperator(char_response) || char_response == ' ') {
-            putchar(char_response);
-            
+        if (char_response == 'N') {
+            printf("\nThanks for playing. Goodbye.\n");
+            break;
+        }
+        if (isNumChecker(char_response)) {
             if (isNumChecker(char_response)) {
                 if (operand_success == 0) {
                     first_operand = makeOperand(char_response, first_operand);
-                    // printf("first_operand = %d\n", first_operand);
+                    // printf("\nfirst_operand = %d\n", first_operand);
                 }
                 if (operand_success == 1) {
                     second_operand = makeOperand(char_response, second_operand);
-                    // printf("second_operand = %d\n", second_operand);
+                    // printf("\nsecond_operand = %d\n", second_operand);
                 }
                 end_of_operand_flag = 1;
             }
-            if (!isNumChecker(char_response) && end_of_operand_flag == 1) {
-                operand_success++;
-                end_of_operand_flag = 0;
-            }
-            if (isOperator(char_response)) {
-                if (operand_success == 1 && operation_success == 0) {
-                    operation = char_response;
-                    // printf ("operator = %c\n", operation);
-                }
-                operation_success++;
-            }
-        } else if (char_response == '\n') {
-            printf("\n");
-            
+        }
+        if (!isNumChecker(char_response) && end_of_operand_flag == 1) {
+            operand_success++;
+            end_of_operand_flag = 0;
+        }
+        if (isOperator(char_response)) {
+            if (operation_success == 0 && operand_success == 1) operation = char_response;
+            // printf ("\noperator = %c\n", operation);
+            operation_success++;
+        }
+        if (char_response == '\n') {
+            // printf("Successful operands = %d\nSuccessful operations = %d\n", operand_success, operation_success);
+            if (operation == 0 || operation_success > 1) printf("Invalid expression.\nPlease input a valid expression: ");
             if (operand_success == 2 && operation_success == 1) {
-                if (operation == 0) printf("Invalid expression.\nPlease input an expression: ");
                 if (operation == '+') add(first_operand, second_operand);
                 if (operation == '-') subtract(first_operand, second_operand);
                 if (operation == '*') multiply(first_operand, second_operand);
                 if (operation == '/') divide(first_operand, second_operand);
                 if (operation == '%') modulo(first_operand, second_operand);
             }
-            
+
             /* Reset all variables */
             first_operand = 0;
             second_operand = 0;
@@ -84,10 +79,6 @@ int main() {
     return 0;
 }
 
-int isAlphaChecker( char is_alpha ) {
-    if (((is_alpha >= 'a') && (is_alpha <= 'z')) || ((is_alpha >= 'A') && (is_alpha <= 'Z'))) return 1;
-    return 0;
-}
 int isNumChecker( char is_num ) {
     if ((is_num >= '0') && (is_num <= '9')) return 1;
     return 0;
@@ -111,7 +102,7 @@ void subtract( unsigned int a, unsigned int b ) {
     if (a >= b) {
         total =  a - b;
         printf("%d - %d = %d\nPlease input an expression: ", a, b, total);
-    } else printf("This calculator isn't capable of handling this expression.\nPlease input an expression: ");
+    } else printf("This calculator isn't capable of handling negative numbers.\nPlease input an expression: ");
 }
 void multiply( unsigned int a, unsigned int b ) {
     unsigned int total = 0;
