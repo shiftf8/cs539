@@ -34,17 +34,15 @@ int main() {
             break;
         }
         if (isNumChecker(char_response)) {
-            if (isNumChecker(char_response)) {
-                if (operand_success == 0) {
-                    first_operand = makeOperand(char_response, first_operand);
-                    // printf("\nfirst_operand = %d\n", first_operand);
-                }
-                if (operand_success == 1) {
-                    second_operand = makeOperand(char_response, second_operand);
-                    // printf("\nsecond_operand = %d\n", second_operand);
-                }
-                end_of_operand_flag = 1;
+            if (operand_success == 0) {
+                first_operand = makeOperand(char_response, first_operand);
+                // printf("\nfirst_operand = %d\n", first_operand);
             }
+            if (operand_success == 1) {
+                second_operand = makeOperand(char_response, second_operand);
+                // printf("\nsecond_operand = %d\n", second_operand);
+            }
+            end_of_operand_flag = 1;
         }
         if (!isNumChecker(char_response) && end_of_operand_flag == 1) {
             operand_success++;
