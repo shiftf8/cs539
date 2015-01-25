@@ -75,30 +75,25 @@ int isAlphaNum( char c ){
     return 0;
 }
 void strfilter( char randStr[], char uStr[], char resetChar ) {
-    char filteredStr[40] = "\0";
+    char filteredStr[41] = "\0";
     unsigned int i = 0;
-    unsigned int j = 0;
-    unsigned int k = 0;
     unsigned int arrLength = 0;
     
-    while (isUpperAlpha(uStr[arrLength])) {
-        arrLength++;
+    while (isUpperAlpha(randStr[i])) {
+        filteredStr[i] = randStr[i];
+
+        while (isUpperAlpha(uStr[arrLength])) {
+            if (randStr[i] == uStr[arrLength]) filteredStr[i] = resetChar;
+            
+            arrLength++;
+        }
+        
+        i++;
+        arrLength = 0;
     }
     // printf("%d\n", arrLength);
 
-    for (i; i < 40; i++) {
-        filteredStr[i] = randStr[i];
-        
-        for (j; j < arrLength; j++) {
-            if (randStr[i] == uStr[j]) filteredStr[i] = resetChar;
-        }
-    }
-    
-    printf("filtered s1 = {\"");
-    for (k; k < 40; k++) {
-        printf("%c", filteredStr[k]);
-    }
-    printf("\"}\n");
+    printf("filtered s1 = {\"%s\"}\n", filteredStr);
     printf("Please input at least 2 upper case letters to reset followed by a space and a \"reset\" character.\n");
     printf("Or type \"No\" to quit.\n");
 }
