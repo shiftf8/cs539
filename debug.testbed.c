@@ -1,8 +1,8 @@
 /*
 Lamog, Robert
-Lab 4B
+Lab 5B
 11/04/2014
-Simple letter replacement utilizing arrays.
+Simple letter replacement utilizing pointers.
 */
 
 #include <stdio.h>
@@ -12,13 +12,14 @@ Simple letter replacement utilizing arrays.
 char randUpperChar();
 int isUpperAlpha( char );
 int isAlphaNum( char );
-void strfilter( char[], char[], char );
+void strfilter( char *, char *, char );
 
 int main() {
     char s1[41] = "\0";
     char s2[21] = "\0";
     char c = '\0';
     char userInput[50] = "\0";
+    char *someChar = s2;
     unsigned int i = 0;
     unsigned int j = 0;
     unsigned int k = 0;
@@ -31,6 +32,7 @@ int main() {
     
     printf("Let's reset some letters!\nPlease input at least 2 upper case letters to reset followed by a space and a \"reset\" character.\n");
     while (fgets(userInput, 20, stdin) != NULL) {
+        printf("dereference userInput = %c\n", *userInput);
         if (userInput[0] == 'N' && userInput[1] == 'o') break;
 
         // printf("%s", userInput);
@@ -53,6 +55,9 @@ int main() {
         c = '\0';
         j = 0;
         k = 0;
+
+        // This is the test printf \/
+        printf("someChar = %c\npointer s2 = %c\npointer s2 + 1 = %c\n", *someChar, *s2, *s2 + 1);
     }
 
     return 0;
