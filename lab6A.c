@@ -9,10 +9,16 @@ Break out words from a paragraph alphabetically. Disregard duplicates.
 
 int main() {
     FILE *m_file = NULL;
+    char buffer[100] = "\0";
     
     if((m_file = fopen("input.stdloremipsum.txt", "r")) != NULL) {
-        printf("%s\n", m_file);
-    } //else printf("Broke as hell.\n");
+        while (!feof(m_file)) {
+            if (fgets(buffer, 100, m_file) == NULL) break;
+            fputs(buffer, stdout);
+        }
+        printf("\n");
+        fclose(m_file);
+    }
     
     return 0;
 }
