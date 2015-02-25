@@ -33,7 +33,7 @@ int main() {
     printf("Let's reset some letters!\nPlease input at least 2 upper case letters to reset followed by a space and a \"reset\" character.\n");
     while (fgets(userInput, 20, stdin) != NULL) {
         printf("dereference userInput = %c\n", *userInput);
-        if (userInput[0] == 'N' && userInput[1] == 'o') break;
+        if (userInput[0] == 'N' && userInput[1] == 'o') break; //Wasn't looking at the right pointers. =P
 
         // printf("%s", userInput);
         while (isUpperAlpha(userInput[j]) && j < 20) {
