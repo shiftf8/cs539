@@ -2,23 +2,36 @@
 Lamog, Robert
 Lab 6A
 01/01/2015
-Break out words from a paragraph alphabetically. Disregard duplicates.
+List words from a paragraph alphabetically. Disregard duplicates.
 */
 
 #include <stdio.h>
 
 int main() {
-    FILE *m_file = NULL;
-    char buffer[100] = "\0";
+    FILE *ipsum_file = NULL;
+    // char buffer[101] = "\0";
+    char word[100] = "\0";
+    unsigned int is_next_paragraph = 0;
+    unsigned int i = 0;
     
-    if((m_file = fopen("input.stdloremipsum.txt", "r")) != NULL) {
-        while (!feof(m_file)) {
-            if (fgets(buffer, 100, m_file) == NULL) break;
-            fputs(buffer, stdout);
+    ipsum_file = fopen("input.stdloremipsum.txt", "r");
+
+    if(ipsum_file != NULL) {
+        while (!feof(ipsum_file) || !is_next_paragraph) {
+            // fgets(buffer, 100, ipsum_file);
+            
+            // if (buffer == NULL) break;
+            // else if (buffer[0] == '\n') is_next_paragraph = 1;
+            // else {
+                
+            // }
+            
+            fscanf(ipsum_file, "%100c", word);
+            printf("%s", word);
         }
-        printf("\n");
-        fclose(m_file);
+        fclose(ipsum_file);
     }
     
+    printf("\n");
     return 0;
 }
