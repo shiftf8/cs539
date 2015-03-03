@@ -8,7 +8,7 @@ Stripping punctuation and blanks, putting a single word per line from formatted 
 #include <stdio.h>
 
 void wordPerLine();
-int isAlphaChecker(char); // Built my own alpha checker.
+int isAlphaChecker( char ); /* Built my own alpha checker. */
 
 int main() {
     wordPerLine(); 
@@ -34,7 +34,7 @@ void wordPerLine() {
         }
     }
 }
-int isAlphaChecker(char inputChar) {
+int isAlphaChecker( char inputChar ) {
     if (((inputChar >= 'A') && (inputChar <= 'Z')) || ((inputChar >= 'a') && (inputChar <='z'))) return 1;
     return 0;
 }
