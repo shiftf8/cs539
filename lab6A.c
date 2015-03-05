@@ -15,9 +15,12 @@ typedef struct word {
 
 int is_alpha_num_checker( char );
 
+int alpha_sort( const alpha_num_arr, word *, unsigned int );
+
 int main() {
     FILE *ipsum_file = NULL;
     word arr_words[1024];
+    char str[100];
     unsigned int is_end_of_word = 0;
     char c = '\0';
     unsigned int i = 0;
@@ -50,6 +53,8 @@ int main() {
             }
         }
         fclose(ipsum_file);
+
+        if (!alpha_sort(alpha_num_arr[36], arr_words, i)) printf("alpha_sort: Unsuccessful!\n");
     }
     
     // printf("\n");
@@ -59,4 +64,15 @@ int main() {
 int is_alpha_num_checker( char c ) {
     if (((c >= 'A') && (c <= 'Z')) || ((c >= 'a') && (c <='z')) || ((c >='0') && (c <= '9'))) return 1;
     return 0;
+}
+int alpha_sort( const alpha_num_arr, word * word_list, unsigned int size_of_word_list ){
+    word *tmp;
+    char str[100];
+    
+    tmp = word_list;
+    word_list = word_list + 1;
+    word_list + 1;
+    word_list = tmp;
+
+    return 1;
 }
