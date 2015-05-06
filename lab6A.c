@@ -7,25 +7,22 @@ List words from a paragraph alphabetically. Disregard duplicates.
 
 #include <stdio.h>
 
-const char alpha_num_arr[36] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
-
-typedef struct word {
+struct word {
     char letters[100];
+    // int *pre_node = NULL;            might explore this kind of struct later
+    // int *nxt_node = NULL;
 } word;
 
 int is_alpha_num_checker( char );
-
-int alpha_sort( const alpha_num_arr, word *, unsigned int );
+int word_sort( struct word *, unsigned int );
 
 int main() {
     FILE *ipsum_file = NULL;
-    word arr_words[1024];
-    char str[100];
+    struct word arr_words[1024]; /* not accounting for overflow */
     unsigned int is_end_of_word = 0;
     char c = '\0';
     unsigned int i = 0;
     unsigned int j = 0;
-    unsigned int k = 0;
 
     ipsum_file = fopen("input.stdloremipsum.txt", "r");
 
@@ -54,10 +51,9 @@ int main() {
         }
         fclose(ipsum_file);
 
-        if (!alpha_sort(alpha_num_arr[36], arr_words, i)) printf("alpha_sort: Unsuccessful!\n");
+        if (!word_sort(&arr_words[0], i)) printf("alpha_sort: Unsuccessful!\n");
     }
     
-    // printf("\n");
     return 0;
 } /* main */
 
@@ -65,14 +61,18 @@ int is_alpha_num_checker( char c ) {
     if (((c >= 'A') && (c <= 'Z')) || ((c >= 'a') && (c <='z')) || ((c >='0') && (c <= '9'))) return 1;
     return 0;
 }
-int alpha_sort( const alpha_num_arr, word * word_list, unsigned int size_of_word_list ){
-    word *tmp;
-    char str[100];
-    
-    tmp = word_list;
-    word_list = word_list + 1;
-    word_list + 1;
-    word_list = tmp;
+int word_sort( struct word *word_list, unsigned int size_of_word_list ){
+    struct word *current_position = word_list;
+    struct word tmp;
 
+    tmp = *word_list;
+    word_list[0] = *(current_position + 1);
+    word_list[1] = tmp;
+
+    printf("%s\n", word_list[0].letters);
+    printf("%s\n", word_list[1].letters);
+    printf("%s\n", word_list[2].letters);
+    printf("%s\n", word_list[3].letters);
+    
     return 1;
 }
