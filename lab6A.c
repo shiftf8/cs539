@@ -13,7 +13,8 @@ struct word {
 
 int is_alpha_num_checker( char );
 int word_sort( struct word *, unsigned int );
-int alpha_sort( struct word *, struct word * );
+int ascii_alpha_check( struct word *, unsigned int, struct word *, unsigned int );
+void swap_words( struct word *, unsigned int, struct word *, unsigned int );
 
 int main() {
     FILE *ipsumFile = NULL;
@@ -61,30 +62,64 @@ int is_alpha_num_checker( char c ) {
     if (((c >= 'A') && (c <= 'Z')) || ((c >= 'a') && (c <='z')) || ((c >='0') && (c <= '9'))) return 1;
     return 0;
 }
-int word_sort( struct word *wordList, unsigned int sizeOfWordList ) {
-    unsigned int i = 0;
-
-    for (i; i < sizeOfWordList; i++) {
-        if (alpha_sort((wordList + i), (wordList + i + 1))) printf("%s\n", wordList[i].letters);
-    }
-    
-    return 1;
-}
-int alpha_sort( struct word *wordA, struct word *wordB ) {
+int word_sort( struct word *arrWords, unsigned int sizeOfarrWords ) {
     unsigned int i = 0;
     unsigned int sizeOfWordA = 0;
     unsigned int sizeOfWordB = 0;
     
-    while (wordA->letters[sizeOfWordA] != '\0') sizeOfWordA++;
-    // printf("%d\n", sizeOfWordA);
-    while (wordB->letters[sizeOfWordB] != '\0') sizeOfWordB++;
-    // printf("%d\n", sizeOfWordB);
+    for (i; i < sizeOfarrWords; i++) {
+        while (arrWords[i].letters[sizeOfWordA] != '\0') sizeOfWordA++;
+        // printf("%d\n", sizeOfWordA);
+        while (arrWords[i + 1].letters[sizeOfWordB] != '\0') sizeOfWordB++;
+        // printf("%d\n", sizeOfWordB);
+
+        if (ascii_alpha_check((arrWords + i), sizeOfWordA, (arrWords + i + 1), sizeOfWordB)) {
+            // printf("%s\n", arrWords[i].letters);
+            swap_words((arrWords + i), sizeOfWordA, (arrWords + i + 1), sizeOfWordB);
+        }
+    }
+    
+    i = 0;
+    for (i; i < sizeOfarrWords; i++) {
+        printf("%s\n", arrWords[i].letters);
+    }
+    
+    return 1;
+}
+int ascii_alpha_check( struct word *wordA, unsigned int sizeOfWordA, struct word *wordB, unsigned int sizeOfWordB ) {
+    unsigned int i = 0;
     
     if (sizeOfWordB >= sizeOfWordA) {
         for (i; i < sizeOfWordA; i++) {
-            if (wordA->letters[i] > wordB->letters[i]) return 1;
-            if (wordA->letters[i] < wordB->letters[i]) return 0;
+            if (wordA->letters[i] != wordB->letters[i]) {
+                if (wordA->letters[i] > wordB->letters[i]) return 1;
+                if (wordA->letters[i] < wordB->letters[i]) return 0;
+            }
+        }
+    } else {
+        for (i; i < sizeOfWordB; i++) {
+            if (wordA->letters[i] != wordB->letters[i]) {
+                if (wordA->letters[i] > wordB->letters[i]) return 1;
+                if (wordA->letters[i] < wordB->letters[i]) return 0;
+            }
         }
     }
 }
-
+void swap_words( struct word *wordA, unsigned int sizeOfWordA, struct word *wordB, unsigned int sizeOfWordB ) {
+    unsigned int i = 0;
+    char tmpC = '\0';
+    
+    if (sizeOfWordB >= sizeOfWordA) {
+        for (i; i < sizeOfWordB; i++) {
+            tmpC = wordA->letters[i];
+            wordA->letters[i] = wordB->letters[i];
+            wordB->letters[i] = tmpC;
+        }
+    } else {
+        for (i; i < sizeOfWordA; i++) {
+            tmpC = wordA->letters[i];
+            wordA->letters[i] = wordB->letters[i];
+            wordB->letters[i] = tmpC;
+        }
+    }
+}
