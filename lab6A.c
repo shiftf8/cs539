@@ -8,50 +8,50 @@ List words from a paragraph alphabetically. Disregard duplicates.
 #include <stdio.h>
 
 struct word {
-    char letters[100];
-    // int *pre_node = NULL;            might explore this kind of struct later
-    // int *nxt_node = NULL;
+    char letters[100]; /* not accounting for words longer than 100 chars obviously */
 } word;
 
 int is_alpha_num_checker( char );
 int word_sort( struct word *, unsigned int );
+int alpha_sort( struct word *, struct word * );
 
 int main() {
-    FILE *ipsum_file = NULL;
-    struct word arr_words[1024]; /* not accounting for overflow */
-    unsigned int is_end_of_word = 0;
+    FILE *ipsumFile = NULL;
+    struct word arrWords[1024]; /* not accounting for possible overflow. this would infer a fairly lengthy paragraph. */
+    unsigned int isEndOfWord = 0;
     char c = '\0';
     unsigned int i = 0;
     unsigned int j = 0;
 
-    ipsum_file = fopen("input.stdloremipsum.txt", "r");
+    ipsumFile = fopen("input.stdloremipsum.txt", "r");
+    // ipsumFile = fopen("testinput.lab6a.txt", "r");
 
-    if (ipsum_file == NULL) perror("Error opening file.");
+    if (ipsumFile == NULL) perror("Error opening file.");
     else {
-        while (c != feof(ipsum_file) || c != EOF) {
-            c = fgetc(ipsum_file);
+        while (c != feof(ipsumFile) || c != EOF) {
+            c = fgetc(ipsumFile);
             // printf("%c", c);
-            if (c == '\n') break;
             
             if (is_alpha_num_checker(c) == 1) {
-                arr_words[i].letters[j] = c;
-                is_end_of_word = 1;
+                arrWords[i].letters[j] = c;
+                isEndOfWord = 1;
                 j++;
                 // printf("%c", c);
             }
             if (is_alpha_num_checker(c) == 0) {
-                if (is_end_of_word == 1) {
-                    arr_words[i].letters[j] = '\0';
-                    is_end_of_word = 0;
+                if (isEndOfWord == 1) {
+                    arrWords[i].letters[j] = '\0';
+                    isEndOfWord = 0;
                     j = 0;
                     i++;
                     // printf("\n");
                 }
             }
+            if (c == '\n') break;
         }
-        fclose(ipsum_file);
+        fclose(ipsumFile);
 
-        if (!word_sort(&arr_words[0], i)) printf("alpha_sort: Unsuccessful!\n");
+        if (!word_sort(&arrWords[0], i)) printf("alpha_sort: Unsuccessful!\n");
     }
     
     return 0;
@@ -61,18 +61,30 @@ int is_alpha_num_checker( char c ) {
     if (((c >= 'A') && (c <= 'Z')) || ((c >= 'a') && (c <='z')) || ((c >='0') && (c <= '9'))) return 1;
     return 0;
 }
-int word_sort( struct word *word_list, unsigned int size_of_word_list ){
-    struct word *current_position = word_list;
-    struct word tmp;
+int word_sort( struct word *wordList, unsigned int sizeOfWordList ) {
+    unsigned int i = 0;
 
-    tmp = *word_list;
-    word_list[0] = *(current_position + 1);
-    word_list[1] = tmp;
-
-    printf("%s\n", word_list[0].letters);
-    printf("%s\n", word_list[1].letters);
-    printf("%s\n", word_list[2].letters);
-    printf("%s\n", word_list[3].letters);
+    for (i; i < sizeOfWordList; i++) {
+        if (alpha_sort((wordList + i), (wordList + i + 1))) printf("%s\n", wordList[i].letters);
+    }
     
     return 1;
 }
+int alpha_sort( struct word *wordA, struct word *wordB ) {
+    unsigned int i = 0;
+    unsigned int sizeOfWordA = 0;
+    unsigned int sizeOfWordB = 0;
+    
+    while (wordA->letters[sizeOfWordA] != '\0') sizeOfWordA++;
+    // printf("%d\n", sizeOfWordA);
+    while (wordB->letters[sizeOfWordB] != '\0') sizeOfWordB++;
+    // printf("%d\n", sizeOfWordB);
+    
+    if (sizeOfWordB >= sizeOfWordA) {
+        for (i; i < sizeOfWordA; i++) {
+            if (wordA->letters[i] > wordB->letters[i]) return 1;
+            if (wordA->letters[i] < wordB->letters[i]) return 0;
+        }
+    }
+}
+
