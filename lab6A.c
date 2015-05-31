@@ -68,35 +68,35 @@ int is_alpha_num_checker( char c ) {
 int word_sort( struct word *arrWords, unsigned int sizeOfarrWords ) {
     unsigned int i = 0;
     unsigned int j = 0;
-    unsigned int min = 0;
+    unsigned int max = 0;
 
     for (i; i < sizeOfarrWords; i++) {
-        min = i;
+        max = i;
 
         for (j = i; j < sizeOfarrWords; j++) {
-            if (ascii_alphabetical_check((&arrWords[j]), (&arrWords[min]))) min = j;
+            if (ascii_alphabetical_check((&arrWords[j]), (&arrWords[max]))) max = j;
         }
-        swap_words(&arrWords[i], &arrWords[min]);
+        swap_words(&arrWords[i], &arrWords[max]);
     }
     
     return 1;
 }
-int ascii_alphabetical_check( struct word *wordX, struct word *wordMin ) {
+int ascii_alphabetical_check( struct word *wordX, struct word *wordMax ) {
     unsigned int i = 0;
     
     for (i; i < 50; i++) {
-        if (wordX->letters[i] < wordMin->letters[i]) return 1;
+        if (wordX->letters[i] > wordMax->letters[i]) return 1;
     }
 
     return 0;
 }
-void swap_words( struct word *wordX, struct word *wordMin ) {
+void swap_words( struct word *wordX, struct word *wordMax ) {
     unsigned int i = 0;
     char tmpC = '\0';
     
     for (i; i < 50; i++) {
         tmpC = wordX->letters[i];
-        wordX->letters[i] = wordMin->letters[i];
-        wordMin->letters[i] = tmpC;
+        wordX->letters[i] = wordMax->letters[i];
+        wordMax->letters[i] = tmpC;
     }
 }
