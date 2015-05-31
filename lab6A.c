@@ -18,12 +18,12 @@ void swap_words( struct word *, struct word * );
 
 int main() {
     FILE *ipsumFile = NULL;
-    struct word arrWords[1024]; /* not accounting for possible overflow. this would infer a fairly lengthy paragraph. */
+    struct word arrWords[512]; /* not accounting for possible overflow. this would infer a fairly lengthy paragraph. */
     unsigned int isEndOfWord = 0;
     char c = '\0';
     unsigned int i = 0;
     unsigned int j = 0;
-/*   unsigned int k = 0; /* printf test var */
+    unsigned int k = 0;
 
 /**/    ipsumFile = fopen("input.stdloremipsum.txt", "r"); /**/
 /*    ipsumFile = fopen("testinput.lab6a.txt", "r"); /* alternate test input */
@@ -49,12 +49,13 @@ int main() {
             if (c == '\n') break;
         }
         fclose(ipsumFile);
-    
-/*        for (k; k < i; k++) {
-            printf("%s\n", arrWords[k].letters);
-        } /* test printf */
-        
+
         if (!word_sort(&arrWords[0], i)) printf("word_sort: Unsuccessful!\n");
+        else {
+            for (k; k < i; k++) {
+                printf("%s\n", arrWords[k].letters);
+            }
+        }
     }
     
     return 0;
@@ -72,15 +73,10 @@ int word_sort( struct word *arrWords, unsigned int sizeOfarrWords ) {
     for (i; i < sizeOfarrWords; i++) {
         min = i;
 
-        for (j = i + 1; j < sizeOfarrWords; j++) {
+        for (j = i; j < sizeOfarrWords; j++) {
             if (ascii_alphabetical_check((&arrWords[j]), (&arrWords[min]))) min = j;
         }
         swap_words(&arrWords[i], &arrWords[min]);
-    }
-    
-    i = 0;
-    for (i; i < sizeOfarrWords; i++) {
-        printf("%s\n", arrWords[i].letters);
     }
     
     return 1;
@@ -89,7 +85,7 @@ int ascii_alphabetical_check( struct word *wordX, struct word *wordMin ) {
     unsigned int i = 0;
     
     for (i; i < 50; i++) {
-        if (wordX->letters[i] > wordMin->letters[i]) return 1;
+        if (wordX->letters[i] < wordMin->letters[i]) return 1;
     }
 
     return 0;
