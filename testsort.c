@@ -54,4 +54,8 @@ void SelectionSort(int a[], int array_size) {
         printf(" ]\n");
 	}
 /**/
+
+
+    if ('T' < 's') printf("T < s\n");
+    else printf("FAIL\n");
 }

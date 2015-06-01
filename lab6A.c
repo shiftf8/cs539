@@ -8,7 +8,7 @@ List words from a paragraph alphabetically. Disregard duplicates.
 #include <stdio.h>
 
 struct word {
-    char letters[50]; /* not accounting for longer words. */
+    char letters[100]; /* not accounting for longer words. */
 } word;
 
 int is_alpha_num_checker( char );
@@ -18,15 +18,15 @@ void swap_words( struct word *, struct word * );
 
 int main() {
     FILE *ipsumFile = NULL;
-    struct word arrWords[512]; /* not accounting for possible overflow. this would infer a fairly lengthy paragraph. */
+    struct word arrWords[1024]; /* not accounting for possible overflow. this would infer a fairly lengthy paragraph. */
     unsigned int isEndOfWord = 0;
     char c = '\0';
     unsigned int i = 0;
     unsigned int j = 0;
     unsigned int k = 0;
 
-/**/    ipsumFile = fopen("input.stdloremipsum.txt", "r"); /**/
-/*    ipsumFile = fopen("testinput.lab6a.txt", "r"); /* alternate test input */
+/*    ipsumFile = fopen("input.stdloremipsum.txt", "r"); /**/
+/**/    ipsumFile = fopen("testinput.lab6a.txt", "r"); /* alternate test input */
 
     if (ipsumFile == NULL) perror("Error opening file.");
     else {
@@ -68,35 +68,36 @@ int is_alpha_num_checker( char c ) {
 int word_sort( struct word *arrWords, unsigned int sizeOfarrWords ) {
     unsigned int i = 0;
     unsigned int j = 0;
-    unsigned int max = 0;
+    unsigned int min = 0;
 
     for (i; i < sizeOfarrWords; i++) {
-        max = i;
-
+        min = i;
+        
         for (j = i; j < sizeOfarrWords; j++) {
-            if (ascii_alphabetical_check((&arrWords[j]), (&arrWords[max]))) max = j;
+            if (ascii_alphabetical_check((&arrWords[min]), (&arrWords[j]))) min = j;
         }
-        swap_words(&arrWords[i], &arrWords[max]);
+        swap_words(&arrWords[min], &arrWords[i]);
     }
     
     return 1;
 }
-int ascii_alphabetical_check( struct word *wordX, struct word *wordMax ) {
+int ascii_alphabetical_check( struct word *wordMin, struct word *wordX ) {
     unsigned int i = 0;
     
-    for (i; i < 50; i++) {
-        if (wordX->letters[i] > wordMax->letters[i]) return 1;
+    for (i; i < 100; i++) {
+        if (wordMin->letters[i] < wordX->letters[i]) return 1;
+        if (wordMin->letters[i] > wordX->letters[i]) return 0;
     }
 
     return 0;
 }
-void swap_words( struct word *wordX, struct word *wordMax ) {
+void swap_words( struct word *wordMin, struct word *wordX ) {
     unsigned int i = 0;
     char tmpC = '\0';
     
-    for (i; i < 50; i++) {
+    for (i; i < 100; i++) {
         tmpC = wordX->letters[i];
-        wordX->letters[i] = wordMax->letters[i];
-        wordMax->letters[i] = tmpC;
+        wordX->letters[i] = wordMin->letters[i];
+        wordMin->letters[i] = tmpC;
     }
 }
