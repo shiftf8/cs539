@@ -18,7 +18,7 @@ void swap_words( struct word *, struct word * );
 
 int main() {
     FILE *ipsumFile = NULL;
-    struct word arrWords[1024]; /* not accounting for possible overflow. this would infer a fairly lengthy paragraph. */
+    struct word arrWords[1024]; /* not accounting for possible extra lengthy paragraph. */
     unsigned int isEndOfWord = 0;
     char c = '\0';
     unsigned int i = 0;
