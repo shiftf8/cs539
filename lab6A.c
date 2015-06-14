@@ -2,38 +2,44 @@
 Lamog, Robert
 Lab 6A
 01/01/2015
-List words from a paragraph alphabetically. Disregard duplicates.
+Dynamically create a list of words from a paragraph alphabetically utilizing pointers to structs. Disregard duplicate words.
 */
 
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-struct word {
+typedef struct Word {
     char letters[100]; /* not accounting for longer words. */
+    unsigned int line_number;
 } word;
 
 int is_alpha_num_checker( char );
-int word_sort( struct word *, unsigned int );
-int ascii_alphabetical_check( struct word *, struct word * );
-void swap_words( struct word *, struct word * );
+int word_sort( word *, unsigned int );
+int ascii_alphabetical_check( word *, word * );
+void swap_words( word *, word * );
 
 int main() {
     FILE *ipsumFile = NULL;
-    struct word arrWords[1024]; /* not accounting for possible extra lengthy paragraph. */
+    word *arrWords;
     unsigned int isEndOfWord = 0;
     char c = '\0';
     unsigned int i = 0;
     unsigned int j = 0;
     unsigned int k = 0;
 
-/*    ipsumFile = fopen("input.stdloremipsum.txt", "r"); /**/
-/**/    ipsumFile = fopen("testinput.lab6a.txt", "r"); /* alternate test input */
+/**/    ipsumFile = fopen("input.stdloremipsum.txt", "r"); /**/
+/*    ipsumFile = fopen("testinput.lab6a.txt", "r"); /* alternate test input */
 
     if (ipsumFile == NULL) perror("Error opening file.");
     else {
+        arrWords = (word *) malloc(sizeof(word));
+        
         while (c != feof(ipsumFile) || c != EOF) {
             c = fgetc(ipsumFile);
 
             if (is_alpha_num_checker(c) == 1) {
+                if (isEndOfWord = 0 && i > 0) arrWords = (word *) realloc(arrWords, i);
                 arrWords[i].letters[j] = c;
                 isEndOfWord = 1;
                 j++;
@@ -65,7 +71,7 @@ int is_alpha_num_checker( char c ) {
     if (((c >='0') && (c <= '9')) || ((c >= 'A') && (c <= 'Z')) || ((c >= 'a') && (c <='z'))) return 1;
     return 0;
 }
-int word_sort( struct word *arrWords, unsigned int sizeOfarrWords ) {
+int word_sort( word *arrWords, unsigned int sizeOfarrWords ) {
     unsigned int i = 0;
     unsigned int j = 0;
     unsigned int min = 0;
@@ -81,7 +87,7 @@ int word_sort( struct word *arrWords, unsigned int sizeOfarrWords ) {
     
     return 1;
 }
-int ascii_alphabetical_check( struct word *wordMin, struct word *wordX ) {
+int ascii_alphabetical_check( word *wordMin, word *wordX ) {
     unsigned int i = 0;
     
     for (i; i < 100; i++) {
@@ -91,7 +97,7 @@ int ascii_alphabetical_check( struct word *wordMin, struct word *wordX ) {
 
     return 0;
 }
-void swap_words( struct word *wordMin, struct word *wordX ) {
+void swap_words( word *wordMin, word *wordX ) {
     unsigned int i = 0;
     char tmpC = '\0';
     
