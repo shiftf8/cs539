@@ -83,7 +83,6 @@ int word_sort( word **arrWords, unsigned int sizeOfarrWords ) {
     unsigned int min = 0;
 
     for (i; i < sizeOfarrWords; i++) {
-        // printf("%d - %s\n", i, arrWords[i]->letters);
         min = i;
         
         for (j = i; j < sizeOfarrWords; j++) {
