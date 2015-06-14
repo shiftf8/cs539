@@ -23,26 +23,30 @@ int is_next_duplicate( word *, word * );
 int main() {
     FILE *ipsumFile = NULL;
     word *arrWords[1024]; /* not accounting for particularly lengthy paragraphs. not as dynamic as i would like but works for now. */
+    unsigned int lineN = 1; /* line number */
     unsigned int isEndOfWord = 0;
     char c = '\0';
+    unsigned int firstWordOccurrence = 0;
     unsigned int i = 0;
     unsigned int j = 0;
     unsigned int k = 0;
 
-/*    ipsumFile = fopen("input.stdloremipsum.txt", "r"); /**/
+/*    ipsumFile = fopen("input.shortloremipsum.txt", "r"); /**/
 /**/    ipsumFile = fopen("testinput.lab6a.txt", "r"); /* alternate test input */
 
-    if (ipsumFile == NULL) perror("Error opening file.");
-    else {
-        while (c != feof(ipsumFile) || c != EOF) {
-            c = tolower(fgetc(ipsumFile));
+    if (ipsumFile == NULL) {
+        perror("Error opening file.\nProgram terminated!\n");
+        exit(EXIT_FAILURE);
+    } else {
+        while ((c = fgetc(ipsumFile)) != EOF) {
+            c = tolower(c);
 
             if (is_alpha_num_checker(c) == 1) {
                 if (isEndOfWord == 0) {
                     arrWords[i] = (word *) malloc(sizeof(word));
                     if (arrWords[i] == NULL) {
-                        printf("malloc: Unsuccessful.\n");
-                        break;
+                        printf("malloc: Unsuccessful.\nProgram terminated!\n");
+                        exit(EXIT_FAILURE);
                     }
                 }
                 arrWords[i]->letters[j] = c;
@@ -52,6 +56,7 @@ int main() {
             if (is_alpha_num_checker(c) == 0) {
                 if (isEndOfWord == 1) {
                     arrWords[i]->letters[j] = '\0';
+                    arrWords[i]->lineNumber = lineN;
                     isEndOfWord = 0;
                     i++;
                     j = 0;
@@ -61,19 +66,22 @@ int main() {
                     }
                 }
             }
-            if (c == '\n') break;
+            if (c == '\n') lineN++;
         }
         fclose(ipsumFile);
 
-        if (!word_sort(&arrWords[0], i)) printf("word_sort: Unsuccessful!\n");
-        else {
+        if (!word_sort(&arrWords[0], i)) {
+            printf("word_sort: Unsuccessful!\nProgram terminated!\n");
+            exit(EXIT_FAILURE);
+        } else {
             for (k; k < i; k++) {
                 if (k < i - 1) {
                     if (!is_next_duplicate(arrWords[k], arrWords[k + 1])) {
-                        printf("%s\n", arrWords[k]->letters);
+                        printf("%d - %s\n", arrWords[firstWordOccurrence]->lineNumber, arrWords[firstWordOccurrence]->letters);
+                        firstWordOccurrence = k;
                     }
                 }
-                if (k == i - 1) printf("%s\n", arrWords[k]->letters);
+                if (k == i - 1) printf("%d - %s\n", arrWords[firstWordOccurrence]->lineNumber, arrWords[firstWordOccurrence]->letters);
                 free(arrWords[k]);
                 arrWords[k] = NULL;
             }
@@ -115,6 +123,7 @@ int ascii_alphabetical_check( word *wordMax, word *wordX ) {
 }
 void swap_words( word *wordMin, word *wordX ) {
     unsigned int i = 0;
+    unsigned int tmpLineNumber = 0;
     char tmpC = '\0';
     
     for (i; i < 100; i++) {
@@ -122,6 +131,10 @@ void swap_words( word *wordMin, word *wordX ) {
         wordX->letters[i] = wordMin->letters[i];
         wordMin->letters[i] = tmpC;
     }
+
+    tmpLineNumber = wordX->lineNumber;
+    wordX->lineNumber = wordMin->lineNumber;
+    wordMin->lineNumber = tmpLineNumber;
 }
 int is_next_duplicate( word *wordX, word *wordNext ) {
     unsigned int i = 0;
