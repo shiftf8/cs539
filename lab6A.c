@@ -73,6 +73,7 @@ int main() {
                         printf("%s\n", arrWords[k]->letters);
                     }
                 }
+                if (k == i - 1) printf("%s\n", arrWords[k]->letters);
                 free(arrWords[k]);
                 arrWords[k] = NULL;
             }
