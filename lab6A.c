@@ -11,17 +11,17 @@ Dynamically create a list of words from a paragraph alphabetically utilizing poi
 
 typedef struct Word {
     char letters[100]; /* not accounting for longer words. */
-    unsigned int line_number;
+    unsigned int lineNumber;
 } word;
 
 int is_alpha_num_checker( char );
-int word_sort( word *, unsigned int );
+int word_sort( word **, unsigned int );
 int ascii_alphabetical_check( word *, word * );
 void swap_words( word *, word * );
 
 int main() {
     FILE *ipsumFile = NULL;
-    word *arrWords;
+    word *arrWords[1024]; /* not accounting for particularly lengthy paragraphs. */
     unsigned int isEndOfWord = 0;
     char c = '\0';
     unsigned int i = 0;
@@ -33,20 +33,24 @@ int main() {
 
     if (ipsumFile == NULL) perror("Error opening file.");
     else {
-        arrWords = (word *) malloc(sizeof(word));
-        
         while (c != feof(ipsumFile) || c != EOF) {
             c = fgetc(ipsumFile);
 
             if (is_alpha_num_checker(c) == 1) {
-                if (isEndOfWord = 0 && i > 0) arrWords = (word *) realloc(arrWords, i);
-                arrWords[i].letters[j] = c;
+                if (isEndOfWord == 0) {
+                    arrWords[i] = (word *) malloc(sizeof(word));
+                    if (arrWords[i] == NULL) {
+                        printf("malloc: Unsuccessful.\n");
+                        break;
+                    }
+                }
+                arrWords[i]->letters[j] = c;
                 isEndOfWord = 1;
                 j++;
             }
             if (is_alpha_num_checker(c) == 0) {
                 if (isEndOfWord == 1) {
-                    arrWords[i].letters[j] = '\0';
+                    arrWords[i]->letters[j] = '\0';
                     isEndOfWord = 0;
                     i++;
                     j = 0;
@@ -59,7 +63,9 @@ int main() {
         if (!word_sort(&arrWords[0], i)) printf("word_sort: Unsuccessful!\n");
         else {
             for (k; k < i; k++) {
-                printf("%s\n", arrWords[k].letters);
+                printf("%s\n", arrWords[k]->letters);
+                free(arrWords[k]);
+                arrWords[k] = NULL;
             }
         }
     }
@@ -71,18 +77,19 @@ int is_alpha_num_checker( char c ) {
     if (((c >='0') && (c <= '9')) || ((c >= 'A') && (c <= 'Z')) || ((c >= 'a') && (c <='z'))) return 1;
     return 0;
 }
-int word_sort( word *arrWords, unsigned int sizeOfarrWords ) {
+int word_sort( word **arrWords, unsigned int sizeOfarrWords ) {
     unsigned int i = 0;
     unsigned int j = 0;
     unsigned int min = 0;
 
     for (i; i < sizeOfarrWords; i++) {
+        // printf("%d - %s\n", i, arrWords[i]->letters);
         min = i;
         
         for (j = i; j < sizeOfarrWords; j++) {
-            if (ascii_alphabetical_check((&arrWords[min]), (&arrWords[j]))) min = j;
+            if (ascii_alphabetical_check(arrWords[min], arrWords[j])) min = j;
         }
-        swap_words(&arrWords[min], &arrWords[i]);
+        swap_words(arrWords[min], arrWords[i]);
     }
     
     return 1;
