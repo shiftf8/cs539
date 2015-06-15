@@ -11,12 +11,10 @@ Address header file.
 #define ADDRESS_RECORD_H
 
 typedef struct Address {
-    char firstName[100];
-    char lastName[100];
-    char streetAddress[1024];
-    char city[512];
-    char state[2];
-    int zipCode[10];
+    char firstLineLastNameFirstName[512];
+    char secondLineStreetAddress[1024];
+    char thirdLineCityState[512];
+    int fourthLineZipCode[10];
 };
 
 #endif /* ADDRESS_RECORD_H */
