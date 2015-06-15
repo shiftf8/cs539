@@ -74,12 +74,13 @@ int main() {
             exit(EXIT_FAILURE);
         } else {
             for (k; k < i; k++) {
-                // if (k < i - 1) {
-                //     if (!is_next_duplicate(arrWords[k], arrWords[k + 1])) {
-                        printf("%d - %s\n", arrWords[k]->lineNumber, arrWords[k]->letters);
-                //     }
-                // }
-                // if (k == i - 1) printf("%d - %s\n", arrWords[k]->lineNumber, arrWords[k]->letters);
+                printf("%d ", arrWords[k]->lineNumber);
+                if (k < i - 1) {
+                    if (!is_next_duplicate(arrWords[k], arrWords[k + 1])) {
+                        printf("- %s\n", arrWords[k]->letters);
+                    }
+                }
+                if (k == i - 1) printf(" - %s\n", arrWords[k]->letters);
                 free(arrWords[k]);
                 arrWords[k] = NULL;
             }
