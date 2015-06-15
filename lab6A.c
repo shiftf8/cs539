@@ -2,7 +2,7 @@
 Lamog, Robert
 Lab 6A
 01/01/2015
-Dynamically create a list of words from a paragraph alphabetically utilizing pointers to structs. Disregard duplicate words.
+Dynamically create a list of words from a paragraph alphabetically utilizing pointers to structs. Disregard duplicate words. Print line numbers of each word occurrence.
 */
 
 #include <ctype.h>
@@ -15,7 +15,7 @@ typedef struct Word {
 } word;
 
 int is_alpha_num_checker( char );
-int word_sort( word **, unsigned int );
+int word_bubble_sort( word **, unsigned int );
 int ascii_alphabetical_check( word *, word * );
 void swap_words( word *, word * );
 int is_next_duplicate( word *, word * );
@@ -26,7 +26,6 @@ int main() {
     unsigned int lineN = 1; /* line number */
     unsigned int isEndOfWord = 0;
     char c = '\0';
-    unsigned int firstWordOccurrence = 0;
     unsigned int i = 0;
     unsigned int j = 0;
     unsigned int k = 0;
@@ -70,18 +69,17 @@ int main() {
         }
         fclose(ipsumFile);
 
-        if (!word_sort(&arrWords[0], i)) {
-            printf("word_sort: Unsuccessful!\nProgram terminated!\n");
+        if (!word_bubble_sort(&arrWords[0], i)) {
+            printf("word_bubble_sort: Unsuccessful!\nProgram terminated!\n");
             exit(EXIT_FAILURE);
         } else {
             for (k; k < i; k++) {
-                if (k < i - 1) {
-                    if (!is_next_duplicate(arrWords[k], arrWords[k + 1])) {
-                        printf("%d - %s\n", arrWords[firstWordOccurrence]->lineNumber, arrWords[firstWordOccurrence]->letters);
-                        firstWordOccurrence = k;
-                    }
-                }
-                if (k == i - 1) printf("%d - %s\n", arrWords[firstWordOccurrence]->lineNumber, arrWords[firstWordOccurrence]->letters);
+                // if (k < i - 1) {
+                //     if (!is_next_duplicate(arrWords[k], arrWords[k + 1])) {
+                        printf("%d - %s\n", arrWords[k]->lineNumber, arrWords[k]->letters);
+                //     }
+                // }
+                // if (k == i - 1) printf("%d - %s\n", arrWords[k]->lineNumber, arrWords[k]->letters);
                 free(arrWords[k]);
                 arrWords[k] = NULL;
             }
@@ -95,7 +93,7 @@ int is_alpha_num_checker( char c ) {
     if (((c >='0') && (c <= '9')) || ((c >= 'A') && (c <= 'Z')) || ((c >= 'a') && (c <='z'))) return 1;
     return 0;
 }
-int word_sort( word **arrWords, unsigned int sizeOfarrWords ) {
+int word_bubble_sort( word **arrWords, unsigned int sizeOfarrWords ) {
     unsigned int i = 0;
     unsigned int j = 0;
     unsigned int max = 0;
