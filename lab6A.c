@@ -21,23 +21,23 @@ void swap_words( word *, word * );
 int is_next_duplicate( word *, word * );
 
 int main() {
-    FILE *ipsumFile = NULL;
+    FILE *input = NULL;
     word *arrWords[1024]; /* not accounting for particularly lengthy paragraphs. not as dynamic as i would like but works for now. */
-    unsigned int lineN = 1; /* line number */
+    unsigned int lineN = 1; /* line number count */
     unsigned int isEndOfWord = 0;
     char c = '\0';
     unsigned int i = 0;
     unsigned int j = 0;
     unsigned int k = 0;
 
-/*    ipsumFile = fopen("input.shortloremipsum.txt", "r"); /**/
-/**/    ipsumFile = fopen("testinput.lab6a.txt", "r"); /* alternate test input */
+/*    input = fopen("input.shortloremipsum.txt", "r"); /**/
+/**/    input = fopen("testinput.lab6a.txt", "r"); /* alternate test input */
 
-    if (ipsumFile == NULL) {
+    if (input == NULL) {
         perror("Error opening file.\nProgram terminated!\n");
         exit(EXIT_FAILURE);
     } else {
-        while ((c = fgetc(ipsumFile)) != EOF) {
+        while ((c = fgetc(input)) != EOF) {
             c = tolower(c);
 
             if (is_alpha_num_checker(c) == 1) {
@@ -67,9 +67,9 @@ int main() {
             }
             if (c == '\n') lineN++;
         }
-        fclose(ipsumFile);
+        fclose(input);
 
-        if (!word_bubble_sort(&arrWords[0], i)) {
+        if (!word_bubble_sort(arrWords, i)) {
             printf("word_bubble_sort: Unsuccessful!\nProgram terminated!\n");
             exit(EXIT_FAILURE);
         } else {

@@ -15,6 +15,6 @@ typedef struct Address {
     char secondLineStreetAddress[1024];
     char thirdLineCityState[512];
     int fourthLineZipCode[10];
-};
+} address;
 
 #endif /* ADDRESS_RECORD_H */
