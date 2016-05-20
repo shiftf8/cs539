@@ -9,6 +9,8 @@ Dynamically input names and addresses that are in alphabetical order and output 
 #include <stdio.h>
 #include <stdlib.h>
 
+int address_sort( address **, unsigned int );
+
 int main() {
     FILE *input = NULL;
     address *addressList[1024];
@@ -37,19 +39,19 @@ int main() {
             
             if (lineN == 0) {
                 addressList[i]->firstLineLastNameFirstName[j++] = c;
-                printf("%c", addressList[i]->firstLineLastNameFirstName[j - 1]);
+                // printf("%c", addressList[i]->firstLineLastNameFirstName[j - 1]);
             }
             if (lineN == 1) {
                 addressList[i]->secondLineStreetAddress[j++] = c;
-                printf("%c", addressList[i]->secondLineStreetAddress[j - 1]);
+                // printf("%c", addressList[i]->secondLineStreetAddress[j - 1]);
             }
             if (lineN == 2) {
                 addressList[i]->thirdLineCityState[j++] = c;
-                printf("%c", addressList[i]->thirdLineCityState[j - 1]);
+                // printf("%c", addressList[i]->thirdLineCityState[j - 1]);
             }
             if (lineN == 3) {
                 addressList[i]->fourthLineZipCode[j++] = c;
-                printf("%c", addressList[i]->fourthLineZipCode[j - 1]);
+                // printf("%c", addressList[i]->fourthLineZipCode[j - 1]);
             }
             
             if (c == '\n') lineN++;
@@ -58,12 +60,23 @@ int main() {
                 i++;
                 lineN = 0;
                 j = 0;
-                printf("\n");
+                // printf("\n");
             }
         }
         fclose(input);
+        
+        if (!address_sort(addressList, i)) {
+            printf("address_sort: Unsuccessful.\nProgram terminated.\n");
+            exit(EXIT_FAILURE);
+        } else {
+            printf("SUCCESS! for now.\n");
+        }
     }
-    printf("\n");
-    
+
+    // printf("\n");
     return 0;
+} /* main */
+
+int address_sort( address **addressList, unsigned int sizeOfaddressList ) {
+    return 1;
 }

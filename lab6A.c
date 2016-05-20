@@ -97,25 +97,25 @@ int is_alpha_num_checker( char c ) {
 int word_bubble_sort( word **arrWords, unsigned int sizeOfarrWords ) {
     unsigned int i = 0;
     unsigned int j = 0;
-    unsigned int max = 0;
+    unsigned int min = 0;
 
     for (i; i < sizeOfarrWords; i++) {
-        max = i;
+        min = i;
         
         for (j = i; j < sizeOfarrWords; j++) {
-            if (ascii_alphabetical_check(arrWords[max], arrWords[j])) max = j;
+            if (ascii_alphabetical_check(arrWords[min], arrWords[j])) min = j;
         }
-        swap_words(arrWords[max], arrWords[i]);
+        swap_words(arrWords[min], arrWords[i]);
     }
     
     return 1;
 }
-int ascii_alphabetical_check( word *wordMax, word *wordX ) {
+int ascii_alphabetical_check( word *wordMin, word *wordX ) {
     unsigned int i = 0;
     
     for (i; i < 100; i++) {
-        if (wordMax->letters[i] > wordX->letters[i]) return 1;
-        if (wordMax->letters[i] < wordX->letters[i]) return 0;
+        if (wordMin->letters[i] > wordX->letters[i]) return 1;
+        if (wordMin->letters[i] < wordX->letters[i]) return 0;
     }
 
     return 0;
