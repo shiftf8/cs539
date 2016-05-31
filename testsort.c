@@ -5,6 +5,14 @@ void SelectionSort(int *, int);
 int main() {
     int a[] = {8, 6, 10, 3, 1, 2, 5, 4};
     int array_size = 8;
+    int i;
+
+    printf("[ ");
+    for (i = 0; i < array_size; ++i) {
+        printf("%d", a[i]);
+        if (i != array_size - 1) printf(", ");
+    }
+    printf(" ]\n\n");
     
     SelectionSort(&a[0], array_size);
 } /* main */
