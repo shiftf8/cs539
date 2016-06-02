@@ -87,7 +87,7 @@ void printAddress( struct Address* address ) {
     printf( "%s\n", address->zipCode );
 }
 
-struct Address** zipSort( struct Address** contactList, unsigned int numberOfContacts ) {
+struct Address** zipCodeSort( struct Address** contactList, unsigned int numberOfContacts ) {
     unsigned int i = 0;
     unsigned int j = 0;
     unsigned int min = 0;

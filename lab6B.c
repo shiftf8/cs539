@@ -3,6 +3,8 @@ Lamog, Robert
 Lab 6B
 05/30/2016
 Dynamically input names and addresses that are in alphabetical order and output based on zip code. Disregard duplicate entries.
+
+************ I never wrote an isDuplicate entry function, per the assignment. Might get around to it later. *************
 */
 
 #include "address.h"
@@ -13,9 +15,9 @@ Dynamically input names and addresses that are in alphabetical order and output 
 int main () {
     FILE* input = NULL;
     struct Address* contactList[50]; /* Max records 50 */
-    unsigned int contactX = 0; /* contactList[50] positional reference */
-    unsigned int lineN = 0;  /* File line input positional reference. Strictly adheres to preformatted input file. */
-    char str[1024];
+    unsigned int contactX = 0; /* contactList[50] positional reference/count */
+    unsigned int lineN = 0;  /* File line input positional reference/count. Strictly adheres to preformatted input file. */
+    char str[512];
     unsigned int i = 0;
 
     input = fopen( "benihana.txt", "r" );
@@ -34,11 +36,15 @@ int main () {
             if ( lineN == 5 ) {  /* Separated file input data entries with blank newline for easier source manipulation and error checking.
                                     Making each entry 5 lines long. */
                 
-                // printAddress( contactList[contactX] ); /* Pre test print */
+                /* printAddress( contactList[contactX] ); /* Pre test print */
                 
                 lineN = 0;  /* Reset input line iterator */
                 
-                contactList[++contactX] = newAddress(); /* Try to add new address. */
+                if ( ( ++contactX ) == 51 ) {
+                    printf( "This program was designed to process a maximum of 50 contacts. Further input will be ignored.\n" );
+                    break;
+                }
+                contactList[contactX] = newAddress(); /* Try to add new address. */
                 if ( contactList[contactX] == NULL ) {
                     printf( "newAddress: Unsuccessful.\nProgram terminated.\n" );
                     exit( EXIT_FAILURE );
@@ -53,13 +59,13 @@ int main () {
             ++lineN;
         }
         
-        // if ( feof( input ) ) printf( "\n" ); /* */
+        /* if ( feof( input ) ) printf( "\n" ); /* */
     }
 
     fclose( input );
     
-    // printf( "%d\n", contactX );
-    zipSort( contactList, contactX );
+    /* printf( "%d\n", contactX ); /* */
+    zipCodeSort( contactList, contactX );
 
     for ( i; i <= contactX; ++i ) {
         printAddress( contactList[i] ); /* Test print */
