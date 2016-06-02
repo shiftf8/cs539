@@ -4,7 +4,7 @@ Lab 6B
 05/30/2016
 Dynamically input names and addresses that are in alphabetical order and output based on zip code. Disregard duplicate entries.
 
-************ I never wrote an isDuplicate entry function, per the assignment. Might get around to it later. *************
+************ I never wrote an isDuplicateEntry function, per the assignment. Might get around to it later. *************
 */
 
 #include "address.h"
