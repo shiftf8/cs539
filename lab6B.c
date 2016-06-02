@@ -14,7 +14,7 @@ int main () {
     FILE* input = NULL;
     struct Address* contactList[50]; /* Max records 50 */
     unsigned int contactX = 0; /* contactList[50] positional reference */
-    unsigned int lineX = 0;  /* File line input positional reference. Strictly adheres to preformatted input file. */
+    unsigned int lineN = 0;  /* File line input positional reference. Strictly adheres to preformatted input file. */
     char str[1024];
     unsigned int i = 0;
 
@@ -24,41 +24,45 @@ int main () {
         perror( "fopen: Unsuccessful.\nProgram terminated.\n" );
         exit( EXIT_FAILURE );
     } else {
-        contactList[contactX] = newAddress();
-            
+        contactList[contactX] = newAddress(); /* Try to add initial address struct. */
         if ( contactList[contactX] == NULL ) {
             printf( "newAddress: Unsuccessful.\nProgram terminated.\n" );
             exit( EXIT_FAILURE );
         }
             
         while ( fgets( str, sizeof( str ), input ) ) {
-            if ( lineX == 5 ) {  /* Separated file input data entries with blank newline for easier source manipulation and error checking.
+            if ( lineN == 5 ) {  /* Separated file input data entries with blank newline for easier source manipulation and error checking.
                                     Making each entry 5 lines long. */
-                lineX = 0;  /* Reset input line iterator */
                 
-                contactList[++contactX] = newAddress();
+                // printAddress( contactList[contactX] ); /* Pre test print */
                 
+                lineN = 0;  /* Reset input line iterator */
+                
+                contactList[++contactX] = newAddress(); /* Try to add new address. */
                 if ( contactList[contactX] == NULL ) {
                     printf( "newAddress: Unsuccessful.\nProgram terminated.\n" );
                     exit( EXIT_FAILURE );
                 }
             }
             
-            if ( lineX == 0 ) setLastNameFirstName( contactList[contactX], str );
-            if ( lineX == 1 ) setStreetAddress( contactList[contactX], str );
-            if ( lineX == 2 ) setCityState( contactList[contactX], str );
-            if ( lineX == 3 ) setZipCode( contactList[contactX], str );
+            if ( lineN == 0 ) setLastNameFirstName( contactList[contactX], str );
+            if ( lineN == 1 ) setStreetAddress( contactList[contactX], str );
+            if ( lineN == 2 ) setCityState( contactList[contactX], str );
+            if ( lineN == 3 ) setZipCode( contactList[contactX], str );
 
-            ++lineX;
+            ++lineN;
         }
         
-        /* if ( feof( input ) ) printf( "\n" ); /* */
+        // if ( feof( input ) ) printf( "\n" ); /* */
     }
 
     fclose( input );
+    
+    // printf( "%d\n", contactX );
+    zipSort( contactList, contactX );
 
     for ( i; i <= contactX; ++i ) {
-        printAddress( contactList[i] );
+        printAddress( contactList[i] ); /* Test print */
         delAddress( contactList[i] );
     }
 

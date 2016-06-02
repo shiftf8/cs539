@@ -15,9 +15,9 @@ For use with lab6B. Simple Address data structure based on predetermined file in
 #include <string.h>
 
 struct Address {
-    char lastNameFirstName[512];
-    char streetAddress[1024];
-    char cityState[512];
+    char lastNameFirstName[256];
+    char streetAddress[512];
+    char cityState[256];
     char zipCode[10];
 };
 
@@ -37,7 +37,7 @@ struct Address* setLastNameFirstName( struct Address* contact, char* str ) {
         printf( "setLastNameFirstName: Unsuccessful.\nProgram terminated.\n" );
         exit( EXIT_FAILURE );
     } else {
-        strcpy(contact->lastNameFirstName, str);
+        strcpy( contact->lastNameFirstName, str );
     }
     
     return contact;
@@ -47,7 +47,7 @@ struct Address* setStreetAddress( struct Address* contact, char* str ) {
         printf( "setStreetAddress: Unsuccessful.\nProgram terminated.\n" );
         exit( EXIT_FAILURE );
     } else {
-        strcpy(contact->streetAddress, str);
+        strcpy( contact->streetAddress, str );
     }
     
     return contact;
@@ -57,7 +57,7 @@ struct Address* setCityState( struct Address* contact, char* str ) {
         printf( "setCityState: Unsuccessful.\nProgram terminated.\n" );
         exit( EXIT_FAILURE );
     } else {
-        strcpy(contact->cityState, str);
+        strcpy( contact->cityState, str );
     }
     
     return contact;
@@ -67,7 +67,7 @@ struct Address* setZipCode( struct Address* contact, char* str ) {
         printf( "setZipCode: Unsuccessful.\nProgram terminated.\n" );
         exit( EXIT_FAILURE );
     } else {
-        strcpy(contact->zipCode, str);
+        strcpy( contact->zipCode, str );
     }
     
     return contact;
@@ -85,6 +85,29 @@ void printAddress( struct Address* address ) {
     printf( "%s", address->streetAddress );
     printf( "%s", address->cityState );
     printf( "%s\n", address->zipCode );
+}
+
+struct Address** zipSort( struct Address** contactList, unsigned int numberOfContacts ) {
+    unsigned int i = 0;
+    unsigned int j = 0;
+    unsigned int min = 0;
+    struct Address* tmp;
+
+    for ( i; i <= numberOfContacts; ++i ) {
+        min = i;
+        
+        for ( j = i; j <= numberOfContacts; ++j ) {
+            if ( strcmp( contactList[j]->zipCode, contactList[min]->zipCode ) < 0 ) {
+                min = j;
+            }
+        }
+            
+        tmp = contactList[i];
+        contactList[i] = contactList[min];
+        contactList[min] = tmp;
+    }
+    
+    return contactList;
 }
 
 #endif /* ADDRESS_RECORD_H */
