@@ -4,7 +4,7 @@ Lab 6B
 05/30/2016
 Dynamically input names and addresses that are in alphabetical order and output based on zip code. Disregard duplicate entries.
 
-************ I never wrote an isDuplicateEntry function, per the assignment. Might get around to it later. *************
+************ I never wrote an isDuplicateEntry function. Might get around to it later. *************
 */
 
 #include "address.h"
@@ -34,17 +34,17 @@ int main () {
             
         while ( fgets( str, sizeof( str ), input ) ) {
             if ( lineN == 5 ) {  /* Separated file input data entries with blank newline for easier source manipulation and error checking.
-                                    Making each entry 5 lines long. */
-                
-                /* printAddress( contactList[contactX] ); /* Pre test print */
+                                    Making each entry 5 lines long instead of 4. */
                 
                 lineN = 0;  /* Reset input line iterator */
                 
-                if ( ( ++contactX ) == 51 ) {
-                    printf( "This program was designed to process a maximum of 50 contacts. Further input will be ignored.\n" );
+                ++contactX;
+                if ( contactX == 51 ) { /* This sets the max limit of input contacts */
+                    --contactX; /* Rolling back count once so we continue to stay in bounds */
+                    printf( "This program was designed to process a maximum of %d contacts. Further input will be ignored.\n", contactX );
                     break;
                 }
-                contactList[contactX] = newAddress(); /* Try to add new address. */
+                contactList[contactX] = newAddress(); /* Try to add new address */
                 if ( contactList[contactX] == NULL ) {
                     printf( "newAddress: Unsuccessful.\nProgram terminated.\n" );
                     exit( EXIT_FAILURE );
@@ -71,6 +71,6 @@ int main () {
         printAddress( contactList[i] ); /* Test print */
         delAddress( contactList[i] );
     }
-
+    
     return 0;
 } /* main */

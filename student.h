@@ -13,59 +13,38 @@ For use with lab6C. Simple Student data structure based on predetermined file in
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <time.h>
 
-static int isRandomInitialized = 0;
-
-struct StudentAndRoommate {
+struct RoommateInfo {
     char studentName[256]; /* [first name] [last name] */
     unsigned int studentID;
     unsigned int interestCode;
     unsigned int roommateID;
 };
 
-struct StudentAndRoommate* newStudent() {
+struct RoommateInfo* new_student() {
     /* Try to allocate new Student */
-    struct StudentAndRoommate* retVal = malloc( sizeof( struct StudentAndRoommate ) );
+    struct RoommateInfo* retVal = malloc( sizeof( struct RoommateInfo ) );
     if ( retVal == NULL ) return NULL;
-    
+
     return retVal;
 }
-void delStudent( struct StudentAndRoommate* student ) {
+void del_student( struct RoommateInfo* student ) {
     if ( student != NULL ) free( student );
 }
-struct StudentAndRoommate* setStudentName( struct StudentAndRoommate* student, char* str ) {
-    if ( str == NULL ) {
-        printf( "setName: Unsuccessful.\nProgram terminated.\n" );
-        exit( EXIT_FAILURE );
-    } else {
-        strcpy( student->studentName, str );
-    }
-    
+struct RoommateInfo* set_student_name( struct RoommateInfo* student, char* str ) {
+    strcpy( student->studentName, str );
+
     return student;
 }
-struct StudentAndRoommate* setID( struct StudentAndRoommate* student, unsigned int ID ) {
-    if ( !ID ) {
-        printf( "setID: Unsuccessful.\nProgram terminated.\n" );
-        exit( EXIT_FAILURE );
-    } else {
-        student->studentID = ID;
-    }
-    
+struct RoommateInfo* set_id( struct RoommateInfo* student, unsigned int id ) {
+    student->studentID = id;
+
     return student;
 }
-struct StudentAndRoommate* setInterestCode( struct StudentAndRoommate* student, unsigned int interestCode ) {
-    if ( !interestCode ) {
-        printf( "setInterestCode: Unsuccessful.\nProgram terminated.\n" );
-        exit( EXIT_FAILURE );
-    } else {
-        if (!isRandomInitialized) {
-            srand( time( NULL ) );
-            isRandomInitialized = 1;
-        }
-        
-        student->interestCode = rand() % 50; /* Using dumb PRNG for interest code ftm. */
-    }
+struct RoommateInfo* set_interest_code( struct RoommateInfo* student, unsigned int interestCode ) {
+    student->interestCode = interestCode;
+    
+    return student;
 }
 
 #endif /* STUDENT_RECORD_H */

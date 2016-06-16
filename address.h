@@ -22,8 +22,7 @@ struct Address {
 };
 
 struct Address* newAddress() {
-    /* Try to allocate address structure */
-    
+    /* Try to allocate Address structure */
     struct Address* retVal = malloc( sizeof( struct Address ) );
     if ( retVal == NULL ) return NULL;
     
