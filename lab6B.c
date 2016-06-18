@@ -17,29 +17,26 @@ int main () {
     struct Address* contactList[50]; /* Max records 50 */
     unsigned int contactX = 0; /* contactList[50] positional reference/count */
     unsigned int lineN = 0;  /* File line input positional reference/count. Strictly adheres to preformatted input file. */
-    char str[512];
+    char str[512]; /* Arbitrary string length */
     unsigned int i = 0;
 
     input = fopen( "benihana.txt", "r" );
     
-    if ( input == NULL ) {
-        perror( "fopen: Unsuccessful.\nProgram terminated.\n" );
-        exit( EXIT_FAILURE );
-    } else {
-        contactList[contactX] = newAddress(); /* Try to add initial address struct. */
+    if ( input != NULL ) {
+        contactList[contactX] = newAddress(); /* Try to add initial address struct */
         if ( contactList[contactX] == NULL ) {
             printf( "newAddress: Unsuccessful.\nProgram terminated.\n" );
             exit( EXIT_FAILURE );
         }
             
         while ( fgets( str, sizeof( str ), input ) ) {
-            if ( lineN == 5 ) {  /* Separated file input data entries with blank newline for easier source manipulation and error checking.
+            if ( lineN == 5 ) {  /* File input data entries are separated with blank newline for easier source manipulation and error checking.
                                     Making each entry 5 lines long instead of 4. */
                 
                 lineN = 0;  /* Reset input line iterator */
                 
                 ++contactX;
-                if ( contactX == 51 ) { /* This sets the max limit of input contacts */
+                if ( contactX > 50 ) { /* This sets the max limit of input contacts. contactX should really be a defined static const max_limit or something equivalent. */
                     --contactX; /* Rolling back count once so we continue to stay in bounds */
                     printf( "This program was designed to process a maximum of %d contacts. Further input will be ignored.\n", contactX );
                     break;
@@ -58,17 +55,17 @@ int main () {
 
             ++lineN;
         }
-        
-        /* if ( feof( input ) ) printf( "\n" ); /* */
+    } else {
+        perror( "fopen: Unsuccessful.\nProgram terminated.\n" );
+        exit( EXIT_FAILURE );
     }
 
     fclose( input );
     
-    /* printf( "%d\n", contactX ); /* */
     zipCodeSort( contactList, contactX );
 
     for ( i; i <= contactX; ++i ) {
-        printAddress( contactList[i] ); /* Test print */
+        printAddress( contactList[i] );
         delAddress( contactList[i] );
     }
     
