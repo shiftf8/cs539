@@ -10,7 +10,6 @@ Dynamically input names and addresses that are in alphabetical order and output 
 #include "address.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 int main () {
     FILE* input = NULL;
@@ -36,7 +35,7 @@ int main () {
                 lineN = 0;  /* Reset input line iterator */
                 
                 ++contactX;
-                if ( contactX > 50 ) { /* This sets the max limit of input contacts. contactX should really be a defined static const max_limit or something equivalent. */
+                if ( contactX > 50 ) { /* This sets the max limit of input contacts. contactX should likely be compared to a defined or static const max_limit or something equivalent. */
                     --contactX; /* Rolling back count once so we continue to stay in bounds */
                     printf( "This program was designed to process a maximum of %d contacts. Further input will be ignored.\n", contactX );
                     break;

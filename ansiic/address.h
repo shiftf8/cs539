@@ -80,10 +80,7 @@ void printAddress( struct Address* address ) {
     printf( "%s%p\n", address->zipCode );
     /* */
     
-    printf( "%s", address->lastNameFirstName );
-    printf( "%s", address->streetAddress );
-    printf( "%s", address->cityState );
-    printf( "%s\n", address->zipCode );
+    printf( "%s%s%s%s\n", address->lastNameFirstName, address->streetAddress, address->cityState, address->zipCode );
 }
 
 struct Address** zipCodeSort( struct Address** contactList, unsigned int numberOfContacts ) {

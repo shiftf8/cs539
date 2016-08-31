@@ -7,8 +7,8 @@ Dynamically input names, id numbers and interest codes (0-50), and output based 
 For use with lab6C. Simple Student data structure based on predetermined file input.
 */
 
-#ifndef STUDENT_RECORD_H
-#define STUDENT_RECORD_H
+#ifndef ROOMMATE_RECORD_H
+#define ROOMMATE_RECORD_H
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -18,11 +18,10 @@ struct RoommateInfo {
     char studentName[256]; /* [first name] [last name] */
     unsigned int studentID;
     unsigned int interestCode;
-    unsigned int roommateID;
+    struct RoommateInfo* roommate;
 };
 
 struct RoommateInfo* new_student() {
-    /* Try to allocate new Student */
     struct RoommateInfo* retVal = malloc( sizeof( struct RoommateInfo ) );
     if ( retVal == NULL ) return NULL;
 
@@ -31,6 +30,7 @@ struct RoommateInfo* new_student() {
 void del_student( struct RoommateInfo* student ) {
     if ( student != NULL ) free( student );
 }
+
 struct RoommateInfo* set_student_name( struct RoommateInfo* student, char* str ) {
     strcpy( student->studentName, str );
 
@@ -47,4 +47,12 @@ struct RoommateInfo* set_interest_code( struct RoommateInfo* student, unsigned i
     return student;
 }
 
-#endif /* STUDENT_RECORD_H */
+void print_roommate_info( struct RoommateInfo* info ) {
+    /* Test print code */
+    printf( "Student: %s\nID: %d\nInterest Code: %d\n", info->studentName, info->studentID, info->interestCode );
+    printf( "Roomate: %s\n", info->roommate->studentName ); /**/
+    
+    /* printf( "Student: %s\nRoommate: %s\n", info->studentName, info->roommate->studentName ); /**/
+}
+
+#endif /* ROOMMATE_RECORD_H */
