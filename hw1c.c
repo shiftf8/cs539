@@ -25,9 +25,9 @@ int main(){
 double areaTriangle(double a, double b, double c){
     double semiPerimeter, retVal;
 
-    semiPerimeter = (a + b + c) / 2;
     if ((a + b < c) || (b + c < a) || (c + a < b)) die("These three sides cannot make a triangle.\n");
-    
+
+    semiPerimeter = (a + b + c) / 2;
     retVal = sqrt(semiPerimeter * (semiPerimeter - a) * (semiPerimeter - b) * (semiPerimeter - c));
 
     return retVal;
