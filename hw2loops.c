@@ -13,51 +13,51 @@ void multiplicationTable( unsigned max ); // output multiplication table
 int die( const char * msg );
 
 int main(){
-    // printf("outputRange(3, 7)\n");
-    // outputRange(3,7);
-    // printf("outputRange(7, 3)\n");
-    // outputRange(7,3);
-    // printf("\n");
+    printf("outputRange(3, 7)\n");
+    outputRange(3,7);
+    printf("outputRange(7, 3)\n");
+    outputRange(7,3);
+    printf("\n");
     
-    // printf("addRange(a, b)\n");
-    // printf("%u\n", addRange(3,7));
+    printf("addRange(a, b)\n");
+    printf("%u\n", addRange(3,7));
 
-    // printf("factorial(n)\n");
-    // printf("%u\n", factorial(0));
-    // printf("%u\n", factorial(1));
-    // printf("%u\n", factorial(2));
-    // printf("%u\n", factorial(3));
-    // printf("%u\n", factorial(4));
+    printf("factorial(n)\n");
+    printf("%u\n", factorial(0));
+    printf("%u\n", factorial(1));
+    printf("%u\n", factorial(2));
+    printf("%u\n", factorial(3));
+    printf("%u\n", factorial(4));
 
-    // printf("fib(n)\n");
-    // printf("%u\n", fib(0));
-    // printf("%u\n", fib(1));
-    // printf("%u\n", fib(2));
-    // printf("%u\n", fib(3));
-    // printf("%u\n", fib(4));
-    // printf("%u\n", fib(5));
-    // printf("%u\n", fib(6));
-    // printf("----------\n");
-    // printf("%u\n", fib(7));
-    // printf("%u\n", fib(5) + fib(6));
+    printf("fib(n)\n");
+    printf("%u\n", fib(0));
+    printf("%u\n", fib(1));
+    printf("%u\n", fib(2));
+    printf("%u\n", fib(3));
+    printf("%u\n", fib(4));
+    printf("%u\n", fib(5));
+    printf("%u\n", fib(6));
+    printf("----------\n");
+    printf("%u\n", fib(7));
+    printf("%u\n", fib(5) + fib(6));
 
-    // printf("prime(n)\n");
-    // printf("2 is %i prime.\n", prime(2));
-    // printf("3 is %i prime.\n", prime(3));
-    // printf("5 is %i prime.\n", prime(5));
-    // printf("7 is %i prime.\n", prime(7));
-    // printf("11 is %i prime.\n", prime(11));
-    // printf("----------\n");
-    // printf("1 is %i prime.\n", prime(1));
-    // printf("4 is %i prime.\n", prime(4));
-    // printf("9 is %i prime.\n", prime(9));
+    printf("prime(n)\n");
+    printf("2 is %i prime.\n", prime(2));
+    printf("3 is %i prime.\n", prime(3));
+    printf("5 is %i prime.\n", prime(5));
+    printf("7 is %i prime.\n", prime(7));
+    printf("11 is %i prime.\n", prime(11));
+    printf("----------\n");
+    printf("1 is %i prime.\n", prime(1));
+    printf("4 is %i prime.\n", prime(4));
+    printf("9 is %i prime.\n", prime(9));
     
-    // printf("gcd(a, b)\n");
-    // printf("GCD of 6 and 6 is %u.\n", gcd(6, 6));
-    // printf("GCD of 3 and 9 is %u.\n", gcd(3, 9));
-    // printf("GCD of 9 and 3 is %u.\n", gcd(9, 3));
-    // printf("GCD of 300 and 110 is %u.\n", gcd(300, 110));
-    // printf("GCD of 2 and 21 is %u.\n", gcd(2, 21));
+    printf("gcd(a, b)\n");
+    printf("GCD of 6 and 6 is %u.\n", gcd(6, 6));
+    printf("GCD of 3 and 9 is %u.\n", gcd(3, 9));
+    printf("GCD of 9 and 3 is %u.\n", gcd(9, 3));
+    printf("GCD of 300 and 110 is %u.\n", gcd(300, 110));
+    printf("GCD of 2 and 21 is %u.\n", gcd(2, 21));
     
     printf("multiplicationTable(18)\n");
     multiplicationTable(18);
@@ -122,12 +122,12 @@ void multiplicationTable( unsigned max ){
     printf (" *");
     for(column; column <= max; ++column) printf("%4u", column);
     printf("\n");
-    column = 0; //Reset columns
+    column = 0; //Reset column
     for(row; row <= max; ++row){
         printf("%2u", row);
         for(column; column <= max; ++column) printf("%4u", column * row);
         printf("\n");
-        column = 0; //Reset columns
+        column = 0; //Reset column
     }
 }
 
