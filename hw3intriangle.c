@@ -17,7 +17,8 @@ int inTriangle( double x0, double y0, double x1, double y1,
     //  we would return 0, since that same triangle does not enclose the point
     //  (0.5, -0.6).
     //  The three points of the triangle may appear in any order.
-    
+
+int isSameSide(double, double, double, double, double, double, double, double);
 int die( const char * msg );
 
 int main(){
