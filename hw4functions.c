@@ -12,7 +12,7 @@ int leap( unsigned year );
 void stats( double * min, double * average, double * max );
 
 void swap(double * x, double * y);
-int gcd( unsigned a, unsigned b );
+int gcd(unsigned a, unsigned b);
 int die(const char * msg);
 
 int main(){
@@ -104,7 +104,7 @@ void swap(double * x, double * y){
     *x = *y;
     *y = temp;
 }
-int gcd( unsigned a, unsigned b ){ //Recursive function. May fail with larger numbers.
+int gcd(unsigned a, unsigned b){ //Recursive function. May fail with larger numbers.
     if ((a == 0) || (b == 0)) return 0; //Special 0 case
     if (a % b == 0) return b;
     
