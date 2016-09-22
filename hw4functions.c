@@ -12,6 +12,7 @@ int leap( unsigned year );
 void stats( double * min, double * average, double * max );
 
 void swap(double * x, double * y);
+int gcd( unsigned a, unsigned b );
 int die(const char * msg);
 
 int main(){
