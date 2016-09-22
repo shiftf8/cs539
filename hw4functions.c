@@ -40,7 +40,7 @@ int prime( unsigned n ){
     
     if ((n == 0) || (n == 1)) return 0; //Special 0 or 1 case
     if (n == 2) return 1; //Special 2 case
-    for(i; i < ((n / 2) + 1); ++i){
+    for (i; i < ((n / 2) + 1); ++i){
         if (n % i == 0) return 0;
     }
     return 1; //It's reasonable to assume, if we have reached this far, the number must be prime.
