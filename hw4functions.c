@@ -16,6 +16,9 @@ int gcd(unsigned a, unsigned b);
 int die(const char * msg);
 
 int main(){
+    double a, b, c;
+    
+    stats(&a, &b, &c);
 
     return 0;
 }
@@ -71,30 +74,32 @@ int leap( unsigned year ){
 void stats( double * min, double * average, double * max ){
     double num[1024] = {};
     double mean = 0;
-    unsigned i = 0, j = 0;
+    unsigned input_count = 0, j = 0;
 
-    while (i < 1024){ //1024 double input limit.
-        if (scanf("%lf, ", &num[i])) ++i;
+    while (input_count < 1024){ //1024 double input limit.
+        if (scanf("%lf, ", &num[input_count])) ++input_count;
         else break;
     }
 
-    if (i == 0) die("Must input numeric values to evaluate.\n");
+    if (input_count == 0) die("Must input numeric values to evaluate.\n");
 
     //Initializing with first valid input.
     min = &num[0];
     average = &num[0];
     max = &num[0];
 
-    if (i > 1){
-        for (j; j < i; ++j){
+    if (input_count > 1){
+        for (j; j < input_count; ++j){
             if (*min >= num[j]) min = &num[j];
             mean += num[j];
             if (*max <= num[j]) max = &num[j];
         }
 
-        mean = mean / i;
+        mean = mean / input_count;
         average = &mean;
     }
+    
+    printf("Min = %lf, Mean = %lf, Max = %lf\n", *min, *average, *max);
 }
 
 void swap(double * x, double * y){
