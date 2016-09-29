@@ -14,34 +14,51 @@ void reverse( double a[], unsigned elements );
 int die( const char msg[] );
 
 int main(){
-    double a[] = {1.1, 2.2, 3.3, 4.4};
-    double b[] = {2, 4, 6};
-    double c[] = {1, 2, 3};
-    double result[3] = {};
+    double m[] = {1.1, 2.2, 3.3, 4.4};
+    double n[] = {2, 4, 6};
+    double p[] = {1, 2, 50};
+    double q[] = {10, 20, 30};
+    double r[3] = {};
+    double *smallest, *average, *largest;
     unsigned i = 0;
-    unsigned elements = 3;
+    unsigned e = 3;
     
-    show(a, 4);
+    show(m, 4);
     
-    printf("sum = %lf\n", sum(a, 4));
-    printf("sum = %lf\n", sum(b, 3));
+    // printf("sum = %lf\n", sum(m, 4));
+    // printf("sum = %lf\n", sum(n, 3));
     
-    half(a, elements);
-    printf("half = {");
-    for (i; i < elements; ++i){
-        printf("%lf", a[i]);
-        if (i < elements - 1) printf(", ");
-    }
-    printf("}\n");
+    // half(m, e);
+    // printf("half = {");
+    // for (i; i < e; ++i){
+    //     printf("%lf", m[i]);
+    //     if (i < e - 1) printf(", ");
+    // }
+    // printf("}\n");
     
-    add(result, b, c, elements);
-    printf("add = {");
-    for (i; i < elements; ++i){
-        printf("%lf", result[i]);
-        if (i < elements - 1) printf(", ");
-    }
-    printf("}\n");
+    // i = 0;
+    // add(r, p, q, e);
+    // printf("add = {");
+    // for (i; i < e; ++i){
+    //     printf("%lf", r[i]);
+    //     if (i < e - 1) printf(", ");
+    // }
+    // printf("}\n");
     
+    // i = 0;
+    // maximum(r, p, q, e);
+    // printf("maximum = {");
+    // for (i; i < e; ++i){
+    //     printf("%lf", r[i]);
+    //     if (i < e - 1) printf(", ");
+    // }
+    // printf("}\n");
+    
+    i = 0;
+    stat(smallest, average, largest, m, e);
+    // printf("smallest = %lf, average = %lf, largest = %lf of ", *smallest, *average, *largest);
+    show(m, e);
+
     return 0;
 } //int main()
 
@@ -71,15 +88,46 @@ void add( double result[], const double a0[], const double a1[], unsigned elemen
     unsigned i = 0;
     
     for (i; i < elements; ++i) result[i] = a0[i] + a1[i];
-    
-    // i = 0;
-    // for (i; i < elements; ++i) printf("%lf\n", result[i]);
 }
 void maximum( double result[], const double a0[], const double a1[], unsigned elements ){
+    unsigned i = 0;
     
+    for (i; i < elements; ++i){
+        if (a0[i] < a1[i]) result[i] = a1[i];
+        else result[i] = a0[i];
+    }
 }
 void stat( double * smallest, double * average, double * largest, const double a[], unsigned elements ){
+    double min = 0, mean = 0, max = 0;
+    unsigned i = 0;
     
+    if (elements == 0) die("Zero elements defined. stat() needs at least one element to examine.\n");
+    
+    //Initializing with first element.
+    min = *a;
+    smallest = &min;
+    // printf("a == %p : %lf\nmin == %p : %lf\nsmallest == %p : %lf\n", &a, *a, &min, min, &smallest, *smallest);
+    mean = *a;
+    average = &mean;
+    max = *a;
+    largest = &max;
+
+    // if (elements > 1){
+    //     for (i; i < elements; ++i){
+    //         if (min >= a[i]){
+    //             min = *(a + i);
+    //             smallest = &min;
+    //         }
+    //         mean += a[i];
+    //         if (max <= a[i]){
+    //             max = *(a + i);
+    //             largest = &max;
+    //         }
+    //     }
+
+    //     mean = mean / elements;
+    //     average = &mean;
+    // }
 }
 void setFib( unsigned result[], unsigned elements ){
     
