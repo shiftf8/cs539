@@ -16,6 +16,47 @@ int die( const char msg[] );
 unsigned fib( unsigned n );
 
 int main(){
+    double m[] = {1.1, 2.2, 3.3, 4.4};
+    double n[] = {2, 4, 6};
+    double p[] = {1, 2, 50};
+    double q[] = {10, 20, 30};
+    double r[3] = {};
+    unsigned k[7] = {};
+    double s = 0, a = 0, l = 0;
+    unsigned e = 3;
+    unsigned i = 0;
+    
+    // show(m, 4);
+    
+    // printf("sum = %lf\n", sum(m, 4));
+    // printf("sum = %lf\n", sum(n, 3));
+    
+    // half(m, e);
+    // printf("half = ");
+    // show(m, e);
+
+    // add(r, p, q, e);
+    // printf("add = ");
+    // show(r, e);
+
+    // maximum(r, p, q, e);
+    // printf("maximum = ");
+    // show(r, e);
+
+    // stat(&s, &a, &l, m, e);
+    // printf("smallest = %lf, average = %lf, largest = %lf of ", s, a, l);
+    // show(m, e);
+    
+    // setFib(k, 7);
+    // printf("{");
+    // for (i; i < 7; ++i){
+    //     printf("%u", k[i]);
+    //     if (i < 6) printf(", ");
+    // }
+    // printf("}\n");
+    
+    reverse(n, e);
+    show(n, e);
 
     return 0;
 } //int main()
