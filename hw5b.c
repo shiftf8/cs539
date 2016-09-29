@@ -56,6 +56,7 @@ int main(){
     // printf("}\n");
     
     reverse(n, e);
+    show(n, e);
 
     return 0;
 } //int main()
@@ -130,9 +131,14 @@ void setFib( unsigned result[], unsigned elements ){
     for (i; i < elements; ++i) result[i] = fib(i);
 }
 void reverse( double a[], unsigned elements ){
+    double temp = 0;
     unsigned i = 0;
     
-    // for (i; i < elements; ++i) 
+    for (i; i < elements / 2; ++i){
+        temp = a[i];
+        a[i] = a[elements - 1 -i];
+        a[elements - 1 -i] = temp;
+    }
 }
 int die( const char msg[] ){
     printf("Fatal error: %s", msg);
