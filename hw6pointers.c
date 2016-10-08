@@ -15,29 +15,39 @@ int die( const char * msg );
 
 int main(){
     double *arr;
-    double *arr_start;
-    unsigned arr_length = 11;
-    unsigned i = 0;
+    double *arr_head;
+    unsigned arr_length = 3;
+    double i = 0;
 
-    arr = malloc(arr_length * sizeof(*arr));
+    arr = malloc(arr_length * sizeof *arr);
     if (arr == NULL) die("malloc unsuccessful.");
+    printf("%p : %lf : %lu\n", &arr, *arr, sizeof *arr);
 
-    arr_start = arr; //Important to remember where the array starts.
-    while (arr + arr_length != arr++) *arr = i++;
+    arr_head = arr; //Important to utilize separate pointer iterator instead of trying to constantly remember where original pointer came from.
+    // printf("%p / %p\n", &arr_head, &arr + arr_length);
+    while (arr_head < arr + arr_length){
+        *arr_head = i++;
+        ++arr_head;
+    }
 
     show(arr, arr + arr_length);
     
-    sum(arr, arr + arr_length);
+    printf("sum = %lf\n", sum(arr, arr + arr_length));
     
+    arr_head = NULL; //Effectively "free" arr_head to prevent dangling pointer problem.
+    
+    printf("%p : %lf : %lu\n", &arr, *arr, sizeof *arr);
     free(arr);
+    arr = NULL;
     
     return 0;
 }
 
 void show( const double * begin, const double * end ){
     printf("{");
-    while (end != begin++){
+    while (begin < end){
         printf("%lf", *begin);
+        ++begin;
         if (begin < end) printf(", ");
     }
     printf("}\n");
@@ -45,7 +55,7 @@ void show( const double * begin, const double * end ){
 double sum( const double * begin, const double * end ){
     double retVal = 0;
     
-    while (end != begin++){
+    while (end > begin++){
         retVal += *begin;
     }
     return retVal;
