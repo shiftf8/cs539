@@ -13,44 +13,105 @@ void setFib( unsigned * begin, unsigned * end );
 void reverse( double * begin, double * end );
 int die( const char * msg );
 
-void fillArray( double * begin, double * end );
-int main(){
-    double *arr, *arr1, *arr2;
-    unsigned arr_length = 5;
+void fillArraySequentially( double * begin, double * end );
+void fillArrayRandomly( double * begin, double * end );
+void fillUnsignedArraySequentially( unsigned * begin, unsigned * end );
+unsigned fib( unsigned n );
+void showUnsigned( const unsigned * begin, const unsigned * end );
 
-    arr = malloc(arr_length * sizeof *arr);
+int main(){
+    /*
+    * Change size for ALL tests here.
+    */
+    unsigned set_size = 5;
+
+    /*
+    * Initializing main variables.
+    */
+    double *arr, *arr1, *arr2;
+    unsigned *uarr;
+    double szero = 0, azero = 0, lzero = 0; //An address for pointers s (smallest), a (average), l (largest), to point to for stat().
+    double *s = &szero, *a = &azero, *l = &lzero; //It's important to point to someplace that is defined.
+    srand(time(NULL)); //Using srand() to seed random numbers for fillArrayRandomly().
+
+    /*
+    * Building test arrays.
+    */
+    arr = malloc(set_size * sizeof *arr);
     if (arr == NULL) die("malloc unsuccessful.");
     // printf("%p : %lf : %lu\n", &arr, *arr, sizeof *arr);
-    arr1 = malloc(arr_length * sizeof *arr1);
+    arr1 = malloc(set_size * sizeof *arr1);
     if (arr1 == NULL) die("malloc unsuccessful.");
-    arr2 = malloc(arr_length * sizeof *arr2);
+    arr2 = malloc(set_size * sizeof *arr2);
     if (arr2 == NULL) die("malloc unsuccessful.");
+    uarr = malloc(set_size * sizeof *uarr);
+    if (uarr == NULL) die("malloc unsuccessful.");
 
-    fillArray(arr, arr + arr_length);
-    fillArray(arr1, arr1 + arr_length);
-    fillArray(arr2, arr2 + arr_length);
+    /*
+    * Filling test arrays with something worth manipulating.
+    */
+    fillArraySequentially(arr, arr + set_size);
+    // fillArrayRandomly(arr, arr + set_size);
+    fillArraySequentially(arr1, arr1 + set_size);
+    // fillArrayRandomly(arr1, arr1 + set_size);
+    // fillArraySequentially(arr2, arr2 + set_size);
+    fillArrayRandomly(arr2, arr2 + set_size);
+    fillUnsignedArraySequentially(uarr, uarr + set_size); //Special unsigned array for setfib().
+    // printf("%lf\n", *(arr1 + (set_size - 1)));
 
-    show(arr, arr + arr_length);
-    show(arr1, arr1 + arr_length);
-    show(arr2, arr2 + arr_length);
+    /*
+    * Printing initialized arrays with show() and custom showUnsigned().
+    */
+    show(arr, arr + set_size);
+    show(arr1, arr1 + set_size);
+    show(arr2, arr2 + set_size);
+    showUnsigned(uarr, uarr + set_size);
+    printf("\n");
     
-    printf("sum = %lf\n", sum(arr, arr + arr_length));
+    /*
+    * Running tests.
+    */
+    printf("sum = %lf\n", sum(arr, arr + set_size));
     
     printf("half = ");
-    half(arr, arr + arr_length);
-    show(arr, arr + arr_length);
+    half(arr, arr + set_size);
+    show(arr, arr + set_size);
     
     printf("add = ");
-    add(arr, arr + arr_length, arr1, arr2);
-    show(arr, arr + arr_length);
+    add(arr, arr + set_size, arr1, arr2);
+    show(arr, arr + set_size);
+
+    printf("maximum = ");
+    maximum(arr, arr + set_size, arr1, arr2);
+    show(arr, arr + set_size);
     
-    // printf("%p : %lf : %lu\n", &arr, *arr, sizeof *arr);
+    stat(s, a, l, arr, arr + set_size);
+    printf("smallest = %lf, average = %lf, largest = %lf of ", *s, *a, *l);
+    show(arr, arr + set_size);
+    
+    printf("setFib = ");
+    setFib(uarr, uarr + set_size);
+    showUnsigned(uarr, uarr + set_size); //Utilizing custom showUnsigned(). Same as show(), except this function prints unsigned arrays instead of double arrays.
+    
+    printf("reverse = ");
+    reverse(arr, arr + set_size);
+    show(arr, arr + set_size);
+
+    /*
+    * It's important to free allocated memory and manage pointers safely.
+    */
     free(arr);
     arr = NULL;
     free(arr1);
     arr1 = NULL;
     free(arr2);
     arr2 = NULL;
+    free(uarr);
+    uarr = NULL;
+    
+    s = NULL;
+    a = NULL;
+    l = NULL;
     
     return 0;
 }
@@ -80,38 +141,102 @@ void half( double * begin, double * end ){
     }
 }
 void add( double * resultBegin, double * resultEnd, const double *a0Begin, const double * a1Begin ){
-    double *arr_head = resultBegin;
     unsigned i = 0;
 
-    while (arr_head < resultEnd){
-        *arr_head = *(a0Begin + i) + *(a1Begin + i);
+    // printf("%lf / %lf : %lf", *(a0Begin + i), *(a1Begin + i), (*(a0Begin + i) + *(a1Begin + i)));
+    while (resultBegin < resultEnd){
+        *resultBegin = *(a0Begin + i) + *(a1Begin + i);
         ++i;
-        ++arr_head;
+        ++resultBegin;
     }
 }
 void maximum( double * resultBegin, double * resultEnd, const double *a0Begin, const double * a1Begin ){
+    unsigned i = 0;
     
+    while (resultBegin < resultEnd){
+        if (*(a0Begin + i) < *(a1Begin + i)) *resultBegin = *(a1Begin + i);
+        else *resultBegin = *(a0Begin + i);
+        ++i;
+        ++resultBegin;
+    }
 }
 void stat( double * smallest, double * average, double * largest, const double * begin, const double * end ){
+    unsigned elements = end - begin;
+
+    if (begin == end) die("Zero elements defined. stat() needs at least one element to examine."); //Be wary of dying before the rest of your test code can manage.
     
+    //Initializing with first element.
+    *smallest = *begin;
+    *largest = *begin;
+
+    while (begin < end){
+        if (*smallest >= *begin) *smallest = *begin;
+        *average += *begin;
+        if (*largest <= *begin) *largest = *begin;
+        ++begin;
+    }
+
+    *average = *average / elements;
 }
 void setFib( unsigned * begin, unsigned * end ){
-    
+    while (begin < end){
+        *begin = fib(*begin);
+        ++begin;
+    }
 }
 void reverse( double * begin, double * end ){
+    double temp = 0;
+    unsigned elements = end - begin;
+    unsigned i = 0;
     
+    // printf("%u\n", i);
+    for (i; i < elements / 2; ++i){
+        temp = *(begin + i);
+        *(begin + i) = *(begin + (elements - 1 - i));
+        *(begin + (elements - 1 - i)) = temp;
+    }
 }
 int die( const char * msg ){
     printf("Fatal error: %s\n", msg);
     exit(EXIT_FAILURE);
 }
 
-void fillArray( double * begin, double * end ){
-    double *arr_head = begin;
+void fillArraySequentially( double * begin, double * end ){ //Range [0++]
     unsigned i = 0;
     
-    while (arr_head < end){
-        *arr_head = i++;
-        ++arr_head;
+    while (begin < end){
+        *begin = i++;
+        ++begin;
     }
+}
+void fillArrayRandomly( double * begin, double * end ){ //Range [0-9]
+    unsigned i = 0;
+    
+    while (begin < end){
+        *begin = rand() % 10;
+        ++begin;
+    }
+}
+void fillUnsignedArraySequentially( unsigned * begin, unsigned * end ){ //Range [0++]
+    unsigned i = 0;
+    
+    while (begin < end){
+        *begin = i++;
+        ++begin;
+    }
+}
+unsigned fib( unsigned n ){
+    if (n == 0) return 0; //Special 0 case
+    if (n == 1) return 1; //Special 1 case
+    
+    return fib(n - 1) + fib(n - 2);
+}
+void showUnsigned( const unsigned * begin, const unsigned * end ){
+    printf("{");
+    while (begin < end){
+        printf("%u", *begin);
+        ++begin;
+        if (begin < end) printf(", ");
+    }
+    printf("}\n");
 }
