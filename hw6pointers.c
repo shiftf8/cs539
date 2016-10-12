@@ -169,7 +169,7 @@ void stat( double * smallest, double * average, double * largest, const double *
     *smallest = *begin;
     *largest = *begin;
 
-    while (begin < end){
+    while (begin < end){ //In this case, while loop will always run at least once. Affording *average to be initialized properly.
         if (*smallest >= *begin) *smallest = *begin;
         *average += *begin;
         if (*largest <= *begin) *largest = *begin;
@@ -210,8 +210,6 @@ void fillArraySequentially( double * begin, double * end ){ //Range [0++]
     }
 }
 void fillArrayRandomly( double * begin, double * end ){ //Range [0-9]
-    unsigned i = 0;
-    
     while (begin < end){
         *begin = rand() % 10;
         ++begin;
