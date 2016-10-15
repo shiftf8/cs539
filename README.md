@@ -8,3 +8,4 @@ hw2loops.c
 hw3intriangle.c
 hw4functions.c
 hw5arrays.c
+hw6pointers.c
