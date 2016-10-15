@@ -23,7 +23,7 @@ int main(){
     /*
     * Change size for ALL tests here.
     */
-    unsigned set_size = 5;
+    unsigned set_size = 7;
 
     /*
     * Initializing main variables.
@@ -32,7 +32,7 @@ int main(){
     unsigned *uarr;
     double szero = 0, azero = 0, lzero = 0; //An address for pointers s (smallest), a (average), l (largest), to point to for stat().
     double *s = &szero, *a = &azero, *l = &lzero; //It's important to point to someplace that is defined.
-    srand(time(NULL)); //Using srand() to seed random numbers for fillArrayRandomly().
+    srand(time(NULL)); //Using srand() to seed pseudo random numbers for fillArrayRandomly().
 
     /*
     * Building test arrays.
@@ -212,6 +212,7 @@ void fillArraySequentially( double * begin, double * end ){ //Range [0++]
 void fillArrayRandomly( double * begin, double * end ){ //Range [0-9]
     while (begin < end){
         *begin = rand() % 10;
+        // *begin = rand() / (RAND_MAX / (10.0));
         ++begin;
     }
 }
