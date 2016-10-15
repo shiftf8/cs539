@@ -114,7 +114,7 @@ int main(){
     l = NULL;
     
     return 0;
-}
+} //main
 
 void show( const double * begin, const double * end ){
     printf("{");
