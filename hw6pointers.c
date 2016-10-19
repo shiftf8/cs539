@@ -23,7 +23,7 @@ int main(){
     /*
     * Change size for ALL tests here.
     */
-    unsigned set_size = 7;
+    unsigned set_size = 4;
 
     /*
     * Initializing main variables.
@@ -209,10 +209,10 @@ void fillArraySequentially( double * begin, double * end ){ //Range [0++]
         ++begin;
     }
 }
-void fillArrayRandomly( double * begin, double * end ){ //Range [0-9]
+void fillArrayRandomly( double * begin, double * end ){ //Pseudo random range [0-9]
     while (begin < end){
-        *begin = rand() % 10;
-        // *begin = rand() / (RAND_MAX / (10.0));
+        *begin = rand() % 10; //Simple unsigned range for quick test verification
+        // *begin = rand() / (RAND_MAX / (10.0)); //Random range of doubles [0.0-9.9]
         ++begin;
     }
 }
