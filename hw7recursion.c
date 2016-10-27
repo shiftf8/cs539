@@ -6,17 +6,21 @@
 void countdown( unsigned seconds );
 unsigned add( unsigned a, unsigned b );
 unsigned multiply( unsigned a, unsigned b );
+unsigned power( unsigned a, unsigned b );
 
 int die( const char * msg );
 
 int main(){
-    countdown(5);
-    printf("\n");
+    // countdown(5);
+    // printf("\n");
     
-    printf("%u\n", add(3, 7));
-    printf("\n");
+    // printf("%u\n", add(3, 7));
+    // printf("\n");
     
-    printf("%u\n", multiply(3, 7));
+    // printf("%u\n", multiply(3, 7));
+    // printf("\n");
+    
+    printf("%u\n", power(3, 7));
     printf("\n");
     
     return 0;
@@ -30,19 +34,21 @@ void countdown( unsigned seconds ){
         printf("Blast off!\n");
 }
 unsigned add( unsigned a, unsigned b ){
-    if (a > 0){
-        add(--a, ++b);
-    } else
-        return b;
+    if (a > 0) add(--a, ++b);
+    else return b;
 }
 unsigned multiply( unsigned a, unsigned b ){
-    static unsigned product = 0;
+    static unsigned retVal = 0;
     
-    // if (a > 0){
-    //     product = add(a, b);
-    //     multiply(--a,)
-    // }
-    return 0;
+    if (b > 0){
+        retVal = add(a, retVal);
+        multiply(a, --b);
+    } else
+        return retVal;
+}
+unsigned power( unsigned a, unsigned b ){
+    if (b > 0) return multiply(a, power(a, --b));
+    else return 1;
 }
 
 int die( const char * msg ){
