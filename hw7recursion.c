@@ -11,14 +11,14 @@ unsigned power( unsigned a, unsigned b );
 int die( const char * msg );
 
 int main(){
-    // countdown(5);
-    // printf("\n");
+    countdown(5);
+    printf("\n");
     
-    // printf("%u\n", add(3, 7));
-    // printf("\n");
+    printf("%u\n", add(3, 7));
+    printf("\n");
     
-    // printf("%u\n", multiply(3, 7));
-    // printf("\n");
+    printf("%u\n", multiply(3, 7));
+    printf("\n");
     
     printf("%u\n", power(3, 7));
     printf("\n");
@@ -38,17 +38,12 @@ unsigned add( unsigned a, unsigned b ){
     else return b;
 }
 unsigned multiply( unsigned a, unsigned b ){
-    static unsigned retVal = 0;
-    
-    if (b > 0){
-        retVal = add(a, retVal);
-        multiply(a, --b);
-    } else
-        return retVal;
+    if (b == 0) return 0;
+    return add(a, multiply(a, --b));
 }
 unsigned power( unsigned a, unsigned b ){
-    if (b > 0) return multiply(a, power(a, --b));
-    else return 1;
+    if (b == 0) return 1;
+    return multiply(a, power(a, --b));
 }
 
 int die( const char * msg ){
