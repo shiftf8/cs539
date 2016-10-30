@@ -14,8 +14,6 @@ unsigned howMany( char c, const char * s );
 void reverse( char * s );
 void copy( char * destination, const char * source );
 
-int die( const char * msg );
-
 int main(){
     char* s = "George!";
     char str[30];
@@ -100,9 +98,4 @@ void copy( char * destination, const char * source ){
     *destination = *source;
     if (*source == '\0') return;
     copy(destination + 1, source + 1);
-}
-
-int die( const char * msg ){
-    printf("Fatal error: %s\n", msg);
-    exit(EXIT_FAILURE);
 }
