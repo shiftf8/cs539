@@ -39,7 +39,6 @@ int main(){
     
     printf("%u\n", howMany('e', s));
     
-    // printf("%lu\n", strlen(s));
     reverse(s);
     printf("\n");
     
@@ -93,8 +92,7 @@ unsigned howMany( char c, const char * s ){
 }
 void reverse( char * s ){
     if (*s){
-        //reverse(++s); //Works. But doesn't print the first char last.
-        reverse(s + 1); //Works, but why?
+        reverse(s + 1);
         printf("%c", *s);
     }
 }
