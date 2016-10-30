@@ -12,11 +12,13 @@ void output( const char * s );
 unsigned length( const char * s );
 unsigned howMany( char c, const char * s );
 void reverse( char * s );
+void copy( char * destination, const char * source );
 
 int die( const char * msg );
 
 int main(){
     char* s = "George!";
+    char str[30];
     
     countdown(5);
     printf("\n");
@@ -30,16 +32,19 @@ int main(){
     printf("%u\n", power(3, 7));
     printf("\n");
     
-    // printf("%lu\n", sizeof s);
     output(s);
     printf("\n");
     
     printf("%u\n", length(s));
     
-    printf("%u\n", howMany('G', s));
+    printf("%u\n", howMany('e', s));
     
+    // printf("%lu\n", strlen(s));
     reverse(s);
     printf("\n");
+    
+    copy(str, s);
+    printf("%s\n", str);
     
     return 0;
 } //main
@@ -87,16 +92,16 @@ unsigned howMany( char c, const char * s ){
     return count_char;
 }
 void reverse( char * s ){
-    static unsigned position = 0;
-    char temp = '\0';
-    unsigned end = (strlen(s) - 1) - position;
-    
-    if (position <= strlen(s) / 2){
-        temp = *(s + position);
-        *(s + position) = *(s + end);
-        *(s + end) = temp;
-        // reverse(s);
+    if (*s){
+        //reverse(++s); //Works. But doesn't print the first char last.
+        reverse(s + 1); //Works, but why?
+        printf("%c", *s);
     }
+}
+void copy( char * destination, const char * source ){
+    *destination = *source;
+    if (*source == '\0') return;
+    copy(destination + 1, source + 1);
 }
 
 int die( const char * msg ){
