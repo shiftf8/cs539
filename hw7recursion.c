@@ -74,17 +74,14 @@ void output( const char * s ){
 unsigned length( const char * s ){
     static unsigned char_count = 0;
     
-    if (char_count < strlen(s)){
-        char_count++;
-        length(s);
-    }
+    if (char_count++ < strlen(s)) length(s);
     return char_count;
 }
 unsigned howMany( char c, const char * s ){
     static unsigned position = 0;
     static unsigned count_char = 0;
     
-    if (c == *(s + (position++))) ++count_char;
+    if (c == *(s + (position++)) ++count_char;
     if (position < strlen(s)) howMany(c, s);
     return count_char;
 }
