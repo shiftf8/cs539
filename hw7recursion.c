@@ -66,23 +66,30 @@ unsigned power( unsigned a, unsigned b ){
     return multiply(a, power(a, --b));
 }
 void output( const char * s ){
-    static unsigned position = 0;
-
-    printf("%c", *(s + (position++)));
-    if (position < strlen(s)) output(s);
+    if (*s){
+        printf("%c", *s);
+        output(s + 1);
+    }
 }
 unsigned length( const char * s ){
     static unsigned char_count = 0;
     
-    if (char_count++ < strlen(s)) length(s);
+    if (*s){
+        ++char_count;
+        length(s + 1);
+    }
     return char_count;
 }
 unsigned howMany( char c, const char * s ){
-    static unsigned position = 0;
+    // static unsigned position = 0;
     static unsigned count_char = 0;
     
-    if (c == *(s + (position++))) ++count_char;
-    if (position < strlen(s)) howMany(c, s);
+    // if (c == *(s + (position++))) ++count_char;
+    // if (position < strlen(s)) howMany(c, s);
+    if (*s){
+        if (c == *s) ++count_char;
+        howMany(c, s + 1);
+    }
     return count_char;
 }
 void reverse( char * s ){
