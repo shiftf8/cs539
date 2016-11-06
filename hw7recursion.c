@@ -2,7 +2,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 void countdown( unsigned seconds );
 unsigned add( unsigned a, unsigned b );
@@ -15,7 +14,7 @@ void reverse( char * s );
 void copy( char * destination, const char * source );
 
 int main(){
-    char* s = "George!";
+    char* s = "I am Job. Yes?";
     char str[30];
     
     countdown(5);
@@ -81,11 +80,8 @@ unsigned length( const char * s ){
     return char_count;
 }
 unsigned howMany( char c, const char * s ){
-    // static unsigned position = 0;
     static unsigned count_char = 0;
     
-    // if (c == *(s + (position++))) ++count_char;
-    // if (position < strlen(s)) howMany(c, s);
     if (*s){
         if (c == *s) ++count_char;
         howMany(c, s + 1);
