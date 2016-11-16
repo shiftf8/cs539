@@ -27,3 +27,13 @@ void f(){
         printf("Triangle %lf, %lf, %lf, have an area of %lf.\n", a, b, c, area);
     }
 }
+double areaTriangle(double a, double b, double c){
+    double semiPerimeter, retVal;
+
+    if ((a + b < c) || (b + c < a) || (c + a < b)) die("These three sides cannot make a triangle.\n");
+
+    semiPerimeter = (a + b + c) / 2;
+    retVal = sqrt(semiPerimeter * (semiPerimeter - a) * (semiPerimeter - b) * (semiPerimeter - c));
+
+    return retVal;
+}
