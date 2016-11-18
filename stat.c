@@ -14,21 +14,22 @@ int main() {
 	stat(&ave, &max, a, els);
 	printf("%lf %lf\n", ave, max);
 
-	system("pause");
+	// system("pause");
 	return 0;
 }
 void stat(double * ave, double * max, const double a[], unsigned els) {
 	unsigned i = 0;
+	double mean = 0;
 
 	*ave = a[0];
 	*max = a[0];
 
 	for (i; i < els; ++i) {
 		if (*max < a[i]) *max = a[i];
-		*ave += a[i];
+		mean += a[i];
 	}
 
-	*ave = *ave / els;
+	*ave = mean / els;
 }
 
 int die(const char* msg) {

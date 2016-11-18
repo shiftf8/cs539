@@ -10,21 +10,21 @@ int main() {
 	unsigned i = 1;
 
 	for (i; i < 1000; ++i) {
-		if (prime(i)) printf("%f\n", i);
+		if (prime(i)) printf("%u\n", i);
 	}
 
 	// system("pause");
 	return 0;
 }
 int prime(unsigned n) {
-	unsigned i = 5;
+	unsigned i = 2;
 
+	if (n == 0 || n == 1) return 0;
 	if (n == 2 || n == 3) return 1;
-	if (n % 2 == 0) return 0;
-	for (i; i < n; i + 2) {
-		if (i > n) return 1;
-		if (!(n % i)) return 0;
+	for (i; i < (n / 2) + 1; ++i) {
+		if (n % i == 0) return 0;
 	}
+	return 1;
 }
 
 int die(const char* msg) {
