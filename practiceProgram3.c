@@ -19,12 +19,7 @@ void f(){
         printf("Input three lengths \"a b c\".\n");
         if (!scanf("%lf %lf %lf", &a, &b, &c)) return;
         
-        if ((a + b < c) || (b + c < a) || (c + a < b)) printf("%lf, %lf, %lf, do NOT make a valid triangle. Try again.\n", a, b, c);
-        
-        semiPerimeter = (a + b + c) / 2;
-        area = sqrt(semiPerimeter * (semiPerimeter - a) * (semiPerimeter - b) * (semiPerimeter - c));
-
-        printf("Triangle %lf, %lf, %lf, have an area of %lf.\n", a, b, c, area);
+        printf("Triangle %lf, %lf, %lf, has an area of %lf.\n", a, b, c, areaTriangle(a, b, c));
     }
 }
 double areaTriangle(double a, double b, double c){
