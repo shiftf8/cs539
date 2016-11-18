@@ -18,7 +18,8 @@ int die(const char * msg);
 int main(){
     double a, b, c;
     
-    stats(&a, &b, &c);
+    // stats(&a, &b, &c);
+    printf("%u\n", howManyPrimes(1, 1000));
 
     return 0;
 }
