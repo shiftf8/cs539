@@ -4,7 +4,7 @@
 #include <stdio.h>
 
 typedef struct AC {
-    char airportCode[3];
+    char airportCode[4];
     double ticketPrice;
     unsigned day; //[0, 6] Sun, ... , Sat
 } AC;
@@ -24,7 +24,7 @@ int main(){
     return 0;
 }
 void input(AC * ac){
-    scanf("%c%c%c %lf %u", &ac->airportCode[0], &ac->airportCode[1], &ac->airportCode[2], &ac->ticketPrice, &ac->day);
+    scanf("%3s %lf %u", ac->airportCode, &ac->ticketPrice, &ac->day); //Dangerous, no input validation.
 }
 void inflate(AC * ac){
     ac->ticketPrice *= 1.1;
