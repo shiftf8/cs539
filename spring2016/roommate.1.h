@@ -14,12 +14,12 @@ For use with lab6C. Simple Student data structure based on predetermined file in
 #include <stdlib.h>
 #include <string.h>
 
-typedef struct RoommateInfo {
+struct RoommateInfo {
     char studentName[256]; /* [first name] [last name] */
     unsigned int studentID;
     unsigned int interestCode;
     struct RoommateInfo* roommate;
-} RoommateInfo;
+};
 
 struct RoommateInfo* new_student() {
     struct RoommateInfo* retVal = malloc( sizeof( struct RoommateInfo ) );
