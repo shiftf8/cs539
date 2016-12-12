@@ -169,7 +169,7 @@ void stat( double * smallest, double * average, double * largest, const double *
     *smallest = *begin;
     *largest = *begin;
 
-    while (begin < end){ //In this case, while loop will always run at least once. Affording *average to be initialized properly.
+    while (begin < end){ //While loop will always run at least once given the nature of stat() arguments as pointers. Affording *average to be initialized properly.
         if (*smallest >= *begin) *smallest = *begin;
         *average += *begin;
         if (*largest <= *begin) *largest = *begin;
