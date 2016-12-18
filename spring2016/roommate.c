@@ -18,31 +18,74 @@ struct Student_T *new_student()
 }
 void del_student(struct Student_T *student)
 {
-    if (student != NULL) free(student);
+    if (student != NULL) {
+        student->roommate = NULL;
+        free(student);
+    }
 }
 
-struct Student_T *set_student_name(struct Student_T *student, char *str)
+struct Student_T *set_student_name(struct Student_T *student, const char *str)
 {
-    str[strcspn(str, "\n")] = 0; /* Remember this little inline to strip newline */
     strcpy(student->studentName, str);
+    student->studentName[strcspn(student->studentName, "\n")] = 0; /* Remember this little inline to strip newline */
 
     return student;
 }
 struct Student_T *set_id(struct Student_T *student, char *str) /* Be wary of ID numbers too big to 'fit' */
 {
-    char *endstr;
-    student->studentID = strtoul(str, &endstr, 10);
+    student->studentID = strtoul(str, NULL, 10);
 
     return student;
 }
 struct Student_T *set_interest_code(struct Student_T *student, char *str)
 {
-    char *endstr;
-    student->interestCode = strtoul(str, &endstr, 10);
+    student->interestCode = strtoul(str, NULL, 10);
 
     return student;
 }
+/*
+ * This is a 'magic' function.
+ * It attempts to loop through struct Student_T *studentList[] and match the next nearest student1->interestCode
+ * with the first encounter from the struct Student_T *studentList[]->interestCode.
+ * Next nearest checks equals, then plus 1, minus 1, plus 2, minus 2, ...
+ * Then sets student1->roommate to the nearest matching struct Student_T *.
+ * Should only set when student1->roommate == NULL && studentList[]->roommate == NULL.
+ * Which means this function doesn't set anything if the list has an odd number of structs.
+ * NOT AN EFFICIENT METHOD.
+ */
+struct Student_T *set_roommate(struct Student_T *studentList[], unsigned int els)
+{
+    unsigned int i = 1; /* Skipping first entry since that's what we're supposed to be testing against */
+    unsigned int plusOrMinus = 0; /* 0 == plus. 1 == minus. 2 == reset and adjust j */
+    unsigned int j = 1; /* j == by how much to plus or minus */
+    long unsigned tmpInterestCode = studentList[0]->interestCode;
 
+    // printf("%p\n", (void *) studentList[i]);
+    while (studentList[0]->roommate == NULL) {
+        for (i; i < els; ++i) {
+            if (studentList[i]->roommate == NULL) {
+                if (tmpInterestCode == studentList[i]->interestCode) {
+                    studentList[0]->roommate = studentList[i];
+                    studentList[i]->roommate = studentList[0];
+                    return studentList[0];
+                }
+            }
+        }
+        if (plusOrMinus == 0) {
+            ++plusOrMinus;
+            tmpInterestCode + j;
+        }
+        else if (plusOrMinus == 1) {
+            ++plusOrMinus;
+            tmpInterestCode - j - j;
+        }
+        else if (plusOrMinus == 2) {
+            plusOrMinus = 0;
+            ++j;
+        }
+    }
+    return studentList[0];
+}
 void print_roommate_info(struct Student_T *info)
 {
     /* Test print code */

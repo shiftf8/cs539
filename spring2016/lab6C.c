@@ -8,11 +8,12 @@ Dynamically input names, id numbers and interest codes (0-50), and output based 
 #include "roommate.c"
 
 int main() {
-    FILE* input = NULL;
+    FILE *input = NULL;
     struct Student_T *studentList[50];
     unsigned int studentX = 0;
     unsigned int lineN = 0;
     char str[512];
+    unsigned int i = 0;
 
     studentList[studentX] = new_student();
     if (studentList[studentX] == NULL) {
@@ -44,7 +45,16 @@ int main() {
 
     fclose(input);
 
-    print_roommate_info(studentList[1]);
+    set_roommate(studentList + 2, 48);
+    print_roommate_info(studentList[2]);
+    // for (i; i < 50; ++i) {
+    //     set_roommate(studentList + i, 50 - i);
+    // }
+    // i = 0;
+    // for (i; i < 50; ++i) {
+    //     print_roommate_info(studentList[i]);
+    //     printf("\n");
+    // }
 
     return 0;
 }
