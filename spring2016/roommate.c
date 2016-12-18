@@ -23,12 +23,12 @@ void del_student(struct Student_T *student)
 
 struct Student_T *set_student_name(struct Student_T *student, char *str)
 {
-    str[strcspn(str, "\n")] = 0;
+    str[strcspn(str, "\n")] = 0; /* Remember this little inline to strip newline */
     strcpy(student->studentName, str);
 
     return student;
 }
-struct Student_T *set_id(struct Student_T *student, char *str)
+struct Student_T *set_id(struct Student_T *student, char *str) /* Be wary of ID numbers too big to 'fit' */
 {
     char *endstr;
     student->studentID = strtoul(str, &endstr, 10);
@@ -46,8 +46,7 @@ struct Student_T *set_interest_code(struct Student_T *student, char *str)
 void print_roommate_info(struct Student_T *info)
 {
     /* Test print code */
-    printf("Student: %s\nID: %lu\nInterest Code: %lu\n", info->studentName, info->studentID, info->interestCode);
-    printf("Roomate: %s\n", info->roommate->studentName); /**/
+    printf("Student: %s\nID: %lu\nInterest Code: %lu\nRoomate: %s\n", info->studentName, info->studentID, info->interestCode, info->roommate->studentName); /**/
 
     /* printf("Student: %s\nRoommate: %s\n", info->studentName, info->roommate->studentName); /**/
 }
