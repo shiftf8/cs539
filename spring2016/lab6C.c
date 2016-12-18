@@ -26,9 +26,12 @@ int main() {
         while (fgets(str, sizeof(str), input)) {
 
             if (lineN == 0) set_student_name(studentList[studentX], str);
-
+            if (lineN == 1) set_id(studentList[studentX], str);
+            if (lineN == 2){
+                set_interest_code(studentList[studentX], str);
+                lineN = 0;
+            }
             ++lineN;
-            break;
         }
     } else {
         perror("fopen: Unsuccessful.\nProgram terminated.\n");
