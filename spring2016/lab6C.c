@@ -15,28 +15,31 @@ int main() {
     char str[512];
     unsigned int i = 0;
 
-    studentList[studentX] = new_student();
-    if (studentList[studentX] == NULL) {
-        printf("newAddress: Unsuccessful.\nProgram terminated.\n");
-        exit(EXIT_FAILURE);
-    }
-
     input = fopen("input.lab6C.txt", "r");
 
     if (input != NULL) {
         while (fgets(str, sizeof str, input)) {
-            if (lineN == 0) set_student_name(studentList[studentX], str);
-            if (lineN == 1) set_id(studentList[studentX], str);
-            if (lineN == 2) set_interest_code(studentList[studentX], str);
-            ++lineN;
-            if (str[0] == '\n') {
-                lineN = 0;
-                studentList[++studentX] = new_student();
+            if (lineN == 0) {
+                studentList[studentX] = new_student();
                 if (studentList[studentX] == NULL) {
                     printf("newAddress: Unsuccessful.\nProgram terminated.\n");
                     exit(EXIT_FAILURE);
                 }
+
+                set_student_name(studentList[studentX], str);
             }
+            if (lineN == 1) set_id(studentList[studentX], str);
+            if (lineN == 2) {
+                set_interest_code(studentList[studentX], str);
+                ++studentX;
+                if (studentX > 50) {
+                    --studentX;
+                    break;
+                }
+            }
+
+            ++lineN;
+            if (str[0] == '\n') lineN = 0;
         }
     } else {
         perror("fopen: Unsuccessful.\nProgram terminated.\n");
@@ -45,16 +48,17 @@ int main() {
 
     fclose(input);
 
-    set_roommate(studentList + 2, 48);
-    print_roommate_info(studentList[2]);
-    // for (i; i < 50; ++i) {
-    //     set_roommate(studentList + i, 50 - i);
-    // }
-    // i = 0;
-    // for (i; i < 50; ++i) {
-    //     print_roommate_info(studentList[i]);
-    //     printf("\n");
-    // }
+    // printf("%u\n", studentX);
+
+    // set_roommate(studentList + 2, 48);
+    // print_roommate_info(studentList[2]);
+
+    roommate_sort(studentList, studentX);
+    set_next_roommate(studentList, studentX);
+
+    for (i; i < studentX; ++i) {
+        print_roommate_info(studentList[i]);
+    }
 
     return 0;
 }

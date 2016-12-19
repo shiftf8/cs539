@@ -51,7 +51,7 @@ struct Student_T *set_interest_code(struct Student_T *student, char *str)
  * Then sets student1->roommate to the nearest matching struct Student_T *.
  * Should only set when student1->roommate == NULL && studentList[]->roommate == NULL.
  * Which means this function doesn't set anything if the list has an odd number of structs.
- * NOT AN EFFICIENT METHOD.
+ * NOT AN EFFICIENT SOLUTION.
  */
 struct Student_T *set_roommate(struct Student_T *studentList[], unsigned int els)
 {
@@ -86,10 +86,55 @@ struct Student_T *set_roommate(struct Student_T *studentList[], unsigned int els
     }
     return studentList[0];
 }
+/*
+ * The last sort is more 'accurate' but far less efficient.
+ * This sort cheats its way to pairing. Simply sorts struct Student_T *[] by interestCode in ascending order.
+ * Then a simple pair each next roommate helper function can finish the job.
+ * Far more efficient. A bit less 'accurate'.
+ */
+struct Student_T **roommate_sort(struct Student_T **studentList, unsigned int els)
+{
+    unsigned int i = 0;
+    unsigned int j = 0;
+    unsigned int min = 0;
+    struct Student_T *tmp;
+
+    for (i; i < els; ++i) {
+        min = i;
+
+        for (j = i; j < els; ++j) {
+            if (studentList[j]->interestCode < studentList[min]->interestCode) {
+                min = j;
+            }
+        }
+
+        tmp = studentList[i];
+        studentList[i] = studentList[min];
+        studentList[min] = tmp;
+    }
+
+    return studentList;
+}
+/*
+ * roommate_sort() helper function.
+ * Still doesn't support odd numbered lists.
+ */
+struct Student_T **set_next_roommate(struct Student_T **studentList, unsigned int els)
+{
+    unsigned int i = 0;
+
+    for (i; i < els; ++i) {
+        studentList[i]->roommate = studentList[i + 1];
+        studentList[i + 1]->roommate = studentList[i];
+        ++i;
+    }
+
+    return studentList;
+}
 void print_roommate_info(struct Student_T *info)
 {
     /* Test print code */
-    printf("Student: %s\nID: %lu\nInterest Code: %lu\nRoomate: %s\n", info->studentName, info->studentID, info->interestCode, info->roommate->studentName); /**/
+    printf("Student: %s\nID: %lu\nInterest Code: %lu\nRoomate: %s\n\n", info->studentName, info->studentID, info->interestCode, info->roommate->studentName); /**/
 
     /* printf("Student: %s\nRoommate: %s\n", info->studentName, info->roommate->studentName); /**/
 }
