@@ -48,8 +48,6 @@ int main() {
 
     fclose(input);
 
-    // printf("%u\n", studentX);
-
     // set_roommate(studentList + 2, 48);
     // print_roommate_info(studentList[2]);
 

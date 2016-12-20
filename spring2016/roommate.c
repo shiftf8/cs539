@@ -50,7 +50,7 @@ struct Student_T *set_interest_code(struct Student_T *student, char *str)
  * Next nearest checks equals, then plus 1, minus 1, plus 2, minus 2, ...
  * Then sets student1->roommate to the nearest matching struct Student_T *.
  * Should only set when student1->roommate == NULL && studentList[]->roommate == NULL.
- * Which means this function doesn't set anything if the list has an odd number of structs.
+ * Which means this function doesn't set anything to the last member if the list has an odd number of structs.
  * NOT AN EFFICIENT SOLUTION.
  */
 struct Student_T *set_roommate(struct Student_T *studentList[], unsigned int els)
@@ -136,5 +136,5 @@ void print_roommate_info(struct Student_T *info)
     /* Test print code */
     printf("Student: %s\nID: %lu\nInterest Code: %lu\nRoomate: %s\n\n", info->studentName, info->studentID, info->interestCode, info->roommate->studentName); /**/
 
-    /* printf("Student: %s\nRoommate: %s\n", info->studentName, info->roommate->studentName); /**/
+    /* printf("Student: %s\nRoommate: %s\n\n", info->studentName, info->roommate->studentName); /**/
 }
