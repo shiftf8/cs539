@@ -1,5 +1,5 @@
 cs539
 =====
 
-Programming in C
+Programming in C Spring 2017
 
