@@ -20,7 +20,7 @@ int main() {
         printf("Enter 3 sides of a triangle (a b c): ");
         input_triangle();
         printf("Would you like to enter three new sides (Y or N)? ");
-        inputChar = getchar();
+        inputChar = getchar(); /* Attempting to flush newline char left over from scanf inside input_triangle() */
         inputChar = getchar();
         if (inputChar == 'Y' || inputChar == 'y') loopAgain = 1;
         else loopAgain = 0;
