@@ -53,7 +53,7 @@ void input_triangle(){
         if (is_valid_triangle(side1, side2, side3)){
             printf("Sides %u %u %u make a", side1, side2, side3);
             if (side1 == side2 && side1 == side3) printf("n equilateral ");
-            else if (side1 == side2 || side1 == side3) printf(" isosceles ");
+            else if (side1 == side2 || side1 == side3) printf("n isosceles ");
             else printf(" scalene ");
             printf("triangle with an area of %f\n", area_of_triangle(side1, side2, side3));
         } else {
