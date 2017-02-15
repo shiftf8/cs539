@@ -20,7 +20,6 @@ int main() {
         printf("Enter 3 sides of a triangle (a b c): ");
         input_triangle();
         printf("Would you like to enter three new sides (Y or N)? ");
-        inputChar = getchar(); /* Attempting to flush newline char left over from scanf inside input_triangle() */
         inputChar = getchar();
         if (inputChar == 'Y' || inputChar == 'y') loopAgain = 1;
         else loopAgain = 0;
@@ -48,6 +47,7 @@ double area_of_triangle(unsigned a, unsigned b, unsigned c){
 }
 void input_triangle(){
     unsigned side1, side2, side3;
+    char newlineTestChar;
 
     if (scanf("%u %u %u", &side1, &side2, &side3) == 3){
         if (is_valid_triangle(side1, side2, side3)){
@@ -59,5 +59,9 @@ void input_triangle(){
         } else {
             printf("Sides %u %u %u does NOT seem to constitute a valid triangle.\n", side1, side2, side3);
         }
-    }
+    } else printf("Invalid entry.\n");
+
+    /* Attempting to flush buffer stream through newline */
+    newlineTestChar = getchar();
+    while (newlineTestChar != '\n') newlineTestChar = getchar();
 }
