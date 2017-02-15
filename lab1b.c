@@ -10,21 +10,21 @@ Testing sides to make equilateral, isosceles, or scalene triangles.
 
 int is_valid_triangle(unsigned, unsigned, unsigned);
 double area_of_triangle(unsigned, unsigned, unsigned);
+void input_triangle();
 
 int main() {
-    unsigned side1, side2, side3;
+    char inputChar;
+    int loopAgain;
 
-    if (scanf("%u %u %u", &side1, &side2, &side3) == 3){
-        if (is_valid_triangle(side1, side2, side3)){
-            printf("Sides %u %u %u make a", side1, side2, side3);
-            if (side1 == side2 && side1 == side3) printf("n equilateral ");
-            else if (side1 == side2 || side1 == side3) printf(" isosceles ");
-            else printf(" scalene ");
-            printf("triangle with an area of %f\n", area_of_triangle(side1, side2, side3));
-        } else {
-            printf("Invalid entry.\n");
-        }
-    }
+    do {
+        printf("Enter 3 sides of a triangle (a b c): ");
+        input_triangle();
+        printf("Would you like to enter three new sides (Y or N)? ");
+        inputChar = getchar();
+        inputChar = getchar();
+        if (inputChar == 'Y' || inputChar == 'y') loopAgain = 1;
+        else loopAgain = 0;
+    } while (loopAgain);
 
     return 0;
 }
@@ -45,4 +45,19 @@ double area_of_triangle(unsigned a, unsigned b, unsigned c){
     areaOfTriangle = sqrt(semiPerimeter * (semiPerimeter - a) * (semiPerimeter - b) * (semiPerimeter - c));
 
     return areaOfTriangle;
+}
+void input_triangle(){
+    unsigned side1, side2, side3;
+
+    if (scanf("%u %u %u", &side1, &side2, &side3) == 3){
+        if (is_valid_triangle(side1, side2, side3)){
+            printf("Sides %u %u %u make a", side1, side2, side3);
+            if (side1 == side2 && side1 == side3) printf("n equilateral ");
+            else if (side1 == side2 || side1 == side3) printf(" isosceles ");
+            else printf(" scalene ");
+            printf("triangle with an area of %f\n", area_of_triangle(side1, side2, side3));
+        } else {
+            printf("Sides %u %u %u does NOT seem to constitute a valid triangle.\n", side1, side2, side3);
+        }
+    }
 }
