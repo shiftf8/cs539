@@ -20,7 +20,7 @@ int main() {
             if (side1 == side2 && side1 == side3) printf("n equilateral ");
             else if (side1 == side2 || side1 == side3) printf(" isosceles ");
             else printf(" scalene ");
-            printf("with an area of %f\n", area_of_triangle(side1, side2, side3));
+            printf("triangle with an area of %f\n", area_of_triangle(side1, side2, side3));
         } else {
             printf("Invalid entry.\n");
         }
