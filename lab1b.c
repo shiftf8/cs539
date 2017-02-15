@@ -45,6 +45,10 @@ double area_of_triangle(unsigned a, unsigned b, unsigned c){
 
     return areaOfTriangle;
 }
+/*
+    Only the first three valid entries are ever accepted. Anything else in the
+    buffer stream are completely flushed.
+*/
 void input_triangle(){
     unsigned side1, side2, side3;
     char newlineTestChar;
