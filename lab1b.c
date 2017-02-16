@@ -50,17 +50,15 @@ void test_input_triangle(){
 
     if (scanf("%u %u %u", &side1, &side2, &side3) == 3){
         if (is_valid_triangle(side1, side2, side3)){
-            printf("Sides %u %u %u make a", side1, side2, side3);
+            printf("Sides %u, %u, and %u make a", side1, side2, side3);
             if (side1 == side2 && side1 == side3) printf("n equilateral ");
             else if (side1 == side2 || side2 == side3 || side3 == side1) printf("n isosceles ");
             else printf(" scalene ");
             printf("triangle with an area of %f\n", area_of_triangle(side1, side2, side3));
         } else {
-            printf("Sides %u %u %u does NOT seem to constitute a valid triangle.\n", side1, side2, side3);
+            printf("Sides %u, %u, and %u do NOT seem to constitute a valid triangle.\n", side1, side2, side3);
         }
     } else printf("Invalid entry.\n");
 
-    /* Flushing buffer stream through newline char. */
-    isNewLine = getchar();
-    while (isNewLine != '\n') isNewLine = getchar();
+    while (isNewLine = getchar() != '\n');/* Flushing buffer stream through newline char. */
 }
