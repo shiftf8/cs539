@@ -18,8 +18,8 @@ int main() {
 
     do {
         printf("Enter 3 sides of a triangle (a b c): ");
-        input_triangle();
-        printf("Would you like to enter three new sides (Y or N)? ");
+        test_input_triangle();
+        printf("Would you like to enter three new sides (Y/N)? ");
         inputChar = getchar();
         if (inputChar == 'Y' || inputChar == 'y') loopAgain = 1;
         else loopAgain = 0;
@@ -47,25 +47,21 @@ double area_of_triangle(unsigned a, unsigned b, unsigned c){
 }
 /*
     Only the first three valid entries are ever accepted. Anything else in the
-    buffer stream are completely flushed.
+    buffer stream is flushed in the scanf with %*c.
 */
-void input_triangle(){
+void test_input_triangle(){
     unsigned side1, side2, side3;
     char newlineTestChar;
 
-    if (scanf("%u %u %u", &side1, &side2, &side3) == 3){
+    if (scanf("%u %u %u%*c", &side1, &side2, &side3) == 3){
         if (is_valid_triangle(side1, side2, side3)){
             printf("Sides %u %u %u make a", side1, side2, side3);
             if (side1 == side2 && side1 == side3) printf("n equilateral ");
-            else if (side1 == side2 || side1 == side3) printf("n isosceles ");
+            else if (side1 == side2 || side2 == side3 || side3 == side1) printf("n isosceles ");
             else printf(" scalene ");
             printf("triangle with an area of %f\n", area_of_triangle(side1, side2, side3));
         } else {
             printf("Sides %u %u %u does NOT seem to constitute a valid triangle.\n", side1, side2, side3);
         }
     } else printf("Invalid entry.\n");
-
-    /* Attempting to flush buffer stream through newline */
-    newlineTestChar = getchar();
-    while (newlineTestChar != '\n') newlineTestChar = getchar();
 }
