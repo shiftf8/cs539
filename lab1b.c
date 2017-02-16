@@ -10,11 +10,10 @@ Testing sides to make equilateral, isosceles, or scalene triangles.
 
 int is_valid_triangle(unsigned, unsigned, unsigned);
 double area_of_triangle(unsigned, unsigned, unsigned);
-void test_input_trianglegit();
+void test_input_triangle();
 
 int main() {
-    char inputChar;
-    int loopAgain;
+    int inputChar, loopAgain;
 
     do {
         printf("Enter 3 sides of a triangle (a b c): ");
@@ -45,15 +44,11 @@ double area_of_triangle(unsigned a, unsigned b, unsigned c){
 
     return areaOfTriangle;
 }
-/*
-    Only the first three valid entries are ever accepted. Anything else in the
-    buffer stream is flushed in the scanf with %*c.
-*/
 void test_input_triangle(){
     unsigned side1, side2, side3;
-    char newlineTestChar;
+    int isNewLine;
 
-    if (scanf("%u %u %u%*c", &side1, &side2, &side3) == 3){
+    if (scanf("%u %u %u", &side1, &side2, &side3) == 3){
         if (is_valid_triangle(side1, side2, side3)){
             printf("Sides %u %u %u make a", side1, side2, side3);
             if (side1 == side2 && side1 == side3) printf("n equilateral ");
@@ -64,4 +59,8 @@ void test_input_triangle(){
             printf("Sides %u %u %u does NOT seem to constitute a valid triangle.\n", side1, side2, side3);
         }
     } else printf("Invalid entry.\n");
+
+    /* Flushing buffer stream through newline char. */
+    isNewLine = getchar();
+    while (isNewLine != '\n') isNewLine = getchar();
 }
