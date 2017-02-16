@@ -10,7 +10,7 @@ Testing sides to make equilateral, isosceles, or scalene triangles.
 
 int is_valid_triangle(unsigned, unsigned, unsigned);
 double area_of_triangle(unsigned, unsigned, unsigned);
-void test_input_triangle();
+void test_input_trianglegit();
 
 int main() {
     char inputChar;
