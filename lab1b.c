@@ -28,7 +28,7 @@ int main() {
     return 0;
 }
 /*
-    Return 1 if the three inputs can make a valid triangle.
+    Return 1 if the three inputs can make a valid non-degenerate triangle.
     Return 0 if NOT a valid triangle.
 */
 int is_valid_triangle(unsigned s1, unsigned s2, unsigned s3){
@@ -37,6 +37,7 @@ int is_valid_triangle(unsigned s1, unsigned s2, unsigned s3){
         && s3 + s1 > s2) return 1;
     return 0;
 }
+/* Area of triangle calculated via semiperimeter and three lengths */
 double area_of_triangle(unsigned s1, unsigned s2, unsigned s3){
     double semiPerimeter, areaOfTriangle;
 
@@ -62,5 +63,5 @@ void test_input_triangle(){
         }
     } else printf("Invalid entry.\n");
 
-    while (isNewLine = getchar() != '\n');/* Flushing buffer stream through newline char. */
+    while (isNewLine = getchar() != '\n'); /* Flushing buffer stream through newline char. */
 }
