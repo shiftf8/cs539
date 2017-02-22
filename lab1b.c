@@ -8,7 +8,6 @@ Testing sides to make equilateral, isosceles, or scalene triangles.
 #include <math.h>
 #include <stdio.h>
 
-
 /*
     Return 1 if the three inputs can make a valid non-degenerate triangle.
     Return 0 if NOT a valid triangle.
@@ -16,7 +15,7 @@ Testing sides to make equilateral, isosceles, or scalene triangles.
 int is_valid_triangle(unsigned, unsigned, unsigned);
 /*
     Area of triangle calculated via semiperimeter and three sides.
-    <math.h> dependent.
+    <math.h> dependent. sqrt()
 */
 double area_of_triangle(unsigned, unsigned, unsigned);
 /*
@@ -26,7 +25,7 @@ double area_of_triangle(unsigned, unsigned, unsigned);
 */
 void test_input_triangle();
 
-int main() {
+int main(){
     int inputChar, loopAgain;
 
     do {
