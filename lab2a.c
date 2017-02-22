@@ -14,6 +14,7 @@ int is_alpha_checker( char );
 /*
     Reads input redirect via a loop utilizing getchar().
     If the character received is a letter, it prints the character via putchar().
+    Words are printed per line by determining the end of the word via NOT alpha characters.
 */
 void word_per_line();
 
