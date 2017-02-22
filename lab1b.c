@@ -16,13 +16,13 @@ int main() {
     int inputChar, loopAgain;
 
     do {
-        printf("Enter 3 lengths to test for a triangle (a b c): ");
+        printf("Enter 3 sides to test for a triangle (a b c): ");
         test_input_triangle();
-        printf("Would you like to enter three new lengths (Y/N)? ");
+        printf("Would you like to enter three new sides (Y/N)? ");
         inputChar = getchar();
         if (inputChar == 'Y' || inputChar == 'y') loopAgain = 1;
         else loopAgain = 0;
-        printf("%c\n", inputChar);
+        /* printf("%c\n", inputChar); */
     } while (loopAgain);
 
     return 0;
@@ -51,7 +51,7 @@ void test_input_triangle(){
     int isNewLine;
 
     if (scanf("%u %u %u", &side1, &side2, &side3) == 3){
-        printf("%d %d %d\n", side1, side2, side3);
+        /* printf("%d %d %d\n", side1, side2, side3); */
         if (is_valid_triangle(side1, side2, side3)){
             printf("%u, %u, and %u make a", side1, side2, side3);
             if (side1 == side2 && side1 == side3) printf("n EQUILATERAL ");
