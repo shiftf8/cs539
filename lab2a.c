@@ -9,14 +9,15 @@ Stripping punctuation and blanks, putting a single word per line from formatted 
 
 /*
     Built my own simple alpha checker.
-    Return 1 if char is in range of 'a' to 'z' or 'A' to 'Z'.
+    Return 1 if char is in range of 'A' to 'Z' or 'a' to 'z'.
     Return 0 if char is NOT in range stated above.
 */
 int is_alpha( char );
 /*
     Reads input redirect via a loop utilizing getchar().
     If the character received is a letter, it prints the character via putchar().
-    Words are printed per line by determining the end of the word via NOT alpha characters.
+    Words are printed per line by determining the end of the word via NOT alpha characters,
+    essentially stripping white space and punctuation.
 */
 void word_per_line();
 
