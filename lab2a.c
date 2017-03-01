@@ -20,7 +20,7 @@ int main(){
 
     /*
         Since I only care about letters, it seems appropriate to putchar() only letters via a simple is_alpha( char ) function.
-        End of word is simply determined by NON letter case after first letter recognized.
+        End of word is simply determined by NON letter after first letter/word recognized.
     */
     while ((c = getchar()) != EOF){
         if (is_alpha(c) == 1){
