@@ -15,7 +15,7 @@ Stripping punctuation and blanks, put a single word per line from formatted inpu
 int is_alpha( char );
 
 int main(){
-    int endOfWordFlag = 0;
+    int isWord = 0;
     char c;
 
     /*
@@ -25,12 +25,12 @@ int main(){
     while ((c = getchar()) != EOF){
         if (is_alpha(c) == 1){
             putchar(c);
-            endOfWordFlag = 1;
+            isWord = 1;
         }
         if (is_alpha(c) == 0){
-            if (endOfWordFlag == 1){
+            if (isWord == 1){
                 printf("\n");
-                endOfWordFlag = 0;
+                isWord = 0;
             }
         }
     }
