@@ -16,18 +16,18 @@ int is_alpha( char );
 
 int main(){
     int isWord = 0;
-    char c;
+    char inputChar;
 
     /*
         Since I only care about letters, it seems appropriate to putchar() only letters via a simple is_alpha( char ) function.
         End of word is simply determined by NON letter after first letter/word recognized.
     */
-    while ((c = getchar()) != EOF){
-        if (is_alpha(c) == 1){
-            putchar(c);
+    while ((inputChar = getchar()) != EOF){
+        if (is_alpha(inputChar) == 1){
+            putchar(inputChar);
             isWord = 1;
         }
-        if (is_alpha(c) == 0){
+        if (is_alpha(inputChar) == 0){
             if (isWord == 1){
                 printf("\n");
                 isWord = 0;
@@ -38,7 +38,7 @@ int main(){
     return 0;
 }
 
-int is_alpha( char inputChar ){
-    if ((inputChar >= 'A' && inputChar <= 'Z') || (inputChar >= 'a' && inputChar <='z')) return 1;
+int is_alpha( char c ){
+    if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <='z')) return 1;
     return 0;
 }
