@@ -55,7 +55,7 @@ int main() {
         }
         if (char_response == '\n') {
             // printf("Successful operands = %d\nSuccessful operations = %d\n", operand_success, operation_success);
-            if (operation == 0 || operation_success > 1) printf("Invalid expression.\nPlease input a valid expression: ");
+            if (operation == 0 || operation_success > 1) printf("Invalid expression.\n");
             if (operand_success == 2 && operation_success == 1) {
                 if (operation == '+') add(first_operand, second_operand);
                 if (operation == '-') subtract(first_operand, second_operand);
@@ -63,6 +63,7 @@ int main() {
                 if (operation == '/') divide(first_operand, second_operand);
                 if (operation == '%') modulo(first_operand, second_operand);
             }
+            printf("Please input a valid expression: ");
 
             /* Reset all variables */
             first_operand = 0;
@@ -73,7 +74,7 @@ int main() {
             operation = 0;
         }
     }
-    
+
     return 0;
 }
 
@@ -90,36 +91,36 @@ unsigned int makeOperand( char digit, unsigned int operand ) {
 }
 void add( unsigned int a, unsigned int b ) {
     unsigned int total = 0;
-    
+
     total = a + b;
-    printf("%d + %d = %d\nPlease input an expression: ", a, b, total);
+    printf("%d + %d = %d\n", a, b, total);
 }
 void subtract( unsigned int a, unsigned int b ) {
     unsigned int total = 0;
-    
+
     if (a >= b) {
         total =  a - b;
-        printf("%d - %d = %d\nPlease input an expression: ", a, b, total);
-    } else printf("This calculator isn't capable of handling negative numbers.\nPlease input an expression: ");
+        printf("%d - %d = %d\n", a, b, total);
+    } else printf("This calculator isn't capable of handling negative numbers.\n");
 }
 void multiply( unsigned int a, unsigned int b ) {
     unsigned int total = 0;
-    
+
     total =  a * b;
-    printf("%d * %d = %d\nPlease input an expression: ", a, b, total);
+    printf("%d * %d = %d\n", a, b, total);
 }
 void divide( unsigned int a, unsigned int b ) {
     double total = 0.0;
-    
-    if (b == 0) printf("Undefined.\nPlease input an expression: ");
+
+    if (b == 0) printf("Undefined.\n");
     else {
         total = (a + 0.0) / b;
-        printf("%d / %d = %g\nPlease input an expression: ", a, b, total);
+        printf("%d / %d = %g\n", a, b, total);
     }
 }
 void modulo( unsigned int a, unsigned int b ) {
     unsigned int total = 0;
-    
+
     total = a % b;
-    printf("%d %% %d = %d\nPlease input an expression: ", a, b, total);
+    printf("%d %% %d = %d\n", a, b, total);
 }

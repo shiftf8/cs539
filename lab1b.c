@@ -58,7 +58,7 @@ double area_of_triangle(unsigned s1, unsigned s2, unsigned s3){
 }
 void test_input_triangle(){
     unsigned side1, side2, side3;
-    char isNewLine;
+    char c;
 
     if (scanf("%u %u %u", &side1, &side2, &side3) == 3){
         /* printf("%d %d %d\n", side1, side2, side3); */
@@ -73,5 +73,5 @@ void test_input_triangle(){
         }
     } else printf("Invalid entry.\n");
 
-    while ((isNewLine = getchar()) != '\n'); /* Flushing buffer stream through newline char. */
+    while ((c = getchar()) != '\n'); /* Flushing buffer stream through newline char. */
 }
