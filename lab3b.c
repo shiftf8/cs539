@@ -67,7 +67,10 @@ int main(){
         c = getchar();
         putchar(c);
         printf("\n");
-        if (c == 'Y' || c == 'y') loop_again = 1;
+        if (c == 'Y' || c == 'y'){
+            loop_again = 1;
+            getchar();
+        }
         else loop_again = 0;
     } while (loop_again);
 
@@ -83,8 +86,7 @@ void testExpression(){
     unsigned number_of_operations = 0;
     int is_operand = 0;
 
-    while (c != EOF){
-        c = getchar();
+    while ((c = getchar()) != EOF){
         if (c != '\n') putchar(c);
 
         if (isDigit(c)){
@@ -102,7 +104,7 @@ void testExpression(){
         }
 
         if (c == '\n'){
-            if (number_of_operations == 0 || number_of_operations > 1) printf("Invalid expression.\n");
+            if (number_of_operations == 0 || number_of_operations > 1) printf(" Invalid expression.\n");
             if (number_of_operands == 2 && number_of_operations == 1){
                 if (operation == '+') printf(" = %d\n", add(first_operand, second_operand));
                 if (operation == '-') printf(" = %d\n", subtract(first_operand, second_operand));
