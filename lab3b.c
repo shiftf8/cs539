@@ -65,15 +65,10 @@ int main(){
         testExpression();
         printf("Would you like to enter a new expression (Y/N)? ");
         c = getchar();
-        if (c == 'Y' || c == 'y'){
-            putchar(c);
-            printf("\n");
-            loop_again = 1;
-        } else {
-            putchar(c);
-            printf("\n");
-            loop_again = 0;
-        }
+        putchar(c);
+        printf("\n");
+        if (c == 'Y' || c == 'y') loop_again = 1;
+        else loop_again = 0;
     } while (loop_again);
 
     return 0;
@@ -88,7 +83,8 @@ void testExpression(){
     unsigned number_of_operations = 0;
     int is_operand = 0;
 
-    while ((c = getchar()) != EOF){
+    while (c != EOF){
+        c = getchar();
         if (c != '\n') putchar(c);
 
         if (isDigit(c)){
