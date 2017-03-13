@@ -12,7 +12,7 @@ Valid operations include '+', '-', '*', '/', '%'.
     Uses getchar() and putchar() via loop to input/output user input.
     Analyzes input for valid expression which includes unsigned int, valid operator, unsigned int. e.g. a + b
     NOT white space dependent. e.g.     a%   b
-    Evaluates valid expression and prints solution, else, print invalid expression.
+    Evaluates valid expression and prints solution, else, print error.
 */
 void testExpression();
 /*
@@ -47,7 +47,7 @@ double subtract(unsigned, unsigned);
 unsigned multiply(unsigned, unsigned);
 /*
     divide() returns a double because it is possible to evaluate a valid expression to a fractional number.
-    Returns -1 if b == 0 to catch special case of "Undefined.\n"
+    Returns -1 if b == 0 to catch special case of undefined.
     Returns a / b.
 */
 double divide(unsigned, unsigned);
