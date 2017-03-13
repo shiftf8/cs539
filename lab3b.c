@@ -136,7 +136,7 @@ unsigned makeOperand(char c, unsigned operand){
 unsigned add(unsigned a, unsigned b){
     return a + b;
 }
-int subtract(unsigned a, unsigned b){
+double subtract(unsigned a, unsigned b){
     return a - b;
 }
 unsigned multiply(unsigned a, unsigned b){
