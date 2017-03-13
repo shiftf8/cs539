@@ -69,7 +69,7 @@ int main(){
         printf("\n");
         if (c == 'Y' || c == 'y'){
             loop_again = 1;
-            getchar();
+            getchar(); /* To clear the lingering '\n' */
         }
         else loop_again = 0;
     } while (loop_again);
@@ -100,21 +100,24 @@ void testExpression(){
         }
         if (isValidOperator(c)){
             number_of_operations++;
-            operation = c;
+            if (number_of_operands == 1) operation = c; /* The operation that follows the first operand is the only important operation. */
         }
 
         if (c == '\n'){
-            if (number_of_operations == 0 || number_of_operations > 1) printf(" Invalid expression.\n");
-            if (number_of_operands == 2 && number_of_operations == 1){
-                if (operation == '+') printf(" = %d\n", add(first_operand, second_operand));
-                if (operation == '-') printf(" = %d\n", subtract(first_operand, second_operand));
-                if (operation == '*') printf(" = %d\n", multiply(first_operand, second_operand));
-                if (operation == '/'){
-                    if (divide(first_operand, second_operand) == -1) printf(" = Undefined.\n");
-                    else printf(" = %f\n", divide(first_operand, second_operand));
-                }
-                if (operation == '%') printf(" = %d\n", modulo(first_operand, second_operand));
+            if (!operation || number_of_operations != 1 || number_of_operands != 2){
+                printf(" Invalid expression.\n");
+                break;
             }
+
+            if (operation == '+') printf(" = %d\n", add(first_operand, second_operand));
+            if (operation == '-') printf(" = %d\n", subtract(first_operand, second_operand));
+            if (operation == '*') printf(" = %d\n", multiply(first_operand, second_operand));
+            if (operation == '/'){
+                if (divide(first_operand, second_operand) == -1) printf(" = Undefined.\n");
+                else printf(" = %f\n", divide(first_operand, second_operand));
+            }
+            if (operation == '%') printf(" = %d\n", modulo(first_operand, second_operand));
+
             break;
         }
     }
