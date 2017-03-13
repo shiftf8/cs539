@@ -69,7 +69,7 @@ int main(){
         printf("\n");
         if (c == 'Y' || c == 'y'){
             loop_again = 1;
-            getchar(); /* To clear the lingering '\n' */
+            getchar(); /* To clear the lingering '\n'. */
         }
         else loop_again = 0;
     } while (loop_again);
