@@ -37,10 +37,10 @@ unsigned makeOperand(char, unsigned);
 */
 unsigned add(unsigned, unsigned);
 /*
-    subtract() returns a double because it is possible to evaluate a valid expression to a negative number.
+    subtract() returns an int because it is possible to evaluate a valid expression to a negative number.
     Returns a - b.
 */
-double subtract(unsigned, unsigned);
+int subtract(unsigned, unsigned);
 /*
     Returns a * b.
 */
@@ -69,7 +69,7 @@ int main(){
         printf("\n");
         if (c == 'Y' || c == 'y'){
             loop_again = 1;
-            getchar(); /* To clear the lingering '\n'. */
+            while ((c = getchar()) != '\n'){ /* Clearing buffer through '\n' */ }
         }
         else loop_again = 0;
     } while (loop_again);
@@ -136,7 +136,7 @@ unsigned makeOperand(char c, unsigned operand){
 unsigned add(unsigned a, unsigned b){
     return a + b;
 }
-double subtract(unsigned a, unsigned b){
+int subtract(unsigned a, unsigned b){
     return a - b;
 }
 unsigned multiply(unsigned a, unsigned b){
