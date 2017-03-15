@@ -34,7 +34,7 @@ int main(){
 void generateRandomString(char s1[S1_SIZE]){
     unsigned i = 0;
 
-    for (i; i < 40; i++) {
+    for (i; i < S1_SIZE; i++) {
         s1[i] = (rand() % 26) + 65;
     }
 }
