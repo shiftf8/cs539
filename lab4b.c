@@ -15,30 +15,31 @@ Output formatted text.
 #include <stdlib.h>
 #include <time.h>
 
-void generateRandomString(char []);
-void getUserInput(char []);
+void generateRandomString(char [], unsigned);
+void getUserInput(char [], unsigned);
 
 int main(){
     char s1[S1_SIZE] = "\0";
     char s2[S2_SIZE] = "\0";
 
     srand(time(NULL));
-    generateRandomString(s1);
+    generateRandomString(s1, S1_SIZE);
+    printf("%s\n", s1);
 
-    getUserInput(s2);
+    getUserInput(s2, S2_SIZE);
     printf("%s\n", s2);
 
     return 0;
 }
 
-void generateRandomString(char s1[S1_SIZE]){
+void generateRandomString(char str[], unsigned arr_size){
     unsigned i = 0;
 
-    for (i; i < S1_SIZE; i++) {
-        s1[i] = (rand() % 26) + 65;
+    for (i; i < arr_size; ++i) {
+        str[i] = (rand() % 26) + 65;
     }
 }
-void getUserInput(char s2[S2_SIZE]){
+void getUserInput(char str[], unsigned arr_size){
     printf("Enter upper case letters A-Z (2 to 20 letters) to reset, followed by any character. e.g. XH*\n");
-    s2 = fgets(s2, sizeof(s2), stdin);
+    str = fgets(str, arr_size, stdin);
 }
