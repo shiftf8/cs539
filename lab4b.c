@@ -8,35 +8,37 @@ Use a function to replace user input chars within random string to designated ch
 Output formatted text.
 */
 
-#define S1SIZE 41
-#define S2SIZE 21
+#define S1_SIZE 40
+#define S2_SIZE 22
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 
-void generateStrings1(char []);
+void generateRandomString(char []);
 void getUserInput(char []);
 
 int main(){
-    char s1[S1SIZE] = "\0";
-    char s2[S2SIZE] = "\0";
+    char s1[S1_SIZE] = "\0";
+    char s2[S2_SIZE] = "\0";
 
-    generateStrings1(s1);
-    // printf("%s\n", s1);
-    getUserInput();
+    srand(time(NULL));
+    generateRandomString(s1);
+
+    getUserInput(s2);
+    printf("%s\n", s2);
 
     return 0;
 }
 
-void generateStrings1(char s1[S1SIZE]){
+void generateRandomString(char s1[S1_SIZE]){
     unsigned i = 0;
 
-    srand(time(NULL));
     for (i; i < 40; i++) {
         s1[i] = (rand() % 26) + 65;
     }
 }
-void getUserInput(char s2[S2SIZE]){
-
+void getUserInput(char s2[S2_SIZE]){
+    printf("Enter upper case letters A-Z (2 to 20 letters) to reset, followed by any character. e.g. XH*\n");
+    s2 = fgets(s2, sizeof(s2), stdin);
 }
