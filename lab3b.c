@@ -10,7 +10,7 @@ Valid operations include '+', '-', '*', '/', '%'.
 
 /*
     Uses getchar() and putchar() via loop to input/output user input.
-    Analyzes input for valid expression which includes unsigned int, valid operator, unsigned int. e.g. a + b
+    Analyzes input for valid expression constituting unsigned int, valid operator, unsigned int. e.g. a + b
     NOT white space dependent. e.g.     a%   b
     Evaluates valid expression and prints solution, else, print error.
 */
