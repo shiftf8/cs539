@@ -8,8 +8,8 @@ Use a function to replace user input chars within random string to designated ch
 Output formatted text.
 */
 
-#define S1_SIZE 40
-#define S2_SIZE 22
+#define S1_SIZE 41
+#define S2_SIZE 21
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -49,11 +49,9 @@ int main(){
     do {
         printf("Enter any upper case letters A-Z (2 to 20 letters).\n");
         getStrings2(s2, S2_SIZE);
-        clearBuffer();
-        // printf("Enter any character.\n");
-        // c = getchar();
-        // clearBuffer();
-        // printf("%c or %i\n", c, c);
+        printf("Enter any character.\n");
+        c = getchar();
+        printf("%c or %i\n", c, c);
 
         printf("Would you like to enter new letters to reset (Y/N)? ");
         c = getchar();
@@ -81,11 +79,12 @@ void getStrings2(char str[], unsigned arr_size){
     unsigned upper_alpha = 0;
     char c = NULL;
 
-    while ((c = getchar()) != EOF){
-        str[els++] = c;
-        if (isUpperAlpha(c)) upper_alpha++;
+    str = fgets(str, arr_size, stdin);
+    while (str[els] != '\n'){
+        if (isUpperAlpha(str[els])) upper_alpha++; /* Counting number of valid upper case letters */
+        els++; /* Counting number of elements in array */
     }
-    // printf("%s%u = %u\n", str, els, upper_alpha);
+    printf("%s%u = %u\n", str, els, upper_alpha);
 
     // if (els <= 2 || els > 20){
     //     printf("Invalid input.\n");
