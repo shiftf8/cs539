@@ -25,7 +25,7 @@ void generateRandomString(char [], unsigned);
     Error checks for minimum 2 chars and maximum of 20 chars.
         Checks for valid upper case letters.
 */
-void getStrings2(char [], unsigned);
+int getStrings2(char [], unsigned);
 /*
     Advance through s1 and replace any characters in s1 that match characters from s2 with 'reset' character.
 */
@@ -48,11 +48,15 @@ int main(){
 
     do {
         printf("Enter any upper case letters A-Z (2 to 20 letters).\n");
-        getStrings2(s2, S2_SIZE);
-        printf("Enter any character.\n");
-        c = getchar();
-        printf("%c or %i\n", c, c);
-
+        if (getStrings2(s2, S2_SIZE)){
+            printf("Enter any character.\n");
+            c = getchar();
+            printf("%c or %i\n", c, c);
+            clearBuffer();
+        } else {
+            printf("Invalid input.\n");
+            clearBuffer();
+        }
         printf("Would you like to enter new letters to reset (Y/N)? ");
         c = getchar();
         putchar(c);
@@ -74,22 +78,24 @@ void generateRandomString(char str[], unsigned arr_size){
         str[i] = (rand() % 26) + 65;
     }
 }
-void getStrings2(char str[], unsigned arr_size){
+int getStrings2(char str[], unsigned arr_size){
+    char buf[1024] = "\0";
     unsigned els = 0;
     unsigned upper_alpha = 0;
     char c = NULL;
 
-    str = fgets(str, arr_size, stdin);
-    while (str[els] != '\n'){
-        if (isUpperAlpha(str[els])) upper_alpha++; /* Counting number of valid upper case letters */
+    fgets(buf, sizeof(buf), stdin);
+    while (buf[els] != '\n'){
+        if (isUpperAlpha(buf[els])){
+            if (els <= 20) str[els] = buf[els];
+            upper_alpha++; /* Counting number of valid upper case letters */
+        }
         els++; /* Counting number of elements in array */
     }
-    printf("%s%u = %u\n", str, els, upper_alpha);
+    printf("%s%u = %u\n", buf, els, upper_alpha);
 
-    // if (els <= 2 || els > 20){
-    //     printf("Invalid input.\n");
-    //     return;
-    // }
+    if (els <= 2 || els > 20 || els != upper_alpha) return 0;
+    else return 1;
 }
 void strfilter(char s1[], char s2[], char c){
 
