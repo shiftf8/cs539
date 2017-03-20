@@ -34,6 +34,10 @@ void strfilter(char [], char [], char);
     My own simple upper alpha checker.
 */
 int isUpperAlpha(char);
+/*
+    Reinitialize string to \0.
+*/
+void initializeString(char [], unsigned);
 void clearBuffer();
 
 int main(){
@@ -51,12 +55,11 @@ int main(){
         if (getStrings2(s2, S2_SIZE)){
             printf("Enter any character.\n");
             c = getchar();
-            printf("%c or %i\n", c, c);
+
+            printf("s1 = {\"%s\"}\ns2 = {\"%s\"}\nc = {\"%c\"}\n", s1, s2, c);
+            strfilter(s1, s2, c);
             clearBuffer();
-        } else {
-            printf("Invalid input.\n");
-            clearBuffer();
-        }
+        } else printf("Invalid input.\n");
         printf("Would you like to enter new letters to reset (Y/N)? ");
         c = getchar();
         putchar(c);
@@ -84,28 +87,49 @@ int getStrings2(char str[], unsigned arr_size){
     unsigned upper_alpha = 0;
     char c = NULL;
 
+    initializeString(str, arr_size);
+
     fgets(buf, sizeof(buf), stdin);
     while (buf[els] != '\n'){
         if (isUpperAlpha(buf[els])){
-            if (els <= 20) str[els] = buf[els];
+            if (els < arr_size) str[els] = buf[els];
             upper_alpha++; /* Counting number of valid upper case letters */
         }
         els++; /* Counting number of elements in array */
     }
-    printf("%s%u = %u\n", buf, els, upper_alpha);
 
     if (els <= 2 || els > 20 || els != upper_alpha) return 0;
-    else return 1;
+    return 1;
 }
 void strfilter(char s1[], char s2[], char c){
+    char filtered[S1_SIZE] = "\0";
+    unsigned i = 0;
+    unsigned j = 0;
 
+    for (i; i < S1_SIZE; ++i){
+        filtered[i] = s1[i];
+
+        for (j; j < S2_SIZE; ++j){
+            if (s1[i] == s2[j]) filtered[i] = c;
+        }
+        j = 0;
+    }
+
+    printf("filtered = {\"%s\"}\n", filtered);
 }
 int isUpperAlpha(char c){
     if ((c >= 'A') && (c <= 'Z')) return 1;
     return 0;
 }
+void initializeString(char str[], unsigned arr_size){
+    unsigned i = 0;
+
+    for (i; i < arr_size; ++i){
+        str[i] = '\0';
+    }
+}
 void clearBuffer(){
     char c = NULL;
 
-    while ((c = getchar()) != '\n' && c != EOF){ /* Clearing text input buffer in case of overflow */ }
+    while ((c = getchar()) != '\n' && c != EOF){ /* Clearing text input buffer */ }
 }
