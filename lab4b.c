@@ -8,8 +8,8 @@ Use a function to replace user input chars within random string to designated ch
 Output formatted text.
 */
 
-#define S1_SIZE 41
-#define S2_SIZE 21
+#define S1_SIZE 40
+#define S2_SIZE 20
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -24,6 +24,9 @@ void generateRandomString(char [], unsigned);
     fgets() to populate s2.
     Error checks for minimum 2 chars and maximum of 20 chars.
         Checks for valid upper case letters.
+
+    Return 1 on success.
+    Return 0 on failure.
 */
 int getStrings2(char [], unsigned);
 /*
@@ -98,7 +101,7 @@ int getStrings2(char str[], unsigned arr_size){
         els++; /* Counting number of elements in array */
     }
 
-    if (els <= 2 || els > 20 || els != upper_alpha) return 0;
+    if (els < 2 || els > 20 || els != upper_alpha) return 0;
     return 1;
 }
 void strfilter(char s1[], char s2[], char c){
