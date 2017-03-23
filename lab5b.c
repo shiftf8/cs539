@@ -1,6 +1,6 @@
 /*
 Lamog-Doiel, Robert
-Lab 4B
+Lab 5B
 
 Generate a random string of chars, length of 40.
 Get user input, minimum 2 chars, maximum 20 chars.
