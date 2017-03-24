@@ -31,6 +31,7 @@ void generateRandomString(char [], unsigned);
 int getStrings2(char [], unsigned);
 /*
     Advance through s1 and replace any characters in s1 that match characters from s2 with 'reset' character.
+    Printf filtered string.
 */
 void strfilter(char [], char [], char);
 /*
@@ -54,7 +55,6 @@ int main(){
 
     srand(time(NULL));
     generateRandomString(s1, S1_SIZE);
-    printf("%s\n", s1);
 
     do {
         printf("Enter any upper case letters A-Z (2 to 20 letters).\n");

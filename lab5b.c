@@ -19,7 +19,7 @@ Output formatted text.
     Utilizes <stdlib.h>, srand(), and <time.h>, time().
     Generates 40 char string of random upper case letters A-Z and puts it in s1.
 */
-void generateRandomString(char [], unsigned);
+void generateRandomString(char *, unsigned);
 /*
     fgets() to populate s2.
     Error checks for minimum 2 chars and maximum of 20 chars.
@@ -28,11 +28,12 @@ void generateRandomString(char [], unsigned);
     Return 1 on success.
     Return 0 on failure.
 */
-int getStrings2(char [], unsigned);
+int getStrings2(char *, unsigned);
 /*
     Advance through s1 and replace any characters in s1 that match characters from s2 with 'reset' character.
+    Printf filtered string.
 */
-void strfilter(char [], char [], char);
+void strfilter(char *, char *, char);
 /*
     My own simple upper alpha checker.
 */
@@ -40,7 +41,7 @@ int isUpperAlpha(char);
 /*
     Initialize string to \0.
 */
-void initializeString(char [], unsigned);
+void initializeString(char *, unsigned);
 /*
     Clear stdin buffer.
 */
@@ -54,7 +55,6 @@ int main(){
 
     srand(time(NULL));
     generateRandomString(s1, S1_SIZE);
-    printf("%s\n", s1);
 
     do {
         printf("Enter any upper case letters A-Z (2 to 20 letters).\n");
@@ -80,25 +80,25 @@ int main(){
     return 0;
 }
 
-void generateRandomString(char str[], unsigned arr_size){
+void generateRandomString(char *ptr_str, unsigned arr_size){
     unsigned i = 0;
 
     for (i; i < arr_size; ++i){
-        str[i] = (rand() % 26) + 65;
+        *(ptr_str + i) = (rand() % 26) + 65;
     }
 }
-int getStrings2(char str[], unsigned arr_size){
+int getStrings2(char *ptr_str, unsigned arr_size){
     char buf[1024] = "\0";
     unsigned els = 0;
     unsigned upper_alpha = 0;
     char c = NULL;
 
-    initializeString(str, arr_size);
+    initializeString(ptr_str, arr_size);
 
     fgets(buf, sizeof(buf), stdin);
-    while (buf[els] != '\n'){
-        if (isUpperAlpha(buf[els])){
-            if (els < arr_size) str[els] = buf[els];
+    while (*(buf + els) != '\n'){
+        if (isUpperAlpha(*(buf + els))){
+            if (els < arr_size) *(ptr_str + els) = *(buf + els);
             upper_alpha++; /* Counting number of valid upper case letters */
         }
         els++; /* Counting number of elements in array */
@@ -107,16 +107,16 @@ int getStrings2(char str[], unsigned arr_size){
     if (els < 2 || els > 20 || els != upper_alpha) return 0;
     return 1;
 }
-void strfilter(char s1[], char s2[], char c){
+void strfilter(char *s1, char *s2, char c){
     char filtered[S1_SIZE] = "\0";
     unsigned i = 0;
     unsigned j = 0;
 
     for (i; i < S1_SIZE; ++i){
-        filtered[i] = s1[i];
+        *(filtered + i) = *(s1 + i);
 
         for (j; j < S2_SIZE; ++j){
-            if (s1[i] == s2[j]) filtered[i] = c;
+            if (*(s1 + i) == *(s2 + j)) *(filtered + i) = c;
         }
         j = 0;
     }
@@ -127,11 +127,11 @@ int isUpperAlpha(char c){
     if ((c >= 'A') && (c <= 'Z')) return 1;
     return 0;
 }
-void initializeString(char str[], unsigned arr_size){
+void initializeString(char *ptr_str, unsigned arr_size){
     unsigned i = 0;
 
     for (i; i < arr_size; ++i){
-        str[i] = '\0';
+        *(ptr_str + i) = '\0';
     }
 }
 void clearBuffer(){
