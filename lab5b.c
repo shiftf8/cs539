@@ -8,8 +8,8 @@ Use a function to replace user input chars within random string to designated ch
 Output formatted text.
 */
 
-#define S1_SIZE 40
-#define S2_SIZE 20
+#define S1_SIZE 41
+#define S2_SIZE 21
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -39,11 +39,11 @@ void strfilter(char *, char *, char);
 */
 int isUpperAlpha(char);
 /*
-    Initialize string to \0.
+    Initialize string with \0.
 */
 void initializeString(char *, unsigned);
 /*
-    Clear stdin buffer.
+    Clear stdin buffer with getchar().
 */
 void clearBuffer();
 
@@ -54,7 +54,7 @@ int main(){
     int loop_again = 0;
 
     srand(time(NULL));
-    generateRandomString(s1, S1_SIZE);
+    generateRandomString(s1, S1_SIZE - 1);
 
     do {
         printf("Enter any upper case letters A-Z (2 to 20 letters).\n");
@@ -98,7 +98,7 @@ int getStrings2(char *ptr_str, unsigned arr_size){
     fgets(buf, sizeof(buf), stdin);
     while (*(buf + els) != '\n'){
         if (isUpperAlpha(*(buf + els))){
-            if (els < arr_size) *(ptr_str + els) = *(buf + els);
+            if (els < arr_size - 1) *(ptr_str + els) = *(buf + els);
             upper_alpha++; /* Counting number of valid upper case letters */
         }
         els++; /* Counting number of elements in array */
@@ -112,10 +112,10 @@ void strfilter(char *s1, char *s2, char c){
     unsigned i = 0;
     unsigned j = 0;
 
-    for (i; i < S1_SIZE; ++i){
+    for (i; i < S1_SIZE - 1; ++i){
         *(filtered + i) = *(s1 + i);
 
-        for (j; j < S2_SIZE; ++j){
+        for (j; j < S2_SIZE - 1; ++j){
             if (*(s1 + i) == *(s2 + j)) *(filtered + i) = c;
         }
         j = 0;
