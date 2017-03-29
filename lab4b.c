@@ -55,11 +55,11 @@ int main(){
     int loop_again = 0;
 
     srand(time(NULL));
-    generateRandomString(s1, S1_SIZE - 1);
+    generateRandomString(s1, S1_SIZE - 1); /* Only need to send 40 elements == S1_SIZE - 1 */
 
     do {
         printf("Enter any upper case letters A-Z (2 to 20 letters).\n");
-        if (getStrings2(s2, S2_SIZE)){
+        if (getStrings2(s2, S2_SIZE - 1)){ /* Only need to send 20 elements == S2_SIZE - 1 */
             printf("Enter any character.\n");
             c = getchar();
 
@@ -99,7 +99,7 @@ int getStrings2(char str[], unsigned arr_size){
     fgets(buf, sizeof(buf), stdin);
     while (buf[els] != '\n'){
         if (isUpperAlpha(buf[els])){
-            if (els < arr_size - 1) str[els] = buf[els];
+            if (els < arr_size) str[els] = buf[els];
             upper_alpha++; /* Counting number of valid upper case letters */
         }
         els++; /* Counting number of elements in array */
@@ -113,10 +113,10 @@ void strfilter(char s1[], char s2[], char c){
     unsigned i = 0;
     unsigned j = 0;
 
-    for (i; i < S1_SIZE - 1; ++i){
+    for (i; i < S1_SIZE - 1; ++i){ /* Only need to check 40 elements == S1_SIZE - 1 */
         filtered[i] = s1[i];
 
-        for (j; j < S2_SIZE - 1; ++j){
+        for (j; j < S2_SIZE - 1; ++j){ /* Only need to check 20 elements == S2_SIZE - 1 */
             if (s1[i] == s2[j]) filtered[i] = c;
         }
         j = 0;
