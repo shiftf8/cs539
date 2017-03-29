@@ -1,6 +1,7 @@
 /*
 Lamog-Doiel, Robert
 Lab 5B
+04/18/2017
 
 Generate a random string of chars, length of 40.
 Get user input, minimum 2 chars, maximum 20 chars.
