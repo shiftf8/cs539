@@ -32,7 +32,7 @@ void generateRandomString(char *, unsigned);
 int getStrings2(char *, unsigned);
 /*
     Advance through s1 and replace any characters in s1 that match characters from s2 with 'reset' character.
-    Printf filtered string.
+    Output formatted string.
 */
 void strfilter(char *, char *, char);
 /*
@@ -58,24 +58,29 @@ int main(){
     generateRandomString(s1, S1_SIZE - 1); /* Only need to send 40 elements == S1_SIZE - 1 */
 
     do {
-        printf("Enter any upper case letters A-Z (2 to 20 letters).\n");
+        fputs("Enter any upper case letters A-Z (2 to 20 letters).\n", stdout);
         if (getStrings2(s2, S2_SIZE - 1)){ /* Only need to send 20 elements == S2_SIZE - 1 */
-            printf("Enter any character.\n");
+            fputs("Enter any character.\n", stdout);
             c = getchar();
 
-            printf("s1 = {\"%s\"}\ns2 = {\"%s\"}\nc = {\"%c\"}\n", s1, s2, c);
+            fputs("s1 = {\"", stdout);
+            fputs(s1, stdout);
+            fputs("\"}\ns2 = {\"", stdout);
+            fputs(s2, stdout);
+            fputs("\"}\nc = {\"", stdout);
+            fputc(c, stdout);
+            fputs("\"}\n", stdout);
             strfilter(s1, s2, c);
             clearBuffer();
-        } else printf("Invalid input.\n");
-        printf("Would you like to enter new letters to reset (Y/N)? ");
+        } else fputs("Invalid input.\n", stdout);
+        fputs("Would you like to enter new letters to reset (Y/N)? ", stdout);
         c = getchar();
         putchar(c);
-        printf("\n");
+        fputs("\n", stdout);
         if (c == 'Y' || c == 'y'){
             loop_again = 1;
             clearBuffer();
-        }
-        else loop_again = 0;
+        } else loop_again = 0;
     } while (loop_again);
 
     return 0;
@@ -122,7 +127,9 @@ void strfilter(char *s1, char *s2, char c){
         j = 0;
     }
 
-    printf("filtered = {\"%s\"}\n", filtered);
+    fputs("filtered = {\"", stdout);
+    fputs(filtered, stdout);
+    fputs("\"}\n", stdout);
 }
 int isUpperAlpha(char c){
     if ((c >= 'A') && (c <= 'Z')) return 1;
