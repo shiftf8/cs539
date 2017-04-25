@@ -14,12 +14,12 @@ Include duplicate entries.
 #define LAB6B_H
 
 struct Address* newAddress();
-void delAddress( struct Address* address );
-struct Address* setLastNameFirstName( struct Address* contact, char* str );
-struct Address* setStreetAddress( struct Address* contact, char* str );
-struct Address* setCityState( struct Address* contact, char* str );
-struct Address* setZipCode( struct Address* contact, char* str );
-void printAddress( struct Address* address );
-struct Address** zipCodeSort( struct Address** contactList, unsigned int numberOfContacts );
+void delAddress(struct Address*);
+struct Address* setLastNameFirstName(struct Address*, char*);
+struct Address* setStreetAddress(struct Address*, char*);
+struct Address* setCityState(struct Address*, char*);
+struct Address* setZipCode(struct Address*, char*);
+void printAddress(struct Address*);
+struct Address** zipCodeSort(struct Address**, unsigned);
 
 #endif

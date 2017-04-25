@@ -3,7 +3,7 @@ Lamog-Doiel, Robert
 Lab 6B
 05/09/2017
 
-HEADER DECLARATIONS
+HEADER DEFINITIONS 
 Dynamically allocate array of pointers to structs from file input.
 Names and addresses are in alphabetical order.
 Output based on ascending zip code.
@@ -21,79 +21,79 @@ struct Address {
     char zipCode[10];
 };
 
-struct Address* newAddress() {
+struct Address* newAddress(){
     /* Try to allocate Address structure */
-    struct Address* retVal = malloc( sizeof( struct Address ) );
-    if ( retVal == NULL ) return NULL;
+    struct Address* retVal = malloc(sizeof(struct Address));
+    if (retVal == NULL) return NULL;
 
     return retVal;
 }
-void delAddress( struct Address* address ) {
-    if ( address != NULL ) free( address );
+void delAddress(struct Address* address){
+    if (address != NULL) free(address);
 }
-struct Address* setLastNameFirstName( struct Address* contact, char* str ) {
-    if ( str == NULL ) {
-        printf( "setLastNameFirstName: Unsuccessful.\nProgram terminated.\n" );
-        exit( EXIT_FAILURE );
+struct Address* setLastNameFirstName(struct Address* contact, char* str){
+    if (str == NULL){
+        printf("setLastNameFirstName: Unsuccessful.\nProgram terminated.\n");
+        exit(EXIT_FAILURE);
     } else {
-        strcpy( contact->lastNameFirstName, str );
+        strcpy(contact->lastNameFirstName, str);
     }
 
     return contact;
 }
-struct Address* setStreetAddress( struct Address* contact, char* str ) {
-    if ( str == NULL ) {
-        printf( "setStreetAddress: Unsuccessful.\nProgram terminated.\n" );
-        exit( EXIT_FAILURE );
+struct Address* setStreetAddress(struct Address* contact, char* str){
+    if (str == NULL){
+        printf("setStreetAddress: Unsuccessful.\nProgram terminated.\n");
+        exit(EXIT_FAILURE);
     } else {
-        strcpy( contact->streetAddress, str );
+        strcpy(contact->streetAddress, str);
     }
 
     return contact;
 }
-struct Address* setCityState( struct Address* contact, char* str ) {
-    if ( str == NULL ) {
-        printf( "setCityState: Unsuccessful.\nProgram terminated.\n" );
-        exit( EXIT_FAILURE );
+struct Address* setCityState(struct Address* contact, char* str){
+    if (str == NULL){
+        printf("setCityState: Unsuccessful.\nProgram terminated.\n");
+        exit(EXIT_FAILURE);
     } else {
-        strcpy( contact->cityState, str );
+        strcpy(contact->cityState, str);
     }
 
     return contact;
 }
-struct Address* setZipCode( struct Address* contact, char* str ) {
-    if ( str == NULL ) {
-        printf( "setZipCode: Unsuccessful.\nProgram terminated.\n" );
-        exit( EXIT_FAILURE );
+struct Address* setZipCode(struct Address* contact, char* str){
+    if (str == NULL){
+        printf("setZipCode: Unsuccessful.\nProgram terminated.\n");
+        exit(EXIT_FAILURE);
     } else {
-        strcpy( contact->zipCode, str );
+        strcpy(contact->zipCode, str);
     }
 
     return contact;
 }
-void printAddress( struct Address* address ) {
+void printAddress(struct Address* address){
     /* Test code print block
-    printf( "%p\n", address );
-    printf( "%s%p\n", address->lastNameFirstName );
-    printf( "%s%p\n", address->streetAddress );
-    printf( "%s%p\n", address->cityState );
-    printf( "%s%p\n", address->zipCode );
+    printf("%p\n", address);
+    printf("%s%p\n", address->lastNameFirstName);
+    printf("%s%p\n", address->streetAddress);
+    printf("%s%p\n", address->cityState);
+    printf("%s%p\n", address->zipCode);
     /* */
 
-    printf( "%s%s%s%s\n", address->lastNameFirstName, address->streetAddress, address->cityState, address->zipCode );
+    printf("%s%s%s%s\n", address->lastNameFirstName, address->streetAddress, address->cityState, address->zipCode);
 }
 
-struct Address** zipCodeSort( struct Address** contactList, unsigned int numberOfContacts ) {
-    unsigned int i = 0;
-    unsigned int j = 0;
-    unsigned int min = 0;
+struct Address** zipCodeSort(struct Address** contactList, unsigned numberOfContacts){
+    unsigned i = 0;
+    unsigned j = 0;
+    unsigned min = 0;
     struct Address* tmp;
 
-    for ( i; i <= numberOfContacts; ++i ) {
+    for (i; i <= numberOfContacts; ++i){
         min = i;
 
-        for ( j = i; j <= numberOfContacts; ++j ) {
-            if ( strcmp( contactList[j]->zipCode, contactList[min]->zipCode ) < 0 ) {
+        for (j = i; j <= numberOfContacts; ++j){
+            if (strcmp(contactList[j]->zipCode, contactList[min]->zipCode ) < 0){
                 min = j;
             }
         }

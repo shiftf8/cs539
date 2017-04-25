@@ -21,7 +21,7 @@ int main () {
     char str[512]; /* Arbitrary string length */
     unsigned int i = 0;
 
-    input = fopen( "benihana.txt", "r" );
+    input = fopen( "address.txt", "r" );
 
     if ( input != NULL ) {
         contactList[contactX] = newAddress(); /* Try to add initial address struct */
@@ -31,8 +31,7 @@ int main () {
         }
 
         while ( fgets( str, sizeof( str ), input ) ) {
-            if ( lineN == 5 ) {  /* File input data entries are separated with blank newline for easier source manipulation and error checking.
-                                    Making each entry 5 lines long instead of 4. */
+            if ( lineN == 4 ) {  /* File input data entries are lineN line number long */ 
 
                 lineN = 0;  /* Reset input line iterator */
 
