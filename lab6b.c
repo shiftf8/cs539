@@ -10,7 +10,7 @@ Include duplicate entries.
 */
 
 #define MAX_RECORDS 50
-#define RECORD_LINE_LENGTH 4
+#define ADDRESS_LINE_LENGTH 4
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -19,8 +19,8 @@ Include duplicate entries.
 int main () {
     FILE* input = NULL;
     struct Address* address_list[MAX_RECORDS];
-    unsigned contact_x = 0; /* Positional reference/count */
-    unsigned line_n = 0;  /* File line input positional reference/count. Strictly adheres to preformatted input file. Set #define RECORD_LINE_LENGTH. */
+    unsigned contact_x = 0; /* Positional reference/count. Used contact instead of address for readability. */
+    unsigned line_n = 0;  /* File line input positional reference/count. Strictly adheres to preformatted input file. Set #define ADDRESS_LINE_LENGTH. */
     char str[512]; /* Arbitrary string input length */
     unsigned i = 0;
 
@@ -34,7 +34,7 @@ int main () {
         }
 
         while (fgets(str, sizeof(str), input)){
-            if (line_n == RECORD_LINE_LENGTH){
+            if (line_n == ADDRESS_LINE_LENGTH){
                 line_n = 0;  /* Reset input line iterator */
 
                 ++contact_x;
@@ -68,8 +68,8 @@ int main () {
 
     for (i; i <= contact_x; ++i){
         printAddress(address_list[i]);
-        delAddress(address_list[i]);
+        delAddress(address_list[i]); /* Freeing structs at this time. Convenient. */
     }
 
     return 0;
-} /* main */
+}

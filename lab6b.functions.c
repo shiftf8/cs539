@@ -32,9 +32,6 @@ struct Address* newAddress(){
 
     return retVal;
 }
-/*
-
-*/
 void delAddress(struct Address* address){
     if (address != NULL) free(address);
 }
@@ -98,7 +95,7 @@ struct Address* setZipCode(struct Address* contact, char* str){
     Print single address from ptr.
 */
 void printAddress(struct Address* address){
-    /* Test code print block
+    /* TEST CODE PRINT BLOCK
     printf("%p\n", address);
     printf("%s%p\n", address->last_name_first_name);
     printf("%s%p\n", address->street_address);
@@ -110,7 +107,7 @@ void printAddress(struct Address* address){
 }
 
 /*
-    DESTRUCTIVE bubble sort of zip code in ascending order.
+    DESTRUCTIVE bubble sort from zip code in ascending order.
 */
 struct Address** zipCodeSort(struct Address** contact_list, unsigned number_of_contacts){
     unsigned i = 0;
