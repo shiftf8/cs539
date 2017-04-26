@@ -9,64 +9,66 @@ Output based on ascending zip code.
 Include duplicate entries.
 */
 
+#define MAX_RECORDS 50
+#define RECORD_LINE_LENGTH 4
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "lab6b.h"
 
 int main () {
     FILE* input = NULL;
-    struct Address* contactList[50]; /* Max records 50 */
-    unsigned int contactX = 0; /* contactList[50] positional reference/count */
-    unsigned int lineN = 0;  /* File line input positional reference/count. Strictly adheres to preformatted input file. */
-    char str[512]; /* Arbitrary string length */
-    unsigned int i = 0;
+    struct Address* address_list[MAX_RECORDS];
+    unsigned contact_x = 0; /* Positional reference/count */
+    unsigned line_n = 0;  /* File line input positional reference/count. Strictly adheres to preformatted input file. Set #define RECORD_LINE_LENGTH. */
+    char str[512]; /* Arbitrary string input length */
+    unsigned i = 0;
 
-    input = fopen( "address.txt", "r" );
+    input = fopen("address.txt", "r");
 
-    if ( input != NULL ) {
-        contactList[contactX] = newAddress(); /* Try to add initial address struct */
-        if ( contactList[contactX] == NULL ) {
-            printf( "newAddress: Unsuccessful.\nProgram terminated.\n" );
-            exit( EXIT_FAILURE );
+    if (input != NULL){
+        address_list[contact_x] = newAddress(); /* Try to add initial address struct */
+        if (address_list[contact_x] == NULL){
+            printf("newAddress: Unsuccessful.\nProgram terminated.\n");
+            exit(EXIT_FAILURE);
         }
 
-        while ( fgets( str, sizeof( str ), input ) ) {
-            if ( lineN == 4 ) {  /* File input data entries are lineN line number long */ 
+        while (fgets(str, sizeof(str), input)){
+            if (line_n == RECORD_LINE_LENGTH){
+                line_n = 0;  /* Reset input line iterator */
 
-                lineN = 0;  /* Reset input line iterator */
-
-                ++contactX;
-                if ( contactX > 50 ) { /* This sets the max limit of input contacts. contactX should likely be compared to a defined or static const max_limit or something equivalent. */
-                    --contactX; /* Rolling back count once so we continue to stay in bounds */
-                    printf( "This program was designed to process a maximum of %d contacts. Further input will be ignored.\n", contactX );
+                ++contact_x;
+                if (contact_x > MAX_RECORDS) {
+                    --contact_x; /* Rolling back count once so we continue to stay in bounds */
+                    printf("This program was designed to process a maximum of %d contacts. Further input will be ignored.\n", MAX_RECORDS);
                     break;
                 }
-                contactList[contactX] = newAddress(); /* Try to add new address */
-                if ( contactList[contactX] == NULL ) {
-                    printf( "newAddress: Unsuccessful.\nProgram terminated.\n" );
-                    exit( EXIT_FAILURE );
+                address_list[contact_x] = newAddress(); /* Try to add new address */
+                if (address_list[contact_x] == NULL){
+                    printf("newAddress: Unsuccessful.\nProgram terminated.\n");
+                    exit(EXIT_FAILURE);
                 }
             }
 
-            if ( lineN == 0 ) setLastNameFirstName( contactList[contactX], str );
-            if ( lineN == 1 ) setStreetAddress( contactList[contactX], str );
-            if ( lineN == 2 ) setCityState( contactList[contactX], str );
-            if ( lineN == 3 ) setZipCode( contactList[contactX], str );
+            if (line_n == 0) setLastNameFirstName(address_list[contact_x], str);
+            if (line_n == 1) setStreetAddress(address_list[contact_x], str);
+            if (line_n == 2) setCityState(address_list[contact_x], str);
+            if (line_n == 3) setZipCode(address_list[contact_x], str);
 
-            ++lineN;
+            ++line_n;
         }
     } else {
-        perror( "fopen: Unsuccessful.\nProgram terminated.\n" );
-        exit( EXIT_FAILURE );
+        perror("fopen: Unsuccessful.\nProgram terminated.\n");
+        exit(EXIT_FAILURE);
     }
 
-    fclose( input );
+    fclose(input);
 
-    zipCodeSort( contactList, contactX );
+    zipCodeSort(address_list, contact_x);
 
-    for ( i; i <= contactX; ++i ) {
-        printAddress( contactList[i] );
-        delAddress( contactList[i] );
+    for (i; i <= contact_x; ++i){
+        printAddress(address_list[i]);
+        delAddress(address_list[i]);
     }
 
     return 0;

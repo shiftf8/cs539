@@ -20,6 +20,7 @@ struct Address* setStreetAddress(struct Address*, char*);
 struct Address* setCityState(struct Address*, char*);
 struct Address* setZipCode(struct Address*, char*);
 void printAddress(struct Address*);
+
 struct Address** zipCodeSort(struct Address**, unsigned);
 
 #endif
