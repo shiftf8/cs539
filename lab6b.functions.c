@@ -89,7 +89,11 @@ Address* setZipCode(Address* contact, char* str){
     Print single address from ptr.
 */
 void printAddress(Address* address){
-    printf("%s%s%s%s", address->last_name_first_name, address->street_address, address->city_state, address->zip_code);
+    printf("%s%s%s%s",
+        address->last_name_first_name,
+        address->street_address,
+        address->city_state,
+        address->zip_code);
 }
 
 /*

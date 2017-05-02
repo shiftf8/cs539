@@ -16,7 +16,7 @@ Include duplicate entries.
 int main () {
     Address* address_list[MAX_RECORDS];
     unsigned contact_x = 0; /* Positional reference/count. Used contact instead of address for readability. */
-    unsigned line_n = 0;  /* File line input positional reference/count. Strictly adheres to preformatted input file. Set #define ADDRESS_LINE_LENGTH. */
+    unsigned line_n = 0;  /* File line input positional reference/count. Set #define ADDRESS_LINE_LENGTH. */
     char str[512]; /* Arbitrary string input length */
     unsigned i = 0;
 

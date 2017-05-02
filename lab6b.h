@@ -23,14 +23,14 @@ typedef struct Address {
     char zip_code[16];
 } Address;
 
-struct Address* newAddress();
-void delAddress(struct Address*);
-struct Address* setLastNameFirstName(struct Address*, char*);
-struct Address* setStreetAddress(struct Address*, char*);
-struct Address* setCityState(struct Address*, char*);
-struct Address* setZipCode(struct Address*, char*);
-void printAddress(struct Address*);
+Address* newAddress();
+void delAddress(Address*);
+Address* setLastNameFirstName(Address*, char*);
+Address* setStreetAddress(Address*, char*);
+Address* setCityState(Address*, char*);
+Address* setZipCode(Address*, char*);
+void printAddress(Address*);
 
-struct Address** zipCodeSort(struct Address**, unsigned);
+Address** zipCodeSort(Address**, unsigned);
 
 #endif
