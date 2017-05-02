@@ -13,33 +13,27 @@ Include duplicate entries.
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-struct Address {
-    char last_name_first_name[256];
-    char street_address[512];
-    char city_state[256];
-    char zip_code[10];
-};
+#include "lab6b.h"
 
 /*
     Malloc new address struct.
     Return NULL on failure.
     Return ptr to new address struct on success.
 */
-struct Address* newAddress(){
-    struct Address* retVal = malloc(sizeof(struct Address));
+Address* newAddress(){
+    Address* retVal = malloc(sizeof(Address));
     if (retVal == NULL) return NULL;
 
     return retVal;
 }
-void delAddress(struct Address* address){
+void delAddress(Address* address){
     if (address != NULL) free(address);
 }
 /*
     Set contact->last_name_first_name.
     Exit program on failure.
 */
-struct Address* setLastNameFirstName(struct Address* contact, char* str){
+Address* setLastNameFirstName(Address* contact, char* str){
     if (str == NULL){
         printf("setLastNameFirstName: Unsuccessful.\nProgram terminated.\n");
         exit(EXIT_FAILURE);
@@ -53,7 +47,7 @@ struct Address* setLastNameFirstName(struct Address* contact, char* str){
     Set contact->street_address.
     Exit program on failure.
 */
-struct Address* setStreetAddress(struct Address* contact, char* str){
+Address* setStreetAddress(Address* contact, char* str){
     if (str == NULL){
         printf("setStreetAddress: Unsuccessful.\nProgram terminated.\n");
         exit(EXIT_FAILURE);
@@ -67,7 +61,7 @@ struct Address* setStreetAddress(struct Address* contact, char* str){
     Set contact->city_state.
     Exit program on failure.
 */
-struct Address* setCityState(struct Address* contact, char* str){
+Address* setCityState(Address* contact, char* str){
     if (str == NULL){
         printf("setCityState: Unsuccessful.\nProgram terminated.\n");
         exit(EXIT_FAILURE);
@@ -81,7 +75,7 @@ struct Address* setCityState(struct Address* contact, char* str){
     Set contact->zip_code.
     Exit program on failure.
 */
-struct Address* setZipCode(struct Address* contact, char* str){
+Address* setZipCode(Address* contact, char* str){
     if (str == NULL){
         printf("setZipCode: Unsuccessful.\nProgram terminated.\n");
         exit(EXIT_FAILURE);
@@ -94,26 +88,18 @@ struct Address* setZipCode(struct Address* contact, char* str){
 /*
     Print single address from ptr.
 */
-void printAddress(struct Address* address){
-    /* TEST CODE PRINT BLOCK
-    printf("%p\n", address);
-    printf("%s%p\n", address->last_name_first_name);
-    printf("%s%p\n", address->street_address);
-    printf("%s%p\n", address->city_state);
-    printf("%s%p\n", address->zip_code);
-    /* */
-
+void printAddress(Address* address){
     printf("%s%s%s%s", address->last_name_first_name, address->street_address, address->city_state, address->zip_code);
 }
 
 /*
-    DESTRUCTIVE bubble sort from zip code in ascending order.
+    DESTRUCTIVE selection sort utilizing zip code in ascending order.
 */
-struct Address** zipCodeSort(struct Address** contact_list, unsigned number_of_contacts){
+Address** zipCodeSort(Address** contact_list, unsigned number_of_contacts){
     unsigned i = 0;
     unsigned j = 0;
     unsigned min = 0;
-    struct Address* tmp;
+    Address* tmp;
 
     for (i; i <= number_of_contacts; ++i){
         min = i;

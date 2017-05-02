@@ -13,6 +13,16 @@ Include duplicate entries.
 #ifndef LAB6B_H
 #define LAB6B_H
 
+#define MAX_RECORDS 50
+#define ADDRESS_LINE_LENGTH 4
+
+typedef struct Address {
+    char last_name_first_name[256];
+    char street_address[512];
+    char city_state[256];
+    char zip_code[16];
+} Address;
+
 struct Address* newAddress();
 void delAddress(struct Address*);
 struct Address* setLastNameFirstName(struct Address*, char*);

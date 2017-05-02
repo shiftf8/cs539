@@ -38,7 +38,7 @@ void strfilter(char *, char *, char);
 /*
     My own simple upper alpha checker.
 */
-int isUpperAlpha(char);
+int isUpperAlpha(char *);
 /*
     Initialize string with \0.
 */
@@ -55,11 +55,11 @@ int main(){
     int loop_again = 0;
 
     srand(time(NULL));
-    generateRandomString(s1, S1_SIZE - 1); /* Only need to send 40 elements == S1_SIZE - 1 */
+    generateRandomString(s1, S1_SIZE - 1);
 
     do {
         fputs("Enter any upper case letters A-Z (2 to 20 letters).\n", stdout);
-        if (getStrings2(s2, S2_SIZE - 1)){ /* Only need to send 20 elements == S2_SIZE - 1 */
+        if (getStrings2(s2, S2_SIZE)){
             fputs("Enter any character.\n", stdout);
             c = getchar();
 
@@ -87,26 +87,35 @@ int main(){
 }
 
 void generateRandomString(char *ptr_str, unsigned arr_size){
-    unsigned i = 0;
+    char *ptr_str_tmp = ptr_str;
 
-    for (i; i < arr_size; ++i){
-        *(ptr_str + i) = (rand() % 26) + 65;
+    while (arr_size){
+        *ptr_str_tmp = (rand() % 26) + 65;
+        ptr_str_tmp++;
+        arr_size--;
     }
 }
 int getStrings2(char *ptr_str, unsigned arr_size){
-    char buf[1024] = "\0";
+    char *ptr_str_tmp = ptr_str;
+    char buf[1024] = "\0"; /* Arbitrary buffer size */
+    char *ptr_buf_tmp = buf;
+    char c = NULL;
     unsigned els = 0;
     unsigned upper_alpha = 0;
-    char c = NULL;
 
     initializeString(ptr_str, arr_size);
 
     fgets(buf, sizeof(buf), stdin);
-    while (*(buf + els) != '\n'){
-        if (isUpperAlpha(*(buf + els))){
-            if (els < arr_size) *(ptr_str + els) = *(buf + els);
+
+    while (*ptr_buf_tmp != '\n'){
+        if (isUpperAlpha(ptr_buf_tmp)){
+            if (els < S2_SIZE - 1){ /* Only need to set at most 20 elements == S2_SIZE - 1 */
+                *ptr_str_tmp = *ptr_buf_tmp;
+            }
             upper_alpha++; /* Counting number of valid upper case letters */
         }
+        ptr_str_tmp++;
+        ptr_buf_tmp++;
         els++; /* Counting number of elements in array */
     }
 
@@ -114,16 +123,22 @@ int getStrings2(char *ptr_str, unsigned arr_size){
     return 1;
 }
 void strfilter(char *s1, char *s2, char c){
+    char *ptr_s1_tmp = s1;
+    char *ptr_s2_tmp = s2;
     char filtered[S1_SIZE] = "\0";
+    char *ptr_filtered_tmp = filtered;
     unsigned i = 0;
     unsigned j = 0;
 
     for (i; i < S1_SIZE - 1; ++i){ /* Only need to check 40 elements == S1_SIZE - 1 */
-        *(filtered + i) = *(s1 + i);
+        *ptr_filtered_tmp = *ptr_s1_tmp;
 
         for (j; j < S2_SIZE - 1; ++j){ /* Only need to check 20 elements == S2_SIZE - 1 */
-            if (*(s1 + i) == *(s2 + j)) *(filtered + i) = c;
+            if (*ptr_s1_tmp == *ptr_s2_tmp) *ptr_filtered_tmp = c;
+            ptr_s2_tmp++;
         }
+        ptr_filtered_tmp++;
+        ptr_s1_tmp++;
         j = 0;
     }
 
@@ -131,15 +146,17 @@ void strfilter(char *s1, char *s2, char c){
     fputs(filtered, stdout);
     fputs("\"}\n", stdout);
 }
-int isUpperAlpha(char c){
-    if ((c >= 'A') && (c <= 'Z')) return 1;
+int isUpperAlpha(char *c){
+    if ((*c >= 'A') && (*c <= 'Z')) return 1;
     return 0;
 }
 void initializeString(char *ptr_str, unsigned arr_size){
-    unsigned i = 0;
+    char *ptr_str_tmp = ptr_str;
 
-    for (i; i < arr_size; ++i){
-        *(ptr_str + i) = '\0';
+    while (arr_size){
+        *ptr_str_tmp = '\0';
+        ptr_str_tmp++;
+        arr_size--;
     }
 }
 void clearBuffer(){
