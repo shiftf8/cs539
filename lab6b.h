@@ -14,7 +14,7 @@ Include duplicate entries.
 #define LAB6B_H
 
 #define MAX_RECORDS 50
-#define ADDRESS_LINE_LENGTH 4
+#define ADDRESS_LINE_N 4
 
 typedef struct Address {
     char last_name_first_name[256];

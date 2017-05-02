@@ -16,7 +16,7 @@ Include duplicate entries.
 int main () {
     Address* address_list[MAX_RECORDS];
     unsigned contact_x = 0; /* Positional reference/count. Used contact instead of address for readability. */
-    unsigned line_n = 0;  /* File line input positional reference/count. Set #define ADDRESS_LINE_LENGTH. */
+    unsigned line_n = 0;  /* File line input positional reference. Set #define ADDRESS_LINE_N. */
     char str[512]; /* Arbitrary string input length */
     unsigned i = 0;
 
@@ -27,7 +27,7 @@ int main () {
     }
 
     while (fgets(str, sizeof(str), stdin)){
-        if (line_n == ADDRESS_LINE_LENGTH){
+        if (line_n == ADDRESS_LINE_N){
             line_n = 0;  /* Reset input line iterator */
 
             ++contact_x;
