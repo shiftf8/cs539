@@ -55,7 +55,7 @@ int main(){
     int loop_again = 0;
 
     srand(time(NULL));
-    generateRandomString(s1, S1_SIZE - 1);
+    generateRandomString(s1, S1_SIZE - 1); /* Only need to set 40 elements == S1_SIZE - 1 */
 
     do {
         fputs("Enter any upper case letters A-Z (2 to 20 letters).\n", stdout);
@@ -112,7 +112,7 @@ int getStrings2(char *ptr_str, unsigned arr_size){
             if (els < S2_SIZE - 1){ /* Only need to set at most 20 elements == S2_SIZE - 1 */
                 *ptr_str_tmp = *ptr_buf_tmp;
             }
-            upper_alpha++; /* Counting number of valid upper case letters */
+            upper_alpha++; /* Counting number of upper case letters */
         }
         ptr_str_tmp++;
         ptr_buf_tmp++;

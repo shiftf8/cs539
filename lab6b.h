@@ -16,11 +16,12 @@ Include duplicate entries.
 #define MAX_RECORDS 50
 #define ADDRESS_LINE_N 4
 
+/* Not the best use of memory. Little, to no error checking for valid input. */
 typedef struct Address {
-    char last_name_first_name[256];
+    char last_name_first_name[512];
     char street_address[512];
-    char city_state[256];
-    char zip_code[16];
+    char city_state[512];
+    char zip_code[512];
 } Address;
 
 Address* newAddress();

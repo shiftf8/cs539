@@ -38,7 +38,7 @@ Address* setLastNameFirstName(Address* contact, char* str){
         printf("setLastNameFirstName: Unsuccessful.\nProgram terminated.\n");
         exit(EXIT_FAILURE);
     } else {
-        strcpy(contact->last_name_first_name, str); /* Not the safest use of strcpy() */
+        strcpy(contact->last_name_first_name, str);
     }
 
     return contact;
@@ -52,7 +52,7 @@ Address* setStreetAddress(Address* contact, char* str){
         printf("setStreetAddress: Unsuccessful.\nProgram terminated.\n");
         exit(EXIT_FAILURE);
     } else {
-        strcpy(contact->street_address, str); /* Not the safest use of strcpy() */
+        strcpy(contact->street_address, str);
     }
 
     return contact;
@@ -66,7 +66,7 @@ Address* setCityState(Address* contact, char* str){
         printf("setCityState: Unsuccessful.\nProgram terminated.\n");
         exit(EXIT_FAILURE);
     } else {
-        strcpy(contact->city_state, str); /* Not the safest use of strcpy() */
+        strcpy(contact->city_state, str);
     }
 
     return contact;
@@ -80,7 +80,7 @@ Address* setZipCode(Address* contact, char* str){
         printf("setZipCode: Unsuccessful.\nProgram terminated.\n");
         exit(EXIT_FAILURE);
     } else {
-        strcpy(contact->zip_code, str); /* Not the safest use of strcpy() */
+        strcpy(contact->zip_code, str);
     }
 
     return contact;

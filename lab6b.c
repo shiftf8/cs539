@@ -16,7 +16,7 @@ Include duplicate entries.
 int main () {
     Address* address_list[MAX_RECORDS];
     unsigned contact_x = 0; /* Positional reference/count. Used contact instead of address for readability. */
-    unsigned line_n = 0;  /* File line input positional reference. Set #define ADDRESS_LINE_N. */
+    unsigned line_n = 0;  /* Line input positional reference. Set #define ADDRESS_LINE_N. */
     char str[512]; /* Arbitrary string input length */
     unsigned i = 0;
 
@@ -28,8 +28,6 @@ int main () {
 
     while (fgets(str, sizeof(str), stdin)){
         if (line_n == ADDRESS_LINE_N){
-            line_n = 0;  /* Reset input line iterator */
-
             if (++contact_x == MAX_RECORDS) {
                 --contact_x; /* Rolling back count to stay in bounds */
                 printf("This program was designed to process a maximum of %d addresses. Further input will be ignored.\n", MAX_RECORDS);
@@ -40,6 +38,8 @@ int main () {
                 printf("newAddress: Unsuccessful.\nProgram terminated.\n");
                 exit(EXIT_FAILURE);
             }
+
+            line_n = 0;  /* Reset input line iterator */
         }
 
         if (line_n == 0) setLastNameFirstName(address_list[contact_x], str);
