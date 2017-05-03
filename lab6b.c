@@ -30,9 +30,8 @@ int main () {
         if (line_n == ADDRESS_LINE_N){
             line_n = 0;  /* Reset input line iterator */
 
-            ++contact_x;
-            if (contact_x > MAX_RECORDS) {
-                --contact_x; /* Rolling back count once so we continue to stay in bounds */
+            if (++contact_x == MAX_RECORDS) {
+                --contact_x; /* Rolling back count to stay in bounds */
                 printf("This program was designed to process a maximum of %d addresses. Further input will be ignored.\n", MAX_RECORDS);
                 break;
             }
