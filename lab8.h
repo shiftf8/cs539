@@ -30,7 +30,7 @@ Address* setLastNameFirstName(Address*, char*);
 Address* setStreetAddress(Address*, char*);
 Address* setCityState(Address*, char*);
 Address* setZipCode(Address*, char*);
-void printAddress(Address*);
+void writeAddress(Address*, FILE*);
 
 Address** zipCodeSort(Address**, unsigned);
 
