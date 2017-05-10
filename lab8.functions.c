@@ -26,7 +26,7 @@ Address* newAddress(){
 
     return retVal;
 }
-void delAddress(Address* address){
+void freeAddress(Address* address){
     if (address != NULL) free(address);
 }
 /*

@@ -70,7 +70,7 @@ int main(int argc, char* argv[]){
     if (output != NULL){
         for (i; i <= contact_x; ++i){
             writeAddress(address_list[i], output);
-            delAddress(address_list[i]); /* Freeing structs at this time. Convenient. */
+            freeAddress(address_list[i]); /* Freeing structs at this time. Convenient. */
         }
     } else {
         perror("fopen: Unsuccessful.\nProgram terminated.\n");

@@ -25,7 +25,7 @@ typedef struct Address {
 } Address;
 
 Address* newAddress();
-void delAddress(Address*);
+void freeAddress(Address*);
 Address* setLastNameFirstName(Address*, char*);
 Address* setStreetAddress(Address*, char*);
 Address* setCityState(Address*, char*);
