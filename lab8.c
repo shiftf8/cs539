@@ -27,8 +27,7 @@ int main(int argc, char* argv[]){
         exit(EXIT_FAILURE);
     }
 
-    input = fopen(argv[1], "r");
-    if (input != NULL){
+    if (input = fopen(argv[1], "r")){
         address_list[contact_x] = newAddress(); /* Try to add initial address struct */
         if (address_list[contact_x] == NULL){
             printf("newAddress: Unsuccessful.\nProgram terminated.\n");
@@ -66,8 +65,7 @@ int main(int argc, char* argv[]){
 
     zipCodeSort(address_list, contact_x);
 
-    output = fopen(argv[2], "w");
-    if (output != NULL){
+    if (output = fopen(argv[2], "w")){
         for (i; i <= contact_x; ++i){
             writeAddress(address_list[i], output);
             freeAddress(address_list[i]); /* Freeing structs at this time. Convenient. */
