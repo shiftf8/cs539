@@ -13,7 +13,7 @@ Include duplicate entries.
 #include <stdlib.h>
 #include "lab6b.h"
 
-int main () {
+int main(){
     Address* address_list[MAX_RECORDS];
     unsigned contact_x = 0; /* Positional reference/count. Used contact instead of address for readability. */
     unsigned line_n = 0;  /* Line input positional reference. Set #define ADDRESS_LINE_N. */

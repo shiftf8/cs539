@@ -1,13 +1,14 @@
 /*
 Lamog-Doiel, Robert
-Lab 6B
-05/09/2017
+Lab 8
+05/23/2017
 
 HEADER DEFINITIONS
 Dynamically allocate array of pointers to structs from file input.
 Names and addresses are in alphabetical order.
 Output based on ascending zip code.
 Include duplicate entries.
+Use command line arguments with FILE I/O.
 */
 
 #include <stdio.h>
