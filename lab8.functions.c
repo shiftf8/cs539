@@ -14,7 +14,7 @@ Use command line arguments with FILE I/O.
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "lab6b.h"
+#include "lab8.h"
 
 /*
     Malloc new address struct.

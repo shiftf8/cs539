@@ -11,8 +11,8 @@ Include duplicate entries.
 Use command line arguments with FILE I/O.
 */
 
-#ifndef LAB6B_H
-#define LAB6B_H
+#ifndef LAB8_H
+#define LAB8_H
 
 #define MAX_RECORDS 50
 #define ADDRESS_LINE_N 4

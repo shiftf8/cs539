@@ -12,7 +12,7 @@ Use command line arguments with FILE I/O.
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "lab6b.h"
+#include "lab8.h"
 
 int main(int argc, char* argv[]){
     FILE* input = NULL;
